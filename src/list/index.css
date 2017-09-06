@@ -1,0 +1,13 @@
+.list {
+    background: #d3d3d3;
+    border-radius: 4px;
+    width: 300px;
+    height: 400px;
+}
+
+.list_title {
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-top: 10px;
+}
