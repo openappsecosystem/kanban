@@ -2,6 +2,31 @@
   text-align: center;
 } */
 
+.button {
+  background: -webkit-linear-gradient(top,#fff 0,#F8F9F9 100%);
+  background: linear-gradient(to bottom,#fff 0,#F8F9F9 100%);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #E2E4E6;
+  border-bottom-color: #CDD2D4;
+  cursor: pointer;
+  display: block;
+  font-weight: 700;
+  height: 34px;
+  margin-top: 6px;
+  max-width: 300px;
+  padding: 7px;
+  position: relative;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.negate {
+  background: #EB5A46 !important;
+  border-color: #EB5A46 #EB5A46 #B04632 !important;
+  color: white !important;
+}
+
 body {
   margin: 0;
   padding: 20px;
@@ -596,7 +621,6 @@ select {
   padding: 8px 9pt 9pt 0;
   width: 140px;
   z-index: 10;
-  overflow: hidden;
 }
 
 .action_list button {
@@ -620,6 +644,7 @@ select {
   text-decoration: none;
   outline: 0;
   width: 100%;
+  font-size: 14px;
 }
 
 .content_action h5 {
@@ -634,15 +659,78 @@ select {
   box-shadow: 0 1px 6px rgba(0,0,0,.15);
   /* display: none; */
   position: absolute;
-  /* right: -9999px; */
+  right: 0;
   /* top: -9999px; */
   width: 300px;
   z-index: 70;
   -webkit-transform: translate3d(0,0,0);
+  padding: 10px;
+}
+
+.popup .popup_header h5 {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #8c8c8c;
+  display: block;
+  line-height: 36px;
+  border-bottom: 1px solid #D6DADC;
+  overflow: hidden;
+  padding: 0 2pc;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index: 1;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: .5px;
+  margin-bottom: 10px;
 }
 
 .activities_list .list_item .members {
   position: absolute;
   left: -38px;
   top: 12px;
+}
+
+.members_name{
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup_content .content_process {
+  background: white;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 3px;
+  height: 50px;
+  /* -webkit-appearance: none; */
+  font-size: 14px;
+  text-indent: 5px;
+  color: #717171;
+  font-weight: 600;
+  border: 1px solid #E2E4E6;
+  border-bottom-color: #CDD2D4;
+  background: -webkit-linear-gradient(top,#fff 0,#F8F9F9 100%);
+  background: linear-gradient(to bottom,#fff 0,#F8F9F9 100%);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #E2E4E6;
+  border-bottom-color: #CDD2D4;
+  cursor: pointer;
+  display: block;
+  font-weight: 700;
+  margin-top: 6px;
+  max-width: 300px;
+  padding: 7px;
+  position: relative;
+  user-select: none;
+  white-space: nowrap;
 }

@@ -6,6 +6,10 @@ import update from 'react/lib/update'
 import Modal from 'react-modal'
 import {Activity, Card, Text, Message} from '../icons'
 // import Day from '../components/dayPicker'
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates'
+import 'react-dates/lib/css/_datepicker.css';
+import moment from 'moment'
+
 const customStyles = {
  overlay : {
     position          : 'fixed',
@@ -40,9 +44,13 @@ class Canvas extends React.Component {
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.onMember = this.onMember.bind(this)
+    this.onProcess = this.onProcess.bind(this)
+    this.onDelete = this.onDelete.bind(this)
     this.addDescription = this.addDescription.bind(this)
     this.state = {
       modalIsOpen: false,
+      date: null,
+      focused: false,
       lists: [
         {
           id: 393939393,
@@ -80,7 +88,8 @@ class Canvas extends React.Component {
       ],
       modalSelected: {},
       modalDescription: false,
-      memberPopup: false
+      memberPopup: false,
+      processPopup: false
     }
   }
 
@@ -171,10 +180,29 @@ class Canvas extends React.Component {
   }
 
   onMember (id) {
-    console.log(id)
     this.setState({
       ...this.state,
+      processPopup: false,
+      deletePopup: false,
       memberPopup: !this.state.memberPopup
+    })
+  }
+
+  onProcess (id) {
+    this.setState({
+      ...this.state,
+      memberPopup: false,
+      deletePopup: false,
+      processPopup: !this.state.processPopup
+    })
+  }
+
+  onDelete (id) {
+    this.setState({
+      ...this.state,
+      memberPopup: false,
+      processPopup: false,
+      deletePopup: !this.state.deletePopup
     })
   }
 
@@ -196,7 +224,7 @@ class Canvas extends React.Component {
   }
 
   render () {
-    const {lists, modalSelected} = this.state
+    const {lists, modalSelected, memberPopup, deletePopup, processPopup} = this.state
     return (
       <section className='canvas'>
         <h1 className='canvas_title'>Kamakanban</h1>
@@ -252,7 +280,6 @@ class Canvas extends React.Component {
                       </div>
                     </div>
                   </div>
-                  {/* <h5 className='header_list'>nella lista <span>aprile</span></h5> */}
                 </div>
                 <div className={this.state.modalDescription ? 'content_description hidden' : 'content_description'}>
                   <a className='info_add' onClick={() => this.addDescription()}>
@@ -292,6 +319,12 @@ class Canvas extends React.Component {
                       <option>Hour</option>
                       <option>Words</option>
                     </select>
+                    <SingleDatePicker
+                      date={this.state.date} // momentPropTypes.momentObj or null
+                      onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+                      focused={this.state.focused} // PropTypes.bool
+                      onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+                    />
                     {/* <span>on</span> */}
                   </div>
                 </div>
@@ -336,7 +369,7 @@ class Canvas extends React.Component {
                   <div className='action_list'>
                     <div className='list_members'>
                       <button onClick={() => this.onMember()}>Members</button>
-                      <div className='members popup'>
+                      <div className={memberPopup ? 'members popup' : 'members popup hidden'}>
                         <div className='popup_header'>
                           <h5>Members</h5>
                         </div>
@@ -346,17 +379,62 @@ class Canvas extends React.Component {
                               <div className='members'>
                                 <span className='members_item' />
                               </div>
-                              <h5>Bernini</h5>
+                              <h5 className='members_name'>Bernini</h5>
+                              <span className='members_active'></span>
+                            </div>
+                            <div className='list_item'>
+                              <div className='members'>
+                                <span className='members_item' />
+                              </div>
+                              <h5 className='members_name'>Maro</h5>
+                              <span className='members_active'></span>
+                            </div>
+                            <div className='list_item'>
+                              <div className='members'>
+                                <span className='members_item' />
+                              </div>
+                              <h5 className='members_name'>Bhaugen</h5>
+                              <span className='members_active'></span>
+                            </div>
+                            <div className='list_item'>
+                              <div className='members'>
+                                <span className='members_item' />
+                              </div>
+                              <h5 className='members_name'>Fosterlynn</h5>
                               <span className='members_active'></span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    
-                    <button>Process</button>
+                    <div className='list_process'>
+                      <button onClick={() => this.onProcess()}>Process</button>
+                      <div className={processPopup ? 'process popup' : 'process popup hidden' }>
+                        <div className='popup_header'>
+                          <h5>Process</h5>
+                        </div>
+                        <div className='popup_content'>
+                          <select className='content_process'>
+                            <option>option 1</option>
+                            <option>option 2</option>
+                            <option>option 3</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                     <button>Due</button>
-                    <button>Archivia</button>
+                    <div className='list_archive'>
+                      <button onClick={() => this.onDelete()}>Archivia</button>
+                      <div className={deletePopup ? 'delete popup' : 'delete popup hidden' }>
+                        <div className='popup_header'>
+                          <h5>Archivia</h5>
+                        </div>
+                        <div className='popup_content'>
+                          <h5 className='content_description'>Sicuro di volerla eliminare?</h5>
+                          <button className='button negate content_delete'>Delete</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
