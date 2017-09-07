@@ -1,0 +1,21 @@
+.header_title {
+    font-size: 18px;
+    margin: 0 0 9px;
+    color: #4d4d4d;
+    position: relative;
+}
+
+.header_title .content_icon {
+  position: absolute;
+  left: -34px;
+}
+
+/* .content_module .content_icon {
+    left: -38px;
+    position: absolute;
+    top: 8px;
+  } */
+  
+  .content_icon svg {
+    stroke: 2;
+  }

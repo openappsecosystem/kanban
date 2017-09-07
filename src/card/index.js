@@ -2,12 +2,9 @@ import React from 'react'
 import {CardTypes} from '../constants/card'
 import { DragSource, DropTarget } from 'react-dnd'
 import { findDOMNode } from 'react-dom'
+import Card from './card'
 
 const cardSource = {
-  // canDrag (props) {
-  //   return props.draggable
-  // },
-
   beginDrag (props) {
     return {
       id: props.id,
@@ -16,15 +13,6 @@ const cardSource = {
       card: props
     }
   }
-
-  // endDrag (props, monitor) {
-  //   const item = monitor.getItem()
-  //   const dropResult = monitor.getDropResult()
-  //   if (dropResult && dropResult.listId !== item.listId) {
-  //     props.moveCardAcrossLists(item.listId, dropResult.listId, item.id)
-  //   }
-  //   // props.handleDragEnd && props.handleDragEnd(item.id, item.laneId, dropResult ? dropResult.laneId : item.laneId)
-  // }
 }
 
 const cardTarget = {
@@ -75,16 +63,6 @@ function dropCollect (connect) {
     return {
       connectDropTarget: connect.dropTarget(),
     }
-}
-
-
-const Card = (props) => {
-  const {connectDragSource, id, listId, openModal, connectDropTarget, isDragging} = props
-  return connectDragSource(connectDropTarget(
-    <div onClick={() => openModal(id, listId)} className={isDragging ? 'card dragged' : 'card'}>
-      <span className='card_title'>{props.name}</span>
-    </div>
-  ))
 }
 
 export default DropTarget(CardTypes.CARD, cardTarget, dropCollect)(DragSource(CardTypes.CARD, cardSource, collect)(Card))
