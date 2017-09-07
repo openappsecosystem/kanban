@@ -1,0 +1,29 @@
+textarea {
+    outline: none;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    background-color: #E2E4E6;
+    border: 1px solid #CDD2D4;
+    border-radius: 3px;
+    display: block;
+    margin-bottom: 9pt;
+    min-height: 2pc;
+    padding: 7px;
+    resize: vertical;
+    -webkit-transition: background 85ms ease-in,border-color 85ms ease-in;
+    transition: background 85ms ease-in,border-color 85ms ease-in;
+    width: 100%;
+    font-size: 14px;
+    line-height: 40px;
+    clear: both;
+    font-weight: 400;
+    margin: 0 0 4px;
+    overflow: hidden;
+    word-wrap: break-word;
+    color: #4d4d4d;
+}
+
+textarea.white {
+    background: transparent;
+    border: none;
+}

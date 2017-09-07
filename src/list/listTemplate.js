@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
 import Card from '../card'
+import style from './index.css'
+import Button from '../components/button'
+import TextArea from '../components/textarea'
 
 const ListTemplate = ({setTitle, name, cards, id, openModal, moveCard, openCardController, moveCardAcrossLists, cardController,addCardToList, updateNewCardTitle, newCardTitle}) => (
-  <div className='list_wrapper'>
-    <div className='list'>
-      <div className='list_header'>
-        <h1 className={setTitle ? 'hidden header_title' : 'header_title'}>{name}</h1>
+  <div className={style.list_wrapper}>
+    <div className={style.list}>
+      <div className={style.list_header}>
+        <h1 className={setTitle ? style.hidden + ' ' +  style.header_title : style.header_title}>{name}</h1>
       </div>
-      <div className='list_cards'>
+      <div className={style.list_cards}>
         {cards ? cards 
         .map((card, i) => (
           <Card
@@ -22,23 +25,23 @@ const ListTemplate = ({setTitle, name, cards, id, openModal, moveCard, openCardC
             moveCardAcrossLists={moveCardAcrossLists}
           />
         )) : ''}
-        <div className={cardController ? 'card_composer' : 'card_composer hidden'}>
-          <div className='composer_card'>
-            <div className='card_controller'>
-              <div className='card_details'>
-                <textarea onChange={updateNewCardTitle} className='list_card_composer_textarea' value={newCardTitle} />
+        <div className={cardController ? style.card_composer : style.card_composer + ' ' + style.hidden}>
+          <div className={style.composer_card}>
+            <div className={style.card_controller}>
+              <div className={style.card_details}>
+                <TextArea action={updateNewCardTitle} type={'white'} title={newCardTitle} />
               </div>
             </div>
           </div>
-            <div className='card_controls'>
-              <div className='controls_creation'>
-                <button onClick={()=> addCardToList(newCardTitle, id)}>Add</button>
-                <a onClick={() => openCardController()} className='icon_delete'></a> 
+            <div className={style.card_controls}>
+              <div className={style.controls_creation}>
+                <Button action={()=> addCardToList(newCardTitle, id)} title={'Add'} />
+                <a onClick={() => openCardController()} className={style.icon_delete}></a> 
               </div>
             </div>
         </div>
       </div>
-      <a className='open-card-composer' onClick={() => openCardController()} >Aggiungi una scheda...</a>
+      <a className={style.open_card_composer} onClick={() => openCardController()} >Aggiungi una scheda...</a>
     </div>
   </div>
 )

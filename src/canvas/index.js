@@ -5,7 +5,11 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'react/lib/update'
 import Modal from 'react-modal'
 import {Activity, Card, Text, Message} from '../icons'
-// import Day from '../components/dayPicker'
+import styles from './canvas.css'
+import Button from '../components/button'
+import TextArea from '../components/textarea'
+import Title from '../components/title'
+
 const customStyles = {
  overlay : {
     position          : 'fixed',
@@ -221,12 +225,13 @@ class Canvas extends React.Component {
         >
         <section className='modal_content'>
             <div className='content_header'>
-              <h2 className='header_title'>
+              <Title icon={<Card width={20} height={20} color={'#999'}/>} title={modalSelected.title} />
+              {/* <h2 className='header_title'>
                 <span className='content_icon'>
                   <Card width={20} height={20} color={'#999'}/>
                 </span>
                 {modalSelected.title}
-              </h2>
+              </h2> */}
               <span className='header_sub'>Nella lista <i>Todo</i></span>
             </div>
             <div className='content_info'>
@@ -262,10 +267,10 @@ class Canvas extends React.Component {
                   </a>
                 </div>
                 <div className={this.state.modalDescription ? 'description_text' : 'description_text hidden'}>
-                  <textarea placeholder='Add a more detailed description...'/>
+                  <TextArea placeholder={'Add a more detailed description...'} />
                   <div className='text_controls'>
                     <div className='controls_creation'>
-                      <button>Add</button>
+                      <Button title={'Add'} />
                       <a className='icon_delete' onClick={() => this.addDescription()}></a> 
                     </div>
                   </div>
@@ -335,7 +340,7 @@ class Canvas extends React.Component {
                   <h5>Actions</h5>
                   <div className='action_list'>
                     <div className='list_members'>
-                      <button onClick={() => this.onMember()}>Members</button>
+                      <Button action={() => this.onMember()} title={'Members'} />
                       <div className='members popup'>
                         <div className='popup_header'>
                           <h5>Members</h5>
