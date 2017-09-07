@@ -5,12 +5,11 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'react/lib/update'
 import Modal from 'react-modal'
 import {Activity, Card, Text, Message} from '../icons'
-import styles from './canvas.css'
-import {SingleDatePicker} from 'react-dates'
+import Module from './module'
 import Button from '../components/button'
 import TextArea from '../components/textarea'
 import Title from '../components/title'
-
+import Log from './log'
 const customStyles = {
  overlay : {
     position          : 'fixed',
@@ -251,12 +250,6 @@ class Canvas extends React.Component {
         <section className='modal_content'>
             <div className='content_header'>
               <Title icon={<Card width={20} height={20} color={'#999'}/>} title={modalSelected.title} />
-              {/* <h2 className='header_title'>
-                <span className='content_icon'>
-                  <Card width={20} height={20} color={'#999'}/>
-                </span>
-                {modalSelected.title}
-              </h2> */}
               <span className='header_sub'>Nella lista <i>Todo</i></span>
             </div>
             <div className='content_info'>
@@ -300,12 +293,11 @@ class Canvas extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className='content_module'>
+              <Module title={'Log your action'} icon={<span className='content_icon'><Message width={20} height={20} color={'#999'}/></span>} content={<Log />}/>
+              {/* <div className='content_module'>
                 <div className='content_log'>
                   <h5>
-                    <span className='content_icon'>
-                      <Message width={20} height={20} color={'#999'}/>
-                    </span>
+                    <span className='content_icon'><Message width={20} height={20} color={'#999'}/></span>
                     Log your actions</h5>
                   <div className='log_item'>
                     <div className='members'>
@@ -327,10 +319,9 @@ class Canvas extends React.Component {
                       focused={this.state.focused} // PropTypes.bool
                       onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
                     />
-                    {/* <span>on</span> */}
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className='content_module'>
                 <div className='content_activities'>
                   <h5>
