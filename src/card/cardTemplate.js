@@ -1,8 +1,9 @@
 import React from 'react'
+import style from './index.css'
 
 const CardTemplate = ({action ,isDragging, name}) => (
-  <div onClick={action} className={isDragging ? 'card dragged' : 'card'}>
-    <span className='card_title'>{name}</span>
+  <div onClick={action} className={isDragging ? style.card + ' ' + style.dragged : style.card}>
+    <span className={style.card_title}>{name}</span>
   </div>
 )
 

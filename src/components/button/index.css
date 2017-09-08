@@ -20,3 +20,9 @@ button {
     outline: 0;
     width: 100%;
 }
+
+.negate {
+  background: #EB5A46 !important;
+  border-color: #EB5A46 #EB5A46 #B04632 !important;
+  color: white !important;
+}
