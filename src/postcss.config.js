@@ -24,6 +24,8 @@ module.exports = {
       },
       'postcss-mixins': {
         mixins: require('../src/mixins')
-      }
+      },
+      'lost': {},
+      'postcss-utilities': {}
     },
   };

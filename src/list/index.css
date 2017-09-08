@@ -1,29 +1,29 @@
 .list_wrapper {
-    width: 270px;
+    /* width: 270px; */
     margin: 0 5px;
     height: 100%;
     box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
-    & .list {
-        background: #E2E4E6;
-        border-radius: 3px;
-        /* width: 300px; */
-        /* height: 400px; */
-        /* margin: 0; */
-        /* float: left;
-        margin-right: 10px; */
-        box-sizing: border-box;
-        display: flex;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        max-height: 100%;
-        position: relative;
-        white-space: normal;
 }
 
+.list {
+    background: #E2E4E6;
+    border-radius: 3px;
+    /* width: 300px; */
+    /* height: 400px; */
+    /* margin: 0; */
+    /* float: left;
+    margin-right: 10px; */
+    box-sizing: border-box;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    white-space: normal;
 }
 
 .list_header {
@@ -133,22 +133,6 @@
     position: relative;
     z-index: 10;
 }
-/* .composer_card textarea {
-    background: 0 0;
-    border: none;
-    box-shadow: none;
-    height: auto;
-    margin-bottom: 4px;
-    max-height: 162px;
-    min-height: 54px;
-    overflow-y: auto;
-    padding: 0;
-    overflow: hidden;
-    word-wrap: break-word;
-    height: 54px; 
-    line-height: 20px;
-} */
-
 
 .controls_creation button {
     background: -webkit-linear-gradient(top,#D6DADC 0,#CDD2D4 100%);
