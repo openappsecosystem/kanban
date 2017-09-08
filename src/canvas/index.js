@@ -10,6 +10,9 @@ import Button from '../components/button'
 import TextArea from '../components/textarea'
 import Title from '../components/title'
 import Log from './log'
+import {SingleDatePicker} from 'react-dates'
+import Popup from '../components/popup'
+import MembersPopup from './membersPopup'
 const customStyles = {
  overlay : {
     position          : 'fixed',
@@ -293,8 +296,8 @@ class Canvas extends React.Component {
                   </div>
                 </div>
               </div>
-              <Module title={'Log your action'} icon={<span className='content_icon'><Message width={20} height={20} color={'#999'}/></span>} content={<Log />}/>
-              {/* <div className='content_module'>
+              {/* <Module title={'Log your action'} icon={<span className='content_icon'><Message width={20} height={20} color={'#999'}/></span>} content={<Log />}/> */}
+              <div className='content_module'>
                 <div className='content_log'>
                   <h5>
                     <span className='content_icon'><Message width={20} height={20} color={'#999'}/></span>
@@ -321,13 +324,10 @@ class Canvas extends React.Component {
                     />
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className='content_module'>
                 <div className='content_activities'>
-                  <h5>
-                    <span className='content_icon'>
-                      <Activity width={20} height={20} color={'#999'}/>
-                    </span> Activities</h5>
+                  <h5><span className='content_icon'><Activity width={20} height={20} color={'#999'}/></span> Activities</h5>
                   <div className='activities_list'>
                     <div className='list_item'>
                       <div className='members'>
@@ -399,6 +399,11 @@ class Canvas extends React.Component {
                           </div>
                         </div>
                       </div>
+                      <Popup
+                        type={'members'}
+                        title={'Members'}
+                        content={<MembersPopup />}
+                      />
                     </div>
                     <div className='list_process'>
                       <button onClick={() => this.onProcess()}>Process</button>

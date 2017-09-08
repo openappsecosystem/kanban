@@ -21,9 +21,8 @@ textarea {
     overflow: hidden;
     word-wrap: break-word;
     color: #4d4d4d;
-}
-
-textarea.white {
-    background: transparent;
-    border: none;
+    &.white {
+        background: transparent;
+        border: none;
+    }
 }
