@@ -6,15 +6,9 @@ import Popup from '../popup'
 import Button from '../button'
 import TextArea from '../textarea'
 import style from './index.css'
-import {Activity, Card, Text, Message} from '../../icons'
+import {Activity, Card, Text, Message, Cross} from '../../icons'
 
-const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, closeModal, modalSelected, modalDescription, actionAddDescription}) => (
-    <Modal
-    isOpen={modalIsOpen}
-    onRequestClose={closeModal}
-    contentLabel='CardModal'
-    style={customStyles}
-    >
+const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, modalSelected, modalDescription, addDescription}) => (
     <section className={style.modal_content}>
       <div className={style.content_header}>
         <Title icon={<Card width={20} height={20} color={'#999'}/>} title={modalSelected.title} />
@@ -45,7 +39,7 @@ const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, clo
             </div>
           </div>
           <div className={modalDescription ? style.content_description + ' ' + style.hidden : style.content_description}>
-            <a className={style.info_add} onClick={actionAddDescription}>
+            <a className={style.info_add} onClick={() => addDescription()}>
               <span className={style.add_icon}>
                 <Text width={16} height={16} color={'#999'}/>
               </span>Inserisci la descrizione...
@@ -55,8 +49,8 @@ const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, clo
             <TextArea placeholder={'Add a more detailed description...'} />
             <div className={style.text_controls}>
               <div className={style.controls_creation}>
-                <Button title={'Add'} />
-                <a className={style.icon_delete} onClick={actionAddDescription}></a> 
+                <Button title={'Add'} type={'inline'} />
+                <span className={style.icon_delete} onClick={() => addDescription()}><Cross width={20} height={20} color={'#999'}/></span> 
               </div>
             </div>
           </div>
@@ -126,10 +120,11 @@ const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, clo
             <h5>Actions</h5>
             <div className={style.action_list}>
               <div className={style.list_members}>
-                <Button action={() => this.onMember()} title={'Members'} />
-                <div className={style.members + ' ' + style.popup}>
+                <Button action={() => onMember()} title={'Members'} />
+                <div className={memberPopup ? style.members + ' ' + style.popup : style.members + ' ' + style.popup + ' ' + style.hidden}>
                   <div className={style.popup_header}>
                     <h5>Members</h5>
+                    <span className={style.icon_delete} onClick={() => onMember()}><Cross width={20} height={20} color={'#999'}/></span>
                   </div>
                   <div className={style.popup_content}>
                     <div className={style.content_list}>
@@ -171,10 +166,11 @@ const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, clo
                 /> */}
               </div>
               <div className={style.list_process}>
-                <button onClick={() => this.onProcess()}>Process</button>
+                <Button title={'Process'} action={() => onProcess()} />
                 <div className={processPopup ? style.process + ' ' + style.popup : style.process  + ' ' +style.popup + ' ' + style.hidden }>
                   <div className={style.popup_header}>
                     <h5>Process</h5>
+                    <span className={style.icon_delete} onClick={() => onProcess()}><Cross width={20} height={20} color={'#999'}/></span>
                   </div>
                   <div className={style.popup_content}>
                     <select className={style.content_process}>
@@ -185,16 +181,17 @@ const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, clo
                   </div>
                 </div>
               </div>
-              <button>Due</button>
+              <Button title={'Due'} />
               <div className={style.list_archive}>
-                <button onClick={() => this.onDelete()}>Archivia</button>
+                <Button title={'Archivia'} action={() => onDelete()} />
                 <div className={deletePopup ? style.delete + ' ' + style.popup : style.delete + ' ' + style.popup + ' ' + style.hidden }>
                   <div className={style.popup_header}>
                     <h5>Archivia</h5>
+                    <span className={style.icon_delete} onClick={() => onDelete()}><Cross width={20} height={20} color={'#999'}/></span>
                   </div>
                   <div className={style.popup_content}>
                     <h5 className={style.content_description}>Sicuro di volerla eliminare?</h5>
-                    <button className={style.button + ' ' + style.negate + ' ' + style.content_delete}>Delete</button>
+                    <Button title={'Delete'} type={'negate'} />
                   </div>
                 </div>
               </div>
@@ -203,7 +200,6 @@ const UModal = ({customStyles, date, processPopup, deletePopup, modalIsOpen, clo
         </div>
       </div>
     </section>
-    </Modal>
 )
 
-export default UModal
+export default CardModal

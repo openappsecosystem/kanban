@@ -26,3 +26,7 @@ button {
   border-color: #EB5A46 #EB5A46 #B04632 !important;
   color: white !important;
 }
+
+.inline {
+  display: inline-block;
+}
