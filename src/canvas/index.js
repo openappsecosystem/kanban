@@ -4,17 +4,17 @@ import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'react/lib/update'
 import CardModal from '../components/cardModal'
-import {Activity, Card, Text, Message} from '../icons'
-import Module from './module'
-import Button from '../components/button'
-import TextArea from '../components/textarea'
-import Title from '../components/title'
-import Log from './log'
-import {SingleDatePicker} from 'react-dates'
-import Popup from '../components/popup'
-import MembersPopup from './membersPopup'
+// import {Activity, Card, Text, Message} from '../icons'
+// import Module from './module'
+// import Button from '../components/button'
+// import TextArea from '../components/textarea'
+// import Title from '../components/title'
+// import Log from './log'
+// import {SingleDatePicker} from 'react-dates'
+// import Popup from '../components/popup'
+// import MembersPopup from './membersPopup'
 import cardDnDServices from '../services/cardDnDservices'
-
+import style from './canvas.css'
 
 class Canvas extends React.Component {
   constructor (props) {
@@ -25,10 +25,6 @@ class Canvas extends React.Component {
       modalSelected: {}
     }
   }
-
-   componentDidMount() {
-     console.log(this.props.data)
-   }
 
   openModal (cardId, listId) {
     const {lists} = this.state
@@ -80,19 +76,28 @@ class Canvas extends React.Component {
   }
 
   render () {
-    const {lists, modalSelected, date, memberPopup, modalDescription,modalIsOpen, deletePopup, processPopup} = this.state
-    const {viewer, loading, error} = this.props.data
+    const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
     return (
-      loading ? <strong>Loading...</strong> : (
-        error ? <p style={{ color: '#F00' }}>API error</p> : (
-      <section className='canvas'>
-        <h1 className='canvas_title'>{viewer.plan.name || 'no name'}</h1>
-        {viewer.plan.planProcesses.map((list, i) => (
+      <section className={style.canvas}>
+        <h1 className={style.title}>{this.props.title}</h1>
+        <div className={style.inputs_list}>
+          <h1>🚀 Resources involved</h1>
+          <div className={style.list}>
+            <div className={style.inputs_card}>
+              <span>Friuts</span>
+            </div>
+            <div className={style.inputs_card}>
+              <span>Friuts</span>
+            </div>
+          </div>
+        </div>
+        {this.props.lists.map((list, i) => (
           <List
-            cards={list.committedInputs}
+            cards={list.cards}
+            outputs={list.outputs}
             id={list.id}
             key={i}
-            name={list.name}
+            name={list.title}
             removeCardFromList={this.removeCardFromList.bind(this)}
             addCardToList={this.addCardToList.bind(this)}
             moveCard={this.moveCard.bind(this)}
@@ -100,9 +105,20 @@ class Canvas extends React.Component {
             openModal={this.openModal.bind(this)}
           />
         ))}
-        <CardModal  modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal.bind(this)} modalSelected={modalSelected} />
+        <div className={style.outputs_list}>
+          <h1>🎉 Resources Generated</h1>
+          <div className={style.list}>
+            <div className={style.outputs_card}>
+              <span>Friuts</span>
+            </div>
+            <div className={style.outputs_card}>
+              <span>Friuts</span>
+            </div>
+          </div>
+        </div>
+        <CardModal modalIsOpen={modalIsOpen} closeModal={this.closeModal.bind(this)} data={modalSelected} />
       </section>
-    )))
+    )
   }
 }
 

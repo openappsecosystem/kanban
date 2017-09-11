@@ -8,11 +8,13 @@ import TextArea from '../textarea'
 import style from './index.css'
 import {Activity, Card, Text, Message, Cross} from '../../icons'
 
-const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, modalSelected, modalDescription, addDescription}) => (
+const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
+  console.log(data)
+  return (
     <section className={style.modal_content}>
       <div className={style.content_header}>
-        <Title icon={<Card width={20} height={20} color={'#999'}/>} title={modalSelected.title} />
-        <span className={style.header_sub}>Nella lista <i>Todo</i></span>
+        <Title icon={<Card width={20} height={20} color={'#999'} />} title={data.title} />
+        <span className={style.header_sub}>Nella lista <i>{data.process}</i></span>
       </div>
       <div className={style.content_info}>
         <div className={style.content_module}>
@@ -20,20 +22,22 @@ const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPop
             <div className={style.header_labels}>
               <div className={style.labels_members}>
                 <h5>Members</h5>
-                <div className={style.members}>
-                  <span className={style.members_item} />
-                </div>
+                {data.members.map((member, i) => (
+                  <div key={i} className={style.members}>
+                    <span className={style.members_item} />
+                  </div>
+                ))}
               </div>
               <div className={style.labels_process}>
                 <h5>Process</h5>
                 <div className={style.process}>
-                  <span className={style.process_item}>Process ABC</span>
+                  <span className={style.process_item}>{data.process}</span>
                 </div>
               </div>
               <div className={style.labels_due}>
                 <h5>Due</h5>
                 <div className={style.due}>
-                  <span className={style.due_item}>Domani alle 12:00</span>
+                  <span className={style.due_item}>{data.due}</span>
                 </div>
               </div>
             </div>
@@ -86,7 +90,7 @@ const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPop
         </div>
         <div className={style.content_module}>
           <div className={style.content_activities}>
-            <h5><span className={style.content_icon}><Activity width={20} height={20} color={'#999'}/></span> Activities</h5>
+            <h5><span className={style.content_icon}><Activity width={20} height={20} color={'#999'}/></span>All Activities</h5>
             <div className={style.activities_list}>
               <div className={style.list_item}>
                 <div className={style.members}>
@@ -200,6 +204,7 @@ const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPop
         </div>
       </div>
     </section>
-)
+  )
+}
 
 export default CardModal

@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './membersPopup.css'
+// import style from './membersPopup.css'
 
 const MembersPopup = () => (
   <div className='content_list'>

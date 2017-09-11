@@ -12,6 +12,7 @@ const Lists = ({data}) => {
         <h2>All plans</h2>
           {viewer.agent.agentPlans.map((plan, i) => (
             <Link
+              key={i}
               to={'/canvas/' + plan.id }
               className='link'
             >

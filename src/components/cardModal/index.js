@@ -77,7 +77,7 @@ class UModal extends React.Component {
       }
 
       render () {
-        const {modalSelected, date, memberPopup, modalDescription, deletePopup, processPopup} = this.state
+        const {date, memberPopup, modalDescription, deletePopup, processPopup} = this.state
           return (
             <Modal
             isOpen={this.props.modalIsOpen}
@@ -85,7 +85,7 @@ class UModal extends React.Component {
             contentLabel='CardModal'
             style={customStyles}
             >
-              <CardModal onMember={this.onMember.bind(this)} onProcess={this.onProcess.bind(this)} onDelete={this.onDelete.bind(this)} memberPopup={memberPopup} processPopup={processPopup} date={date} deletePopup={deletePopup} modalIsOpen={this.props.modalIsOpen} closeModal={this.props.closeModal} modalSelected={this.props.modalSelected} modalDescription={modalDescription} addDescription={this.addDescription.bind(this)} />
+              <CardModal onMember={this.onMember.bind(this)} onProcess={this.onProcess.bind(this)} onDelete={this.onDelete.bind(this)} memberPopup={memberPopup} processPopup={processPopup} date={date} deletePopup={deletePopup} modalIsOpen={this.props.modalIsOpen} closeModal={this.props.closeModal} data={this.props.data} modalDescription={modalDescription} addDescription={this.addDescription.bind(this)} />
             </Modal>
           )
       }
