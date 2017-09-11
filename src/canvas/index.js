@@ -26,6 +26,9 @@ class Canvas extends React.Component {
     }
   }
 
+   componentDidMount() {
+     console.log(this.props.data)
+   }
 
   openModal (cardId, listId) {
     const {lists} = this.state
@@ -78,15 +81,18 @@ class Canvas extends React.Component {
 
   render () {
     const {lists, modalSelected, date, memberPopup, modalDescription,modalIsOpen, deletePopup, processPopup} = this.state
+    const {viewer, loading, error} = this.props.data
     return (
+      loading ? <strong>Loading...</strong> : (
+        error ? <p style={{ color: '#F00' }}>API error</p> : (
       <section className='canvas'>
-        <h1 className='canvas_title'>{this.props.title}</h1>
-        {lists.map((list, i) => (
+        <h1 className='canvas_title'>{viewer.plan.name || 'no name'}</h1>
+        {viewer.plan.planProcesses.map((list, i) => (
           <List
-            cards={list.cards}
+            cards={list.committedInputs}
             id={list.id}
             key={i}
-            name={list.title}
+            name={list.name}
             removeCardFromList={this.removeCardFromList.bind(this)}
             addCardToList={this.addCardToList.bind(this)}
             moveCard={this.moveCard.bind(this)}
@@ -96,7 +102,7 @@ class Canvas extends React.Component {
         ))}
         <CardModal  modalIsOpen={this.state.modalIsOpen} closeModal={this.closeModal.bind(this)} modalSelected={modalSelected} />
       </section>
-    )
+    )))
   }
 }
 
