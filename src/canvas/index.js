@@ -3,16 +3,7 @@ import List from '../list'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'react/lib/update'
-import CardModal from '../components/cardModal'
-// import {Activity, Card, Text, Message} from '../icons'
-// import Module from './module'
-// import Button from '../components/button'
-// import TextArea from '../components/textarea'
-// import Title from '../components/title'
-// import Log from './log'
-// import {SingleDatePicker} from 'react-dates'
-// import Popup from '../components/popup'
-// import MembersPopup from './membersPopup'
+import CardModal from '../components/cardModal/modalHOC'
 import cardDnDServices from '../services/cardDnDservices'
 import style from './canvas.css'
 
@@ -22,7 +13,7 @@ class Canvas extends React.Component {
     this.state = {
       modalIsOpen: false,
       lists: this.props.lists,
-      modalSelected: {}
+      modalSelected: null
     }
   }
 
@@ -34,7 +25,7 @@ class Canvas extends React.Component {
     this.setState({
       ...this.state,
       modalIsOpen: true,
-      modalSelected: currentCard
+      modalSelected: cardId
     })
   }
 
@@ -44,6 +35,7 @@ class Canvas extends React.Component {
     const { lists } = this.state
     let newState = cardDnDServices.move(lists, dragIndex, hoverIndex, currentListId)
     this.setState({lists: newState})
+    return newState
   }
 
   removeCardFromList (cardId, currentListId) {
@@ -75,8 +67,15 @@ class Canvas extends React.Component {
     this.setState({lists: newState})
   }
 
+
+  addNewTask () {
+    console.log('add new task inside this bin')
+  }
+
+
   render () {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
+    console.log(this.props.allPlanAgents)
     return (
       <section className={style.canvas}>
         <h1 className={style.title}>{this.props.title}</h1>
@@ -103,6 +102,8 @@ class Canvas extends React.Component {
             moveCard={this.moveCard.bind(this)}
             swipeCard={this.swipeCard.bind(this)}
             openModal={this.openModal.bind(this)}
+            /* MUTATIONS */
+            addNewTask={this.addNewTask.bind(this)}
           />
         ))}
         <div className={style.outputs_list}>
@@ -116,7 +117,7 @@ class Canvas extends React.Component {
             </div>
           </div>
         </div>
-        <CardModal modalIsOpen={modalIsOpen} closeModal={this.closeModal.bind(this)} data={modalSelected} />
+        <CardModal allPlanAgents={this.props.allPlanAgents} modalIsOpen={modalIsOpen} closeModal={this.closeModal.bind(this)} id={modalSelected} />
       </section>
     )
   }

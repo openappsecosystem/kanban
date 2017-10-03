@@ -16,7 +16,7 @@ const customStyles = {
        overflow          : 'auto'
      },
      content : {
-       width                 : '720px',
+       width                 : '420px',
        boxShadow             : '0 2px 8px 3px rgba(0,0,0,.3)',
        zIndex                : 9999999999,
        backgroundColor       : '#EDEFF0',
@@ -38,7 +38,9 @@ class UModal extends React.Component {
             modalSelected: this.props.modalSelected,
             modalDescription: false,
             memberPopup: false,
-            processPopup: false
+            processPopup: false,
+            // note: this.props.data.note,
+            showInputTitle: false
           }
     }
 
@@ -49,15 +51,33 @@ class UModal extends React.Component {
         })
       }
 
-    onMember (id) {
-        this.setState({
-          ...this.state,
-          processPopup: false,
-          deletePopup: false,
-          memberPopup: !this.state.memberPopup
-        })
-      }
-    
+    // onMember (id) {
+    //     this.setState({
+    //       ...this.state,
+    //       processPopup: false,
+    //       deletePopup: false,
+    //       memberPopup: !this.state.memberPopup
+    //     })
+    //   }
+
+    // onUpdateNote (e) {
+    //   this.setState({
+    //     ...this.state,
+    //     note: e.target.value
+    //   })
+    //   console.log(this.props.data.id)
+    //   this.props.editNote(this.props.data.id, e.target.value)
+    // }
+
+
+    showEditTitle () {
+      this.setState({
+        ...this.state,
+        showInputTitle: !this.state.showInputTitle
+      })
+      
+    }
+
       onProcess (id) {
         this.setState({
           ...this.state,
@@ -77,18 +97,25 @@ class UModal extends React.Component {
       }
 
       render () {
-        const {date, memberPopup, modalDescription, deletePopup, processPopup} = this.state
+        const {loading, error, data, allPlanAgents} = this.props
+        console.log(data)
+        console.log(error)
+        const {date, memberPopup, showInputTitle, modalDescription, deletePopup, processPopup} = this.state
           return (
             <Modal
-            isOpen={this.props.modalIsOpen}
-            onRequestClose={this.props.closeModal}
-            contentLabel='CardModal'
-            style={customStyles}
-            >
-              <CardModal onMember={this.onMember.bind(this)} onProcess={this.onProcess.bind(this)} onDelete={this.onDelete.bind(this)} memberPopup={memberPopup} processPopup={processPopup} date={date} deletePopup={deletePopup} modalIsOpen={this.props.modalIsOpen} closeModal={this.props.closeModal} data={this.props.data} modalDescription={modalDescription} addDescription={this.addDescription.bind(this)} />
+              isOpen={this.props.modalIsOpen}
+              onRequestClose={this.props.closeModal}
+              contentLabel='CardModal'
+              style={customStyles}
+              >
+              {loading ? <h1>loading...</h1> : (
+                error ? <p style={{ color: '#ddd' }}>API error</p> : (
+                  <CardModal allPlanAgents={allPlanAgents} showInputTitle={showInputTitle} showEditTitle={this.showEditTitle.bind(this)}   onProcess={this.onProcess.bind(this)} onDelete={this.onDelete.bind(this)} memberPopup={memberPopup} processPopup={processPopup} date={date} deletePopup={deletePopup} modalIsOpen={this.props.modalIsOpen} closeModal={this.props.closeModal} data={data} modalDescription={modalDescription} addDescription={this.addDescription.bind(this)} />
+                ))
+              }
             </Modal>
           )
+        }
       }
-}
 
 export default UModal

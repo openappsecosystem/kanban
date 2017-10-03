@@ -12,11 +12,6 @@
 .list {
     background: #E2E4E6;
     border-radius: 3px;
-    /* width: 300px; */
-    /* height: 400px; */
-    /* margin: 0; */
-    /* float: left;
-    margin-right: 10px; */
     box-sizing: border-box;
     display: flex;
     -webkit-flex-direction: column;

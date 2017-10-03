@@ -9,7 +9,7 @@ const Lists = ({data}) => {
     loading ? <strong>Loading...</strong> : (
     error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.lists}>
-        <h2>All plans</h2>
+        <h2>Hello {viewer.agent.name} here your plans</h2>
           {viewer.agent.agentPlans.map((plan, i) => (
             <Link
               key={i}
@@ -26,13 +26,13 @@ const Lists = ({data}) => {
     )
 ))}
 
-
 const agentPlans = gql`
 query ($token: String, $agentId: Int) {
     viewer(token: $token) {
       agent(id: $agentId) {
         id
         name
+        image
         agentPlans {
           name
           id
@@ -54,7 +54,7 @@ query ($token: String, $agentId: Int) {
 
 export default graphql(agentPlans, {
   options: (props) => ({variables: {
-      token: sessionStorage.getItem('token'),
+    token: sessionStorage.getItem('token'),
     agentId: 24
 }})
 })(Lists)

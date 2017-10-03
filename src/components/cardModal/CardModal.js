@@ -6,50 +6,38 @@ import Popup from '../popup'
 import Button from '../button'
 import TextArea from '../textarea'
 import style from './index.css'
-import {Activity, Card, Text, Message, Cross} from '../../icons'
+import {Activity, Card, Text, Message, Cross, Users} from '../../icons'
+import ModalTitle from './modalTitle'
+import ModalMembers from './modalMembers'
+import ModalActivities from './modalActivities'
 
-const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
-  console.log(data)
+const CardModal = ({allPlanAgents, note, showInputTitle, showEditTitle, onMember, onUpdateNote, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
   return (
     <section className={style.modal_content}>
-      <div className={style.content_header}>
-        <Title icon={<Card width={20} height={20} color={'#999'} />} title={data.title} />
-        <span className={style.header_sub}>Nella lista <i>{data.process}</i></span>
-      </div>
+      <ModalTitle id={data.id} note={data.note} />
       <div className={style.content_info}>
         <div className={style.content_module}>
           <div className={style.module_header}>
             <div className={style.header_labels}>
-              <div className={style.labels_members}>
-                <h5>Members</h5>
-                {data.members.map((member, i) => (
-                  <div key={i} className={style.members}>
-                    <span className={style.members_item} />
-                  </div>
-                ))}
-              </div>
-              <div className={style.labels_process}>
-                <h5>Process</h5>
-                <div className={style.process}>
-                  <span className={style.process_item}>{data.process}</span>
-                </div>
-              </div>
+              <ModalMembers provider={data.provider} id={data.id} allPlanAgents={allPlanAgents} members={data.involvedAgents} />
               <div className={style.labels_due}>
-                <h5>Due</h5>
                 <div className={style.due}>
-                  <span className={style.due_item}>{data.due}</span>
+                  <span className={style.due_item}>Due to {data.due}</span>
                 </div>
               </div>
             </div>
           </div>
+
           <div className={modalDescription ? style.content_description + ' ' + style.hidden : style.content_description}>
-            <a className={style.info_add} onClick={() => addDescription()}>
+            {/* <a className={style.info_add} onClick={() => addDescription()}>
               <span className={style.add_icon}>
                 <Text width={16} height={16} color={'#999'}/>
               </span>Inserisci la descrizione...
-            </a>
+            </a> */}
+            <h4>{data.action + ' ' + data.committedQuantity.numericValue + ' ' + data.committedQuantity.unit.name + ' of ' + data.resourceClassifiedAs.name}</h4>
           </div>
-          <div className={modalDescription ? style.description_text : style.description_text + ' ' + style.hidden}>
+
+          {/* <div className={modalDescription ? style.description_text : style.description_text + ' ' + style.hidden}>
             <TextArea placeholder={'Add a more detailed description...'} />
             <div className={style.text_controls}>
               <div className={style.controls_creation}>
@@ -57,18 +45,17 @@ const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPop
                 <span className={style.icon_delete} onClick={() => addDescription()}><Cross width={20} height={20} color={'#999'}/></span> 
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
+        <ModalActivities activities={data.fulfilledBy}/>
         
         <div className={style.content_module}>
           <div className={style.content_log}>
             <h5>
               <span className={style.content_icon}><Message width={20} height={20} color={'#999'}/></span>
-              Log your actions</h5>
+              Log</h5>
             <div className={style.log_item}>
-              <div className={style.members}>
-                <span className={style.members_item}></span>
-              </div>
+ 
               <select>
                 <option>Work</option>
                 <option>Cite</option>
@@ -85,107 +72,17 @@ const CardModal = ({onMember, onProcess, onDelete, date, memberPopup, processPop
                 focused={this.state.focused} // PropTypes.bool
                 onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
               /> */}
+              <TextArea placeholder={'Add a more detailed description...'}  />
+              <Button type={'good'} title='Update Task'/>
             </div>
           </div>
         </div>
-        <div className={style.content_module}>
-          <div className={style.content_activities}>
-            <h5><span className={style.content_icon}><Activity width={20} height={20} color={'#999'}/></span>All Activities</h5>
-            <div className={style.activities_list}>
-              <div className={style.list_item}>
-                <div className={style.members}>
-                  <span className={style.members_item} />
-                </div>
-                <div className={style.item_desc}>
-                  <span>Bernini</span> ha lavorato 4 ore su questo task
-                </div>
-                <div className={style.item_meta}>
-                  33 min fa
-                </div>
-              </div>
-              <div className={style.list_item}>
-                <div className={style.members}>
-                  <span className={style.members_item} />
-                </div>
-                <div className={style.item_desc}>
-                  <span>Bernini</span> ha lavorato 4 ore su questo task
-                </div>
-                <div className={style.item_meta}>
-                  33 min fa
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+   
       </div>
       <div className={style.content_actions}>
         <div className={style.content_module}>
           <div className={style.content_action}>
-            <h5>Actions</h5>
             <div className={style.action_list}>
-              <div className={style.list_members}>
-                <Button action={() => onMember()} title={'Members'} />
-                <div className={memberPopup ? style.members + ' ' + style.popup : style.members + ' ' + style.popup + ' ' + style.hidden}>
-                  <div className={style.popup_header}>
-                    <h5>Members</h5>
-                    <span className={style.icon_delete} onClick={() => onMember()}><Cross width={20} height={20} color={'#999'}/></span>
-                  </div>
-                  <div className={style.popup_content}>
-                    <div className={style.content_list}>
-                      <div className={style.list_item}>
-                        <div className={style.members}>
-                          <span className={style.members_item} />
-                        </div>
-                        <h5 className={style.members_name}>Bernini</h5>
-                        <span className={style.members_active}></span>
-                      </div>
-                      <div className={style.list_item}>
-                        <div className={style.members}>
-                          <span className={style.members_item} />
-                        </div>
-                        <h5 className={style.members_name}>Maro</h5>
-                        <span className={style.members_active}></span>
-                      </div>
-                      <div className={style.list_item}>
-                        <div className={style.members}>
-                          <span className={style.members_item} />
-                        </div>
-                        <h5 className={style.members_name}>Bhaugen</h5>
-                        <span className={style.members_active}></span>
-                      </div>
-                      <div className={style.list_item}>
-                        <div className={style.members}>
-                          <span className={style.members_item} />
-                        </div>
-                        <h5 className={style.members_name}>Fosterlynn</h5>
-                        <span className={style.members_active}></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* <Popup
-                  type={'members'}
-                  title={'Members'}
-                  content={<MembersPopup />}
-                /> */}
-              </div>
-              <div className={style.list_process}>
-                <Button title={'Process'} action={() => onProcess()} />
-                <div className={processPopup ? style.process + ' ' + style.popup : style.process  + ' ' +style.popup + ' ' + style.hidden }>
-                  <div className={style.popup_header}>
-                    <h5>Process</h5>
-                    <span className={style.icon_delete} onClick={() => onProcess()}><Cross width={20} height={20} color={'#999'}/></span>
-                  </div>
-                  <div className={style.popup_content}>
-                    <select className={style.content_process}>
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <Button title={'Due'} />
               <div className={style.list_archive}>
                 <Button title={'Archivia'} action={() => onDelete()} />
                 <div className={deletePopup ? style.delete + ' ' + style.popup : style.delete + ' ' + style.popup + ' ' + style.hidden }>

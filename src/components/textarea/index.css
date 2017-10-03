@@ -10,8 +10,6 @@ textarea {
     min-height: 2pc;
     padding: 7px;
     resize: vertical;
-    -webkit-transition: background 85ms ease-in,border-color 85ms ease-in;
-    transition: background 85ms ease-in,border-color 85ms ease-in;
     width: 100%;
     font-size: 14px;
     line-height: 40px;

@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import ListTemplate from './listTemplate'
+import NewCommitment from '../mutations/CreateCommitment'
+
 
 class List extends Component {
     constructor (props) {
@@ -36,10 +38,12 @@ class List extends Component {
         setTitle: !this.state.setTitle
       })
     }
-  
+
+
     addCardToList () {
       this.openCardController()
       this.props.addCardToList(this.state.newCardTitle, this.props.id)
+      this.props.mutate({variables: {action: 'work', note: this.state.newCardTitle, scopeId: 2, committedNumericValue: "1", committedResourceClassificationId: 17, providerId: 64,  due: '2017-10-10', committedUnitId: 2 }})
     }
   
     render () {
@@ -67,4 +71,4 @@ class List extends Component {
     }
   }
 
-  export default List
+  export default NewCommitment(List)

@@ -11,11 +11,6 @@ class Login extends React.Component {
             password: ''
         }
     }
-    
-    componentDidMount () {
-        console.log(this.props)
-    }
-
 
     handleLogin = async () => {
         await this.props.mutate({variables: {username: this.state.username, password: this.state.password}})

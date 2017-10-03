@@ -21,6 +21,14 @@ button {
     width: 100%;
 }
 
+.good {
+  background: #5AAC44 !important;
+  border-color: 0 1px 0 #519839 !important;
+  color: #fff !important;
+  -webkit-transition: backgroun .3s ease !important;
+  transition: background .3s ease !important;
+}
+
 .negate {
   background: #EB5A46 !important;
   border-color: #EB5A46 #EB5A46 #B04632 !important;

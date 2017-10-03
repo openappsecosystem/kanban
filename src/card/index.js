@@ -2,6 +2,9 @@ import React from 'react'
 import {CardTypes} from '../constants/card'
 import { DragSource, DropTarget } from 'react-dnd'
 import { findDOMNode } from 'react-dom'
+import {compose, withHandlers} from 'recompose'
+import {graphql} from 'react-apollo'
+import gql from 'graphql-tag'
 import Card from './card'
 
 const cardSource = {
@@ -20,7 +23,7 @@ const cardTarget = {
     const dragIndex = monitor.getItem().index
     const hoverIndex = props.index
     const sourceListId = monitor.getItem().listId
-
+    
     // Don't replace items with themselves
     if (dragIndex === hoverIndex) { return }
 
@@ -45,7 +48,6 @@ const cardTarget = {
 
     // Dragging upwards
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) { return }
-
       // Time to actually perform the action
       props.moveCard(dragIndex, hoverIndex, sourceListId)
       monitor.getItem().index = hoverIndex
@@ -65,4 +67,39 @@ function dropCollect (connect) {
     }
 }
 
-export default DropTarget(CardTypes.CARD, cardTarget, dropCollect)(DragSource(CardTypes.CARD, cardSource, collect)(Card))
+const updateCommitment = gql`
+mutation ($token: String!, $id: Int!, $note: String, $due: String, $isFinished: Bool ) {
+    updateCommitment(token: $token, note: $note, id: $id, due: $due, isFinished:$isFinished ) {
+      commitment {
+        id
+        note
+        isFinished,
+        due
+      }
+    }
+  }
+`
+
+export default compose(
+  graphql(updateCommitment),
+  withHandlers({
+      editNote:({mutate, id, newNote}) => {
+          return () => {
+            return mutate({
+                variables: {
+                    token: sessionStorage.getItem('token'),
+                    id: id,
+                    note: newNote
+                }
+            })
+            .then((data) => {
+                console.log(data)
+            }).catch((e) => {
+                console.log(e)
+            })
+          }
+      }
+  }),
+  DropTarget(CardTypes.CARD, cardTarget, dropCollect),
+  DragSource(CardTypes.CARD, cardSource, collect)
+)(Card)

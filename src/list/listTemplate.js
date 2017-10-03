@@ -33,6 +33,8 @@ const ListTemplate = ({setTitle, name, cards, outputs, id, openModal, moveCard, 
             name={card.title}
             moveCard={moveCard}
             status={card.status}
+            note={card.note}
+            newNote= {'il pistolero'}
           />
           </div>
         )) : ''}
@@ -53,17 +55,17 @@ const ListTemplate = ({setTitle, name, cards, outputs, id, openModal, moveCard, 
             </div>
         </div>
       </div>
-      <div className={style.list_outputs}>
-        <h2>Outputs (1)</h2>
+      {/* <div className={style.list_outputs}>
+        <h2>Outputs (1)</h2> */}
         {/* {outputs.map((o, i) => (
           <div key={i} className={style.outputs_card}>
             <span>{o.title}</span>
           </div>
         ))} */}
-        <div className={style.outputs_card}>
+        {/* <div className={style.outputs_card}>
           <span>1 Project Delivarable</span>
         </div>
-      </div>
+      </div> */}
       <a className={style.open_card_composer} onClick={() => openCardController()} >Aggiungi una scheda...</a>
     </div>
   </div>

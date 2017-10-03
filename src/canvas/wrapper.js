@@ -8,6 +8,11 @@ query ($token: String, $planId: Int) {
       plan(id: $planId) {
         id
         name
+        workingAgents {
+          id
+          image
+          name
+         }
         planProcesses {
           note
           id
@@ -29,6 +34,7 @@ query ($token: String, $planId: Int) {
           committedInputs {
             action
             id
+            note
             inputOf {
               name
             }
@@ -84,15 +90,23 @@ query ($token: String, $planId: Int) {
   
 `
 class CanvasWrapper extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      lists: []
+    }   
+  }
+
   render () {
     const {loading, error, data} = this.props
-    console.log(data)
     return (
       loading ? <strong>Loading...</strong> : (
         error ? <p style={{ color: '#F00' }}>API error</p> : (
           <Component
             title={data.name || 'no name'}
             outputs={data.planProcesses}
+            moveCard={this.moveCard}
+            allPlanAgents={data.workingAgents}
             lists={data.planProcesses.map(list => (
               {
                 id: Number(list.id),
