@@ -69,13 +69,11 @@ class UModal extends React.Component {
     //   this.props.editNote(this.props.data.id, e.target.value)
     // }
 
-
     showEditTitle () {
       this.setState({
         ...this.state,
         showInputTitle: !this.state.showInputTitle
       })
-      
     }
 
       onProcess (id) {
@@ -86,7 +84,7 @@ class UModal extends React.Component {
           processPopup: !this.state.processPopup
         })
       }
-    
+
       onDelete (id) {
         this.setState({
           ...this.state,
