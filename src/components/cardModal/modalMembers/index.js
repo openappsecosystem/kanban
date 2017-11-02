@@ -6,7 +6,7 @@ import ModalMembers from './modalMembers'
 
 const updateCommitment = gql`
     mutation ($token: String!, $id: Int!, $providerId: Int!) {
-        updateCommitment(token: $token, providerId: $providerId, id: $id) {
+      updateCommitment(token: $token, providerId: $providerId, id: $id) {
         commitment {
             id
             provider {
@@ -15,7 +15,7 @@ const updateCommitment = gql`
                 image
             }
         }
-        }
+      }
     }
 `
 

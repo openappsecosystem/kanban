@@ -75,7 +75,6 @@ class Canvas extends React.Component {
 
   render () {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
-    console.log(this.props.allPlanAgents)
     return (
       <section className={style.canvas}>
         <h1 className={style.title}>{this.props.title}</h1>

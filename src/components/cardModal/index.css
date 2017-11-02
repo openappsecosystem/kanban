@@ -220,6 +220,12 @@
     font-size: 12px;
     margin-top: 5px;
     margin-left: 10px;
+    font-weight: 300;
+    & span {
+      font-weight: 300;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
   
   h5 {

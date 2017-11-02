@@ -51,24 +51,6 @@ class UModal extends React.Component {
         })
       }
 
-    // onMember (id) {
-    //     this.setState({
-    //       ...this.state,
-    //       processPopup: false,
-    //       deletePopup: false,
-    //       memberPopup: !this.state.memberPopup
-    //     })
-    //   }
-
-    // onUpdateNote (e) {
-    //   this.setState({
-    //     ...this.state,
-    //     note: e.target.value
-    //   })
-    //   console.log(this.props.data.id)
-    //   this.props.editNote(this.props.data.id, e.target.value)
-    // }
-
     showEditTitle () {
       this.setState({
         ...this.state,
@@ -95,9 +77,7 @@ class UModal extends React.Component {
       }
 
       render () {
-        const {loading, error, data, allPlanAgents} = this.props
-        console.log(data)
-        console.log(error)
+        const {loading, error, commitment, units, allPlanAgents, id} = this.props
         const {date, memberPopup, showInputTitle, modalDescription, deletePopup, processPopup} = this.state
           return (
             <Modal
@@ -108,7 +88,7 @@ class UModal extends React.Component {
               >
               {loading ? <h1>loading...</h1> : (
                 error ? <p style={{ color: '#ddd' }}>API error</p> : (
-                  <CardModal allPlanAgents={allPlanAgents} showInputTitle={showInputTitle} showEditTitle={this.showEditTitle.bind(this)}   onProcess={this.onProcess.bind(this)} onDelete={this.onDelete.bind(this)} memberPopup={memberPopup} processPopup={processPopup} date={date} deletePopup={deletePopup} modalIsOpen={this.props.modalIsOpen} closeModal={this.props.closeModal} data={data} modalDescription={modalDescription} addDescription={this.addDescription.bind(this)} />
+                  <CardModal id={id} allPlanAgents={allPlanAgents} units={units} showInputTitle={showInputTitle} showEditTitle={this.showEditTitle.bind(this)}  onProcess={this.onProcess.bind(this)} onDelete={this.onDelete.bind(this)} memberPopup={memberPopup} processPopup={processPopup} date={date} deletePopup={deletePopup} modalIsOpen={this.props.modalIsOpen} closeModal={this.props.closeModal} data={commitment} modalDescription={modalDescription} addDescription={this.addDescription.bind(this)} />
                 ))
               }
             </Modal>

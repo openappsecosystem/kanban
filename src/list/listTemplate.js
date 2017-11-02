@@ -66,7 +66,7 @@ const ListTemplate = ({setTitle, name, cards, outputs, id, openModal, moveCard, 
           <span>1 Project Delivarable</span>
         </div>
       </div> */}
-      <a className={style.open_card_composer} onClick={() => openCardController()} >Log an unplanned event...</a>
+      <a className={style.open_card_composer} onClick={() => openCardController()} >Create a new commitment...</a>
     </div>
   </div>
 )

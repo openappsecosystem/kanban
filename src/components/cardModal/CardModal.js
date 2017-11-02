@@ -12,7 +12,9 @@ import ModalMembers from './modalMembers'
 import ModalActivities from './modalActivities'
 import LogEvent from './logEvent'
 
-const CardModal = ({allPlanAgents, note, showInputTitle, showEditTitle, onMember, onUpdateNote, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
+const CardModal = ({id, allPlanAgents, units, note, showInputTitle, showEditTitle, onMember, onUpdateNote, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
+  console.log('qui')
+  console.log(allPlanAgents)
   return (
     <section className={style.modal_content}>
       <ModalTitle id={data.id} note={data.note} />
@@ -33,8 +35,8 @@ const CardModal = ({allPlanAgents, note, showInputTitle, showEditTitle, onMember
             <h4>{data.action + ' ' + data.committedQuantity.numericValue + ' ' + data.committedQuantity.unit.name + ' of ' + data.resourceClassifiedAs.name}</h4>
           </div>
         </div>
-        <ModalActivities activities={data.fulfilledBy} />
-        <LogEvent />
+        <ModalActivities id={id} />
+        <LogEvent id={id} units={units} scopeId={data.scope.id} commitmentId={data.id} />
       </div>
       <div className={style.content_actions}>
         <div className={style.content_module}>

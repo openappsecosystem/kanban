@@ -11,23 +11,8 @@ query ($token: String, $id: Int!) {
         action
         id
         note
-        fulfilledBy {
-          fulfilledBy {
-            action
-            start
-            note
-            provider {
-              name
-              image
-              id
-            }
-          }
-          fulfilledQuantity {
-            numericValue
-            unit {
-              name
-            }
-          }
+        scope {
+          id
         }
         provider {
           id
@@ -56,36 +41,25 @@ query ($token: String, $id: Int!) {
         }
       }
     }
+    viewer(token: $token) {
+      allUnits {
+        id
+        name
+        symbol
+      }
+    }
   }
 `
 
-// modalIsOpen: false,
-// date: null,
-// focused: false,
-// modalSelected: this.props.modalSelected,
-// modalDescription: false,
-// memberPopup: false,
-// processPopup: false,
-// note: this.props.data.note,
-// showInputTitle: false
-
-
-const Loader = () => (<h1>Loading...</h1>)
-
 export default compose(
   graphql(getCommitment, {
-      options: ({id}) => {
-          return ({
-          variables: {
-              token: sessionStorage.getItem('token'),
-              id: id
-          }
-      })},
-      props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
-        loading,
-        error,
-        refetchData: refetch,  // :NOTE: call this in the component to force reload the data
-        data: viewer ? viewer.commitment : null
-      }),
+    options: ({id}) => ({ variables: { token: sessionStorage.getItem('token'), id: id}}),
+    props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
+      loading,
+      error,
+      refetchData: refetch,  // :NOTE: call this in the component to force reload the data
+      commitment: viewer ? viewer.commitment : null,
+      units: viewer ? viewer.allUnits : null
+    }),
   }),
 )(Modal)
