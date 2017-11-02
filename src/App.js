@@ -9,27 +9,30 @@ const Lists = ({data}) => {
     loading ? <strong>Loading...</strong> : (
     error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.lists}>
-        <h2>Hello {viewer.agent.name} here your plans</h2>
-          {viewer.agent.agentPlans.map((plan, i) => (
-            <Link
-              key={i}
-              to={'/canvas/' + plan.id }
-              className='link'
-            >
-            <div key={i} className={style.lists_item}>
-              <h4>{plan.name.length === 0 ? 'unassigned name' : plan.name }</h4>
-              <p>{plan.note || 'unassigned note'}</p>
+        <h2>👋 Hello {viewer.myAgent.name}</h2>
+        <div className={style.section}>
+          <div className={style.section_wrapper}>
+            <div className={style.wrapper_tagline}><h5 className={style.subtitle}>Plans</h5></div>
+              <div className={style.wrapper}>
+              {viewer.myAgent.agentPlans.map((plan, i) => (
+                <div key={i} className={style.lists_item}>
+                  <Link key={i} to={'/canvas/' + plan.id} className='link'>
+                    <h4>{plan.name.length === 0 ? 'unassigned name' : plan.name }</h4>
+                    <p>{plan.note || 'unassigned note'}</p>
+                  </Link>
+                </div>
+              ))}
+              </div>
             </div>
-            </Link>
-          ))}
-      </div>
+          </div>
+        </div>
     )
 ))}
 
 const agentPlans = gql`
-query ($token: String, $agentId: Int) {
+query ($token: String) {
     viewer(token: $token) {
-      agent(id: $agentId) {
+      myAgent {
         id
         name
         image
@@ -54,7 +57,6 @@ query ($token: String, $agentId: Int) {
 
 export default graphql(agentPlans, {
   options: (props) => ({variables: {
-    token: sessionStorage.getItem('token'),
-    agentId: 24
+    token: sessionStorage.getItem('token')
 }})
 })(Lists)

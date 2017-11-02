@@ -6,7 +6,7 @@ export default function ModalMembers ({provider, editProvider, allPlanAgents, me
   const membersName = members.map(m => m.name)
   return (
     <div>
-      <div className={style.labels_members + ' ' + style.member_provider}>
+      {/* <div className={style.labels_members + ' ' + style.member_provider}>
         <span ><Shield width={20} height={20} /></span>
         {provider ? <div className={style.members}>
           <span className={style.members_item}>
@@ -45,7 +45,7 @@ export default function ModalMembers ({provider, editProvider, allPlanAgents, me
           </div>
         : ''
         }
-      </div>
+      </div> */}
       <div className={style.labels_members}>
         <span ><Users width={20} height={20} /></span>
         {members.map((member, i) => (

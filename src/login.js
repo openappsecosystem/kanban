@@ -14,7 +14,9 @@ class Login extends React.Component {
 
     handleLogin = async () => {
         await this.props.mutate({variables: {username: this.state.username, password: this.state.password}})
-        .then (res => sessionStorage.setItem('token', res.data.createToken.token))
+        .then (res => {
+            console.log(res)
+            return sessionStorage.setItem('token', res.data.createToken.token)})
         this.props.history.replace('/')
     }
 

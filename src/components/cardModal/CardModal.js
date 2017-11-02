@@ -13,8 +13,6 @@ import ModalActivities from './modalActivities'
 import LogEvent from './logEvent'
 
 const CardModal = ({id, allPlanAgents, units, note, showInputTitle, showEditTitle, onMember, onUpdateNote, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
-  console.log('qui')
-  console.log(allPlanAgents)
   return (
     <section className={style.modal_content}>
       <ModalTitle id={data.id} note={data.note} />

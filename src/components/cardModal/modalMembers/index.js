@@ -1,5 +1,5 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose';
+import { compose, withState, withHandlers } from 'recompose'
 import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import ModalMembers from './modalMembers'
