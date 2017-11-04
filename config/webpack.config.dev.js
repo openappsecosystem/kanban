@@ -165,6 +165,7 @@ module.exports = {
               require.resolve('style-loader'),
               {
                 loader: require.resolve('css-loader'),
+                // include: [path.join(__dirname, '..', 'node_modules')],
                 options: {
                   importLoaders: 1,
                   modules: true,

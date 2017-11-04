@@ -11,7 +11,7 @@ import {ApolloProvider, createNetworkInterface, ApolloClient} from 'react-apollo
 const networkInterface = createNetworkInterface({
   // https://api.graph.cool/simple/v1/cj412r3kp9mz50177whe5r5qf looks similar to: `https://api.graph.cool/simple/v1/<PROJECT_ID>`
   // uri: 'https://api.graph.cool/simple/v1/cj412r3kp9mz50177whe5r5qf'
-  uri: 'http://localhost:8000/api/graph'
+  uri: 'https://ocp.freedomcoop.eu/api/graph'
 })
   
 const client = new ApolloClient({networkInterface})

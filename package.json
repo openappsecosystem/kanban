@@ -1,6 +1,7 @@
 {
   "name": "kamakanban",
   "version": "0.1.0",
+  "homepage": "https://unooverse.github.io/kanban",
   "private": true,
   "dependencies": {
     "babel-core": "6.25.0",
@@ -36,6 +37,7 @@
     "react": "15.6.1",
     "react-addons-shallow-compare": "15.6.0",
     "react-apollo": "^1.4.15",
+    "react-datepicker": "0.59.0",
     "react-dates": "12.6.0",
     "react-dev-utils": "^4.0.0",
     "react-dnd": "2.4.0",
@@ -61,6 +63,7 @@
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
     "autoprefixer": "^7.1.4",
+    "gh-pages": "1.0.0",
     "postcss": "^6.0.11",
     "postcss-cssnext": "^3.0.2",
     "postcss-font-magician": "^2.0.0",
@@ -76,7 +79,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "deploy" : "npm run build&&gh-pages -d build"    
   },
   "jest": {
     "collectCoverageFrom": [

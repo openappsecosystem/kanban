@@ -36,7 +36,7 @@ const CardModal = ({id, allPlanAgents, units, note, showInputTitle, showEditTitl
         <ModalActivities id={id} />
         <LogEvent id={id} units={units} scopeId={data.scope.id} commitmentId={data.id} />
       </div>
-      <div className={style.content_actions}>
+      {/* <div className={style.content_actions}>
         <div className={style.content_module}>
           <div className={style.content_action}>
             <div className={style.action_list}>
@@ -56,7 +56,7 @@ const CardModal = ({id, allPlanAgents, units, note, showInputTitle, showEditTitl
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }

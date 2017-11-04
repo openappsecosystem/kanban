@@ -78,7 +78,7 @@ class Canvas extends React.Component {
     return (
       <section className={style.canvas}>
         <h1 className={style.title}>{this.props.title}</h1>
-        <div className={style.inputs_list}>
+        {/* <div className={style.inputs_list}>
           <h1>🚀 Resources involved</h1>
           <div className={style.list}>
             <div className={style.inputs_card}>
@@ -88,13 +88,14 @@ class Canvas extends React.Component {
               <span>Friuts</span>
             </div>
           </div>
-        </div>
+        </div> */}
         {this.props.lists.map((list, i) => (
           <List
             cards={list.cards}
             outputs={list.outputs}
             id={list.id}
             key={i}
+            agents={this.props.allPlanAgents}
             name={list.title}
             removeCardFromList={this.removeCardFromList.bind(this)}
             addCardToList={this.addCardToList.bind(this)}
@@ -108,12 +109,13 @@ class Canvas extends React.Component {
         <div className={style.outputs_list}>
           <h1>🎉 Resources Generated</h1>
           <div className={style.list}>
-            <div className={style.outputs_card}>
-              <span>Friuts</span>
-            </div>
-            <div className={style.outputs_card}>
-              <span>Friuts</span>
-            </div>
+            {this.props.outputs.map((output, i) => (
+              output.committedOutputs.map(o => (
+                <div key={i} className={style.outputs_card}>
+                  <span>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
+                </div>
+              ))
+            ))}
           </div>
         </div>
         <CardModal allPlanAgents={this.props.allPlanAgents} modalIsOpen={modalIsOpen} closeModal={this.closeModal.bind(this)} id={modalSelected} />

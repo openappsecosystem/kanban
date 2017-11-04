@@ -3,9 +3,12 @@ import style from '../index.css'
 import Button from '../../button'
 import TextArea from '../../textarea'
 import { Message } from '../../../icons'
+import DatePicker from 'react-datepicker'
+// import moment from 'moment'
+require("react-datepicker/dist/react-datepicker-cssmodules.css")
 
-export default function LogEvent ({units, commitmentId, scopeId, log, note, addNote, addAction, addNumericValue, addUnitId}) {
-  return (
+export default function LogEvent ({units, startDate, addDate, commitmentId, scopeId, log, note, addNote, addAction, addNumericValue, addUnitId}) {
+    return (
     <div className={style.content_module}>
         <div className={style.content_log}>
             <h5><span className={style.content_icon}><Message width={20} height={20} color={'#999'}/></span>Log</h5>
@@ -20,12 +23,14 @@ export default function LogEvent ({units, commitmentId, scopeId, log, note, addN
                 <select onChange={addUnitId} className={style.type}>
                     {units.map(unit => <option key={unit.id} value={unit.id}>{unit.name}</option>)}
                 </select>
-                {/* <SingleDatePicker
-                date={date} // momentPropTypes.momentObj or null
-                onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-                focused={this.state.focused} // PropTypes.bool
-                onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-                /> */}
+                <div className={style.item_date}>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={addDate}
+                      inline
+                      className={style.full}
+                    />
+                </div>
                 <TextArea action={addNote} placeholder={'Add a more detailed description...'} />
                 <Button action={log} type={'good'} title='Log Event' />
             </div>

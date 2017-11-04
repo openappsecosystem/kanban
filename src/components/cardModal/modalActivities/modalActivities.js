@@ -1,7 +1,7 @@
 import React from 'react'
 import style from '../index.css'
 
-export default function ({activities, id, deleteEvent, loading, error, refetchData}) {
+export default function ({activities, id, date, deleteEvent, loading, error, refetchData}) {
   return (
     <div className={style.activities_list}>
       {loading ? '' : (
@@ -17,7 +17,7 @@ export default function ({activities, id, deleteEvent, loading, error, refetchDa
               <div className={style.desc}>{item.fulfilledBy.note} </div>
             </div>
             <div className={style.item_meta}>
-              33 min fa - <span id={item.id} onClick={() => deleteEvent(item.fulfilledBy.id)}>Delete</span>
+              {item.fulfilledBy.start} - <span id={item.id} onClick={() => deleteEvent(item.fulfilledBy.id)}>Delete</span>
             </div>
           </div>
         ))

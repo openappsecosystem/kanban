@@ -294,6 +294,7 @@
   .log_item button {
     float: right;
     width: 120px;
+    margin-bottom: 20px;
   }
 
   select.type {
@@ -305,7 +306,6 @@
     background: white;
     width: 80px;
     /* padding: 5px; */
-    font-size: 16px;
     line-height: 1;
     border: 0;
     border-radius: 0px 0px 0px 0px;
@@ -570,7 +570,7 @@
 
   .content_header .title {
     position: relative;
-    z-index: 1000;
+    /* z-index: 1; */
     display: block;
   }
 
@@ -598,4 +598,15 @@
 
   .member_provider {
     margin-right: 10px;
+  }
+
+  .item_date {
+    margin-top: 10px; 
+    & .full {
+      width: 100%;
+      border-radius: 3px;
+      font-size: 14px;
+      text-indent: 5px;
+      color: #4d4d4d;
+    }
   }

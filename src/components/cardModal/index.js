@@ -16,7 +16,7 @@ const customStyles = {
        overflow          : 'auto'
      },
      content : {
-       width                 : '420px',
+       width                 : '450px',
        boxShadow             : '0 2px 8px 3px rgba(0,0,0,.3)',
        zIndex                : 9999999999,
        backgroundColor       : '#EDEFF0',

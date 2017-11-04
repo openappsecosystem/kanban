@@ -3,12 +3,13 @@ import Component from './logEvent'
 import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import {queryEvents} from '../modalActivities'
-
+import moment from 'moment'
 const createEvent = gql`
-mutation ($token: String!, $action: String!, $scopeId: Int!, $commitmentId: Int!, $note: String, $affectedNumericValue: String!, $affectedUnitId: Int!  ) {
+mutation ($token: String!, $action: String!, $start: String, $scopeId: Int!, $commitmentId: Int!, $note: String, $affectedNumericValue: String!, $affectedUnitId: Int!  ) {
   createEconomicEvent(
     token: $token,
     action: $action,
+    start: $start,
     scopeId: $scopeId, 
     fulfillsCommitmentId: $commitmentId,
     note: $note,
@@ -42,6 +43,7 @@ export default compose(
     withState('note', 'updateNote', ''),
     withState('numericValue', 'updateNumericValue', '0'),
     withState('unitId', 'updateUnitId', 2),
+    withState('startDate', 'updateDate', moment()),
     withHandlers({
       addNote: props => event => {
         event.preventDefault()
@@ -55,12 +57,16 @@ export default compose(
         event.preventDefault()
         props.updateNumericValue(event.target.value)
       },
+      addDate: props => event => {
+        props.updateDate(event)
+      },
       addUnitId: props => event => {
         event.preventDefault()
         props.updateUnitId(event.target.value)
       },
-      log: ({mutate, id, scopeId, commitmentId, action, note, numericValue, unitId}) => event => {
+      log: ({mutate, id, scopeId, startDate, commitmentId, action, note, numericValue, unitId}) => event => {
         event.preventDefault()
+        let date = moment(startDate).format("YYYY-MM-DD")
         return (
           mutate({
             variables: {
@@ -71,7 +77,8 @@ export default compose(
               commitmentId: commitmentId,
               note: note,
               affectedNumericValue: numericValue,
-              affectedUnitId: unitId
+              affectedUnitId: unitId,
+              start: date
             }
           })
           .then((data) => console.log('hole'))

@@ -1,4 +1,6 @@
-  body {
+@import 'react-datepicker/dist/react-datepicker.css';
+
+body {
     margin: 0;
     padding: 20px;
     font-family: 'Fira Sans';
