@@ -101,7 +101,7 @@ class Canvas extends React.Component {
             {this.props.outputs.map((output, i) => (
               output.committedOutputs.map(o => (
                 <div key={i} className={style.outputs_card}>
-                  <span>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
+                  <span className={style.card_output_title}>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
                 </div>
               ))
             ))}
