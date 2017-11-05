@@ -1,18 +1,11 @@
 import React from 'react'
-import Modal from 'react-modal'
-import Title from '../title'
-import {SingleDatePicker} from 'react-dates'
-import Popup from '../popup'
-import Button from '../button'
-import TextArea from '../textarea'
 import style from './index.css'
-import {Activity, Card, Text, Message, Cross, Users} from '../../icons'
 import ModalTitle from './modalTitle'
 import ModalMembers from './modalMembers'
 import ModalActivities from './modalActivities'
 import LogEvent from './logEvent'
 
-const CardModal = ({id, allPlanAgents, units, note, showInputTitle, showEditTitle, onMember, onUpdateNote, onProcess, onDelete, date, memberPopup, processPopup, deletePopup, data, modalDescription, addDescription}) => {
+const CardModal = ({id, allPlanAgents, units, data, modalDescription}) => {
   return (
     <section className={style.modal_content}>
       <ModalTitle id={data.id} note={data.note} />
@@ -41,11 +34,11 @@ const CardModal = ({id, allPlanAgents, units, note, showInputTitle, showEditTitl
           <div className={style.content_action}>
             <div className={style.action_list}>
               <div className={style.list_archive}>
-                <Button title={'Archivia'} action={() => onDelete()} />
-                <div className={deletePopup ? style.delete + ' ' + style.popup : style.delete + ' ' + style.popup + ' ' + style.hidden }>
+                <Button title={'Archivia'} action={() =>)} />
+                <div className=? style.delete + ' ' + style.popup : style.delete + ' ' + style.popup + ' ' + style.hidden }>
                   <div className={style.popup_header}>
                     <h5>Archivia</h5>
-                    <span className={style.icon_delete} onClick={() => onDelete()}><Cross width={20} height={20} color={'#999'}/></span>
+                    <span className={style.icon_delete} onClick={() =>)}><Cross width={20} height={20} color={'#999'}/></span>
                   </div>
                   <div className={style.popup_content}>
                     <h5 className={style.content_description}>Sicuro di volerla eliminare?</h5>

@@ -25,6 +25,4 @@ function dropCollect (connect, monitor) {
   }
 }
 
-
-
 export default DropTarget(CardTypes.CARD, cardTarget, dropCollect)(List)

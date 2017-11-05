@@ -1,58 +1,10 @@
-import React from 'react'
-import { compose, withState, withHandlers } from 'recompose';
+import { compose, withState } from 'recompose'
 import {graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 import Modal from './'
-
-const getCommitment = gql`
-query ($token: String, $id: Int!) {
-    viewer(token: $token) {
-      commitment(id: $id) {
-        action
-        id
-        note
-        scope {
-          id
-        }
-        provider {
-          id
-          name
-          image
-        }
-        inputOf {
-          name
-        }
-        due
-        isFinished
-        involvedAgents {
-          image
-          id
-          name
-        }
-        committedQuantity {
-          unit {
-            name
-          }
-          numericValue
-        }
-        resourceClassifiedAs {
-          category
-          name
-        }
-      }
-    }
-    viewer(token: $token) {
-      allUnits {
-        id
-        name
-        symbol
-      }
-    }
-  }
-`
+import GetCommitment from '../../queries/getCommitment'
 
 export default compose(
-  graphql(getCommitment, {
+  graphql(GetCommitment, {
     options: ({id}) => ({ variables: { token: sessionStorage.getItem('token'), id: id}}),
     props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
       loading,
@@ -62,4 +14,5 @@ export default compose(
       units: viewer ? viewer.allUnits : null
     }),
   }),
+  withState('modalDescription', 'handleModalDescription', null)
 )(Modal)

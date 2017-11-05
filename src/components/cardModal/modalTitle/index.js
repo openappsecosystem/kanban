@@ -1,24 +1,11 @@
 import React from 'react'
-import { compose, withState, withHandlers } from 'recompose';
+import { compose, withState, withHandlers } from 'recompose'
 import {graphql} from 'react-apollo'
-import gql from 'graphql-tag'
+import UpdateCommitmentTitle from '../../../mutations/updateCommitmentTitle'
 import ModalTitle from './modalTitle'
 
-const updateCommitment = gql`
-    mutation ($token: String!, $id: Int!, $note: String, $due: String, $isFinished: Boolean ) {
-        updateCommitment(token: $token, note: $note, id: $id, due: $due, isFinished:$isFinished ) {
-        commitment {
-            id
-            note
-            isFinished,
-            due
-        }
-        }
-    }
-`
-
 export default compose(
-  graphql(updateCommitment, {
+  graphql(UpdateCommitmentTitle, {
     props: ({mutate, ownProps: {id, note}}) => ({
     mutate: mutate,
     id: id,

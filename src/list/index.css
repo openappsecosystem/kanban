@@ -146,12 +146,12 @@
   position: relative;
   z-index: 0;
   padding: 10px;
-  & span {
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-  }
 }
+  .outputs_card span {
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+    }
 
 h2 {
   font-weight: 500;
