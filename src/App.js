@@ -2,12 +2,14 @@ import React from 'react'
 import { gql, graphql } from 'react-apollo'
 import style from './App.css'
 import { Link } from 'react-router-dom'
+import AppTemplate from './templates/AppTemplate'
 
 const Lists = ({data}) => {
   const {viewer, loading, error} = data
   return (
-    loading ? <strong>Loading...</strong> : (
-    error ? <p style={{ color: '#F00' }}>API error</p> : (
+    <AppTemplate>
+      {loading ? <strong>Loading...</strong> : (
+      error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.lists}>
         <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2>
         <div className={style.section}>
@@ -26,8 +28,10 @@ const Lists = ({data}) => {
             </div>
           </div>
         </div>
-    )
-))}
+      ))}
+    </AppTemplate>
+  )
+}
 
 const agentPlans = gql`
 query ($token: String) {

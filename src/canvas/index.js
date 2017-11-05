@@ -78,17 +78,6 @@ class Canvas extends React.Component {
     return (
       <section className={style.canvas}>
         <h1 className={style.title}>{this.props.title}</h1>
-        {/* <div className={style.inputs_list}>
-          <h1>🚀 Resources involved</h1>
-          <div className={style.list}>
-            <div className={style.inputs_card}>
-              <span>Friuts</span>
-            </div>
-            <div className={style.inputs_card}>
-              <span>Friuts</span>
-            </div>
-          </div>
-        </div> */}
         {this.props.lists.map((list, i) => (
           <List
             cards={list.cards}
