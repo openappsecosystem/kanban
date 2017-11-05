@@ -9,7 +9,7 @@ const Lists = ({data}) => {
     loading ? <strong>Loading...</strong> : (
     error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.lists}>
-        <h2>👋 Hello {viewer.myAgent.name}</h2>
+        <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2>
         <div className={style.section}>
           <div className={style.section_wrapper}>
             <div className={style.wrapper_tagline}><h5 className={style.subtitle}>Plans</h5></div>

@@ -107,7 +107,7 @@ class Canvas extends React.Component {
           />
         ))}
         <div className={style.outputs_list}>
-          <h1>🎉 Resources Generated</h1>
+          <h1 className={style.outputs_title}>🎉 Resources Generated</h1>
           <div className={style.list}>
             {this.props.outputs.map((output, i) => (
               output.committedOutputs.map(o => (

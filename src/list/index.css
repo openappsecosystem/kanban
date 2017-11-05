@@ -74,13 +74,13 @@
     border-radius: 3px;
     background: #c7c7c7;
     display: block;
-    & img {
-      width: 24px;
-      height: 24px;
-      border-radius: 3px;
-    }
   }
-
+  
+  .members_item .item_photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+  }
 .header_setName {
   background: 0 0;
   border: none;

@@ -1,7 +1,6 @@
 {
   "name": "kamakanban",
   "version": "0.1.0",
-  "homepage": "https://unooverse.github.io/kanban",
   "private": true,
   "dependencies": {
     "babel-core": "6.25.0",

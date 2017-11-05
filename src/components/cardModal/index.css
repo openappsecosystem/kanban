@@ -118,6 +118,8 @@
     text-indent: 4px;
     font-size: 13px;
     overflow: hidden;
+    max-width: 30px;
+    max-height: 30px;
     text-overflow: ellipsis;
   }
   

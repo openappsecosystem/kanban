@@ -14,7 +14,7 @@ const ListTemplate = ({setTitle, name, agents, cards, outputs, id, openModal, mo
           {agents.map((a, i) => (
             <div key={i} className={style.header_members}>
               <span className={style.members_item}>
-                <img src={a.image} />
+                <img className={style.item_photo} src={a.image} />
               </span>
             </div>
           ))}
