@@ -77,34 +77,40 @@ class Canvas extends React.Component {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
     return (
       <section className={style.canvas}>
-        <h1 className={style.title}>{this.props.title}</h1>
-        {this.props.lists.map((list, i) => (
-          <List
-            cards={list.cards}
-            outputs={list.outputs}
-            id={list.id}
-            key={i}
-            agents={this.props.allPlanAgents}
-            name={list.title}
-            removeCardFromList={this.removeCardFromList.bind(this)}
-            addCardToList={this.addCardToList.bind(this)}
-            moveCard={this.moveCard.bind(this)}
-            swipeCard={this.swipeCard.bind(this)}
-            openModal={this.openModal.bind(this)}
-            /* MUTATIONS */
-            addNewTask={this.addNewTask.bind(this)}
-          />
-        ))}
-        <div className={style.outputs_list}>
-          <h1 className={style.outputs_title}>🎉 Resources Generated</h1>
-          <div className={style.list}>
-            {this.props.outputs.map((output, i) => (
-              output.committedOutputs.map(o => (
-                <div key={i} className={style.outputs_card}>
-                  <span className={style.card_output_title}>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
-                </div>
-              ))
+        <header className={style.canvas_header}>
+          <h1 className={style.title}>{this.props.title}</h1>
+        </header>
+        <div className={style.canvas_board}>
+          <div className={style.board}>
+            {this.props.lists.map((list, i) => (
+              <List
+                cards={list.cards}
+                outputs={list.outputs}
+                id={list.id}
+                key={i}
+                agents={this.props.allPlanAgents}
+                name={list.title}
+                removeCardFromList={this.removeCardFromList.bind(this)}
+                addCardToList={this.addCardToList.bind(this)}
+                moveCard={this.moveCard.bind(this)}
+                swipeCard={this.swipeCard.bind(this)}
+                openModal={this.openModal.bind(this)}
+                /* MUTATIONS */
+                addNewTask={this.addNewTask.bind(this)}
+              />
             ))}
+            <div className={style.outputs_list}>
+              <h1 className={style.outputs_title}>🎉 Resources Generated</h1>
+              <div className={style.list}>
+                {this.props.outputs.map((output, i) => (
+                  output.committedOutputs.map(o => (
+                    <div key={i} className={style.outputs_card}>
+                      <span className={style.card_output_title}>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
+                    </div>
+                  ))
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <CardModal allPlanAgents={this.props.allPlanAgents} modalIsOpen={modalIsOpen} closeModal={this.closeModal.bind(this)} id={modalSelected} />

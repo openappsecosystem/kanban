@@ -1,7 +1,35 @@
 .title {
-    font-size: 24px;
-    font-weight: 300;
-    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 50px;
+}
+
+.canvas_header {
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+}
+/* .canvas_board {
+    position: relative;
+} */
+.board {
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+    padding-right: 56px;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0 20px;
 }
 
 
