@@ -88,6 +88,7 @@ class Canvas extends React.Component {
                 outputs={list.outputs}
                 id={list.id}
                 key={i}
+                info={list}
                 agents={this.props.allPlanAgents}
                 name={list.title}
                 removeCardFromList={this.removeCardFromList.bind(this)}
@@ -100,7 +101,7 @@ class Canvas extends React.Component {
               />
             ))}
             <div className={style.outputs_list}>
-              <h1 className={style.outputs_title}>🎉 Resources Generated</h1>
+              <h1 className={style.outputs_title}>🎉 Output resources</h1>
               <div className={style.list}>
                 {this.props.outputs.map((output, i) => (
                   output.committedOutputs.map(o => (

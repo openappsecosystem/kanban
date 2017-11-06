@@ -16,7 +16,7 @@ const CardModal = ({id, allPlanAgents, units, data, modalDescription}) => {
               <ModalMembers provider={data.provider} id={data.id} allPlanAgents={allPlanAgents} members={data.involvedAgents} />
               <div className={style.labels_due}>
                 <div className={style.due}>
-                  <span className={style.due_item}>Due to {data.due}</span>
+                  <span className={style.due_item}>Due {data.due}</span>
                 </div>
               </div>
             </div>

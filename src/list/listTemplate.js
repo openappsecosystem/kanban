@@ -4,12 +4,13 @@ import style from './index.css'
 import Button from '../components/button'
 import TextArea from '../components/textarea'
 
-const ListTemplate = ({setTitle, name, agents, cards, outputs, id, openModal, moveCard, openCardController, cardController, addCardToList, updateNewCardTitle, newCardTitle}) => (
+const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openModal, moveCard, openCardController, cardController, addCardToList, updateNewCardTitle, newCardTitle}) => {
+  return (
   <div className={style.list_wrapper}>
     <div className={style.list}>
       <div className={style.list_header}>
         <h1 className={setTitle ? style.hidden + ' ' + style.header_title : style.header_title}>{name}</h1>
-        <p className={style.header_desc}>Cooking, cleaning and meals</p>
+        <p className={style.header_desc}>{info.note}</p>
         <div className={style.header_infos}>
           {agents.map((a, i) => (
             <div key={i} className={style.header_members}>
@@ -19,7 +20,7 @@ const ListTemplate = ({setTitle, name, agents, cards, outputs, id, openModal, mo
             </div>
           ))}
           <div className={style.header_due}>
-            <span className={style.due_item}>Due to 19.11</span>
+            <span className={style.due_item}>Due {info.due}</span>
           </div>
         </div>
       </div>
@@ -73,6 +74,6 @@ const ListTemplate = ({setTitle, name, agents, cards, outputs, id, openModal, mo
       <a className={style.open_card_composer} onClick={() => openCardController()} >Create a new commitment...</a>
     </div>
   </div>
-)
+)}
 
 export default ListTemplate

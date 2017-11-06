@@ -100,6 +100,7 @@ class CanvasWrapper extends React.Component {
 
   render () {
     const {loading, error, data} = this.props
+    console.log(data)
     return (
       <AppTemplate>
         {loading ? <strong>Loading...</strong> : (
@@ -113,6 +114,8 @@ class CanvasWrapper extends React.Component {
               {
                 id: Number(list.id),
                 title: list.name,
+                note: list.note,
+                due: list.plannedStart,
                 cards: list.committedInputs.map(task => (
                   {
                     id: Number(task.id),
