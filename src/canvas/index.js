@@ -75,13 +75,14 @@ class Canvas extends React.Component {
 
   render () {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
+    let customHeight = window.innerHeight
     return (
-      <section className={style.surface}>
+      <section className={style.surface} >
           <header className={style.header}>
             <h1 className={style.title}>{this.props.title}</h1>
           </header>
-        <div className={style.canvas_wrapper}>
-          <div className={style.canvas_board}>
+
+          <div className={style.canvas_board} style={{height: customHeight + 'px'} }>
             <div className={style.board}>
             <div className={style.board_panels}>
               {this.props.lists.map((list, i) => (
@@ -116,7 +117,7 @@ class Canvas extends React.Component {
               </div>
               </div>
             </div>
-          </div>
+
         </div>
         <CardModal allPlanAgents={this.props.allPlanAgents} modalIsOpen={modalIsOpen} closeModal={this.closeModal.bind(this)} id={modalSelected} />
       </section>

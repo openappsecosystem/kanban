@@ -3,15 +3,18 @@ import { gql, graphql } from 'react-apollo'
 import AuthenticatedOnly from '../../AuthenticatedOnly'
 import Login from '../../login'
 import Header from '../../components/header'
+import style from './style.css'
+import { withRouter } from 'react-router'
 
 class AppTemplate extends React.Component {
   render () {
+    console.log(this)
     const {viewer, loading, error} = this.props.data    
     return (
       <AuthenticatedOnly unauthenticatedComponent={<Login />}>
         {loading ? <strong>Loading...</strong> : (
           error ? <p style={{ color: '#F00' }}>API error</p> : (
-            <div>
+            <div className={this.props.location.pathname.indexOf('canvas') >= 0 ? style.surface : ''}>
               <Header info={viewer.myAgent} />
               {this.props.children}
             </div>
@@ -46,9 +49,10 @@ query ($token: String) {
     }
   }  
 `
+const App = withRouter(AppTemplate)
 
 export default graphql(agentPlans, {
   options: (props) => ({variables: {
     token: sessionStorage.getItem('token')
 }})
-})(AppTemplate)
+})(App)

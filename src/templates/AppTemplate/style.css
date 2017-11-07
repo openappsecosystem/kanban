@@ -1,0 +1,6 @@
+.surface {
+    lost-utility: clearfix;
+    background: url('./back1.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
