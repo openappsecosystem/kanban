@@ -1,13 +1,14 @@
 import React from 'react'
 import style from './style.css'
 import { Link } from 'react-router-dom'
+import {Card, Kanban} from '../../icons'
 
 const Header = (props) => {
     return (
         <div className={style.header}>
             <div className={style.header_left}>
                 <div className={style.header_plans} onClick={props.handleTogglePanel}>
-                    <h5>All Plans</h5>
+                    <h5><span className={style.plans_icon}><Card color={'#fff'} width={16} height={16} /></span>All Plans</h5>
                 </div>
                 <div className={props.panel ? style.header_panel + ' ' + style.active : style.header_panel}>
                     <h3 className={style.panel_title}>Your plans</h3>
@@ -22,7 +23,7 @@ const Header = (props) => {
                     </div>
                 </div>
             </div>
-            <h1 className={style.header_title}><Link to={'/'}>kanban</Link></h1>
+            <h1 className={style.header_title}><Link to={'/'}><span className={style.logo}><Kanban color1={'#2C4251'} color2={'#5AAC44'} color3={'#D36135'}/></span></Link></h1>
             <div className={style.header_right}>
             <div className={style.right_info}>
                     <span className={style.info_img} />

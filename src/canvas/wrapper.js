@@ -99,12 +99,11 @@ class CanvasWrapper extends React.Component {
   }
 
   render () {
-    const {loading, error, data} = this.props
-    console.log(data)
+    const {planLoading, planError, data} = this.props
     return (
       <AppTemplate>
-        {loading ? <strong>Loading...</strong> : (
-        error ? <p style={{ color: '#F00' }}>API error</p> : (
+        {planLoading ? <strong>Loading...</strong> : (
+        planError ? <p style={{ color: '#F00' }}>API error</p> : (
           <Component
             title={data.name || 'Plan ' + data.id}
             outputs={data.planProcesses}
@@ -141,8 +140,8 @@ export default graphql(plan, {
     planId: props.match.params.id
   }}),
   props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
-    loading,
-    error,
+    planLoading: loading,
+    planError: error,
     refetchAgent: refetch,  // :NOTE: call this in the component to force reload the data
     data: viewer ? viewer.plan : null
   })
