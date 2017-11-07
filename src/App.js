@@ -10,6 +10,7 @@ const Lists = ({data}) => {
     <AppTemplate>
       {loading ? <strong>Loading...</strong> : (
       error ? <p style={{ color: '#F00' }}>API error</p> : (
+      <div className={style.profile_lists}>
       <div className={style.lists}>
         <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2>
         <div className={style.section}>
@@ -19,8 +20,8 @@ const Lists = ({data}) => {
               {viewer.myAgent.agentPlans.map((plan, i) => (
                 <div key={i} className={style.lists_item}>
                   <Link key={i} to={'/canvas/' + plan.id} className='link'>
-                    <h4>{plan.name.length === 0 ? 'unassigned name' : plan.name }</h4>
-                    <p>{plan.note || 'unassigned note'}</p>
+                    <h4>{plan.name.length === 0 ? 'Plan ' + plan.id : plan.name }</h4>
+                    <p>{plan.note || ''}</p>
                   </Link>
                 </div>
               ))}
@@ -28,6 +29,7 @@ const Lists = ({data}) => {
             </div>
           </div>
         </div>
+      </div>
       ))}
     </AppTemplate>
   )

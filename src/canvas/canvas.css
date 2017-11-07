@@ -3,6 +3,16 @@
     font-weight: 500;
     margin: 0;
     line-height: 50px;
+    margin-left: 20px;
+}
+
+/* .canvas_board {
+    lost-utility: clearfix;
+    position: relative;
+} */
+.header {
+    position: relative;
+    z-index: 99;
 }
 
 .canvas_header {
@@ -13,9 +23,10 @@
     right: 0;
     padding: 0 20px;
 }
-/* .canvas_board {
-    position: relative;
-} */
+
+.board_panels {
+    margin-top: 100px;
+}
 .board {
     user-select: none;
     white-space: nowrap;
@@ -23,9 +34,8 @@
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 10px;
-    padding-right: 56px;
     position: absolute;
-    top: 50px;
+    top: 0px;
     right: 0;
     bottom: 0;
     left: 0;

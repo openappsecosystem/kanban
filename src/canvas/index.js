@@ -76,40 +76,44 @@ class Canvas extends React.Component {
   render () {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
     return (
-      <section className={style.canvas}>
-        <header className={style.canvas_header}>
-          <h1 className={style.title}>{this.props.title}</h1>
-        </header>
-        <div className={style.canvas_board}>
-          <div className={style.board}>
-            {this.props.lists.map((list, i) => (
-              <List
-                cards={list.cards}
-                outputs={list.outputs}
-                id={list.id}
-                key={i}
-                info={list}
-                agents={this.props.allPlanAgents}
-                name={list.title}
-                removeCardFromList={this.removeCardFromList.bind(this)}
-                addCardToList={this.addCardToList.bind(this)}
-                moveCard={this.moveCard.bind(this)}
-                swipeCard={this.swipeCard.bind(this)}
-                openModal={this.openModal.bind(this)}
-                /* MUTATIONS */
-                addNewTask={this.addNewTask.bind(this)}
-              />
-            ))}
-            <div className={style.outputs_list}>
-              <h1 className={style.outputs_title}>🎉 Output resources</h1>
-              <div className={style.list}>
-                {this.props.outputs.map((output, i) => (
-                  output.committedOutputs.map(o => (
-                    <div key={i} className={style.outputs_card}>
-                      <span className={style.card_output_title}>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
-                    </div>
-                  ))
-                ))}
+      <section className={style.surface}>
+          <header className={style.header}>
+            <h1 className={style.title}>{this.props.title}</h1>
+          </header>
+        <div className={style.canvas_wrapper}>
+          <div className={style.canvas_board}>
+            <div className={style.board}>
+            <div className={style.board_panels}>
+              {this.props.lists.map((list, i) => (
+                <List
+                  cards={list.cards}
+                  outputs={list.outputs}
+                  id={list.id}
+                  key={i}
+                  info={list}
+                  agents={this.props.allPlanAgents}
+                  name={list.title}
+                  removeCardFromList={this.removeCardFromList.bind(this)}
+                  addCardToList={this.addCardToList.bind(this)}
+                  moveCard={this.moveCard.bind(this)}
+                  swipeCard={this.swipeCard.bind(this)}
+                  openModal={this.openModal.bind(this)}
+                  /* MUTATIONS */
+                  addNewTask={this.addNewTask.bind(this)}
+                />
+              ))}
+              <div className={style.outputs_list}>
+                <h1 className={style.outputs_title}>🎉 Output resources</h1>
+                <div className={style.list}>
+                  {this.props.outputs.map((output, i) => (
+                    output.committedOutputs.map(o => (
+                      <div key={i} className={style.outputs_card}>
+                        <span className={style.card_output_title}>{o.committedQuantity.numericValue + ' ' + o.committedQuantity.unit.name + ' ' + o.resourceClassifiedAs.name}</span>
+                      </div>
+                    ))
+                  ))}
+                </div>
+              </div>
               </div>
             </div>
           </div>

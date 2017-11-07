@@ -51,14 +51,14 @@
     background: #c7c7c7;
     border-radius: 3px;
     padding: 0 10px;
-    & .due_item {
-      line-height: 24px;
-      font-size: 13px;
-      text-decoration: underline;
-      font-weight: 500;
-      color: #747474;
-    }
   }
+    .header_due .due_item {
+        line-height: 24px;
+        font-size: 13px;
+        text-decoration: underline;
+        font-weight: 500;
+        color: #747474;
+      }
 
   .header_members {
     float: left;

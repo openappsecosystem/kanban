@@ -106,7 +106,7 @@ class CanvasWrapper extends React.Component {
         {loading ? <strong>Loading...</strong> : (
         error ? <p style={{ color: '#F00' }}>API error</p> : (
           <Component
-            title={data.name || 'no name'}
+            title={data.name || 'Plan ' + data.id}
             outputs={data.planProcesses}
             moveCard={this.moveCard}
             allPlanAgents={data.workingAgents}

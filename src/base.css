@@ -1,7 +1,7 @@
 
 body {
     margin: 0;
-    padding: 20px;
+    /* padding: 20px; */
     font-family: 'Fira Sans';
     /* lost-utility: edit;  */
   }
@@ -37,6 +37,10 @@ body {
     lost-column: 1/2;
     lost-offset: 1/4;
     padding: 20px;
+  }
+
+  .profile_lists {
+    lost-utility: clearfix;
   }
 
 
@@ -128,6 +132,7 @@ body {
   margin: 0;
   border-radius: 3px;
   padding: 0 10px;
+  margin: 10px;
 }
 
 .login_wrapper {
