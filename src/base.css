@@ -21,6 +21,7 @@ body {
   .wrapper {
     height: auto;
     margin-top: 40px;
+    lost-utility: clearfix;
   }
 
   .profile_title {
@@ -76,8 +77,8 @@ body {
     text-decoration: none !important;
   }
   .lists_item {
-    lost-column: 1/3;
-    height: 200px;
+    lost-column: 1/1;
+    /* height: 200px; */
     background: #FDFDFD;
     box-shadow: 0 1px 20px rgba(0,0,0,.2);
     border-radius: 4px;

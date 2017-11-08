@@ -8,7 +8,6 @@ import { withRouter } from 'react-router'
 
 class AppTemplate extends React.Component {
   render () {
-    console.log(this)
     const {viewer, loading, error} = this.props.data    
     return (
       <AuthenticatedOnly unauthenticatedComponent={<Login />}>
