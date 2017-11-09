@@ -1,6 +1,7 @@
 import React from 'react'
 import CardModal from './CardModal'
 import Modal from 'react-modal'
+import style from './index.css'
 
 const customStyles = {
   overlay: {
@@ -14,16 +15,16 @@ const customStyles = {
     height            : '100%',
     justifyContent    : 'center',
     overflow          : 'auto'
-  },
-  content: {
-    width                 : '450px',
-    boxShadow             : '0 2px 8px 3px rgba(0,0,0,.3)',
-    zIndex                : 9999999999,
-    backgroundColor       : '#EDEFF0',
-    padding:  0,
-    margin:  '40px auto',
-    position: 'relative'
   }
+  // content: {
+  //   width                 : '450px',
+  //   boxShadow             : '0 2px 8px 3px rgba(0,0,0,.3)',
+  //   zIndex                : 9999999999,
+  //   backgroundColor       : '#EDEFF0',
+  //   padding:  0,
+  //   margin:  '40px auto',
+  //   position: 'relative'
+  // }
 }
 
 const UModal = ({loading, modalIsOpen, error, commitment, units, modalDescription, allPlanAgents, closeModal, id}) => (
@@ -32,10 +33,13 @@ const UModal = ({loading, modalIsOpen, error, commitment, units, modalDescriptio
     onRequestClose={closeModal}
     contentLabel='CardModal'
     style={customStyles}
+    className={{
+      base: style.cardModal
+    }}
     >
     {loading ? <h1>loading...</h1> : (
       error ? <p style={{ color: '#ddd' }}>API error</p> : (
-        <CardModal id={id} allPlanAgents={allPlanAgents} units={units} data={commitment} modalDescription={modalDescription} />
+        <CardModal id={id} allPlanAgents={allPlanAgents} units={units} data={commitment} close={closeModal} modalDescription={modalDescription} />
       ))
     }
   </Modal>

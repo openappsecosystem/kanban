@@ -216,3 +216,9 @@ body {
   font-weight: 300;
   font-size: 14px;
 }
+
+@media screen and (max-width: 600px) {
+  .wrapper_container {
+    lost-column: 1/1;
+  }
+}

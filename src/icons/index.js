@@ -13,6 +13,11 @@ export const Card = !browser ? nullServerComponent : ({width = 24, height = 24, 
   <svg xmlns="http://www.w3.org/2000/svg" color={color} width={width} height={width} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
 )
 
+// LEFT
+export const Left = !browser ? nullServerComponent : ({width = 24, height = 24, color = '#333'}) => (
+  <svg xmlns="http://www.w3.org/2000/svg" color={color} width={width} height={width} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-clipboard"><line x1="20" y1="12" x2="4" y2="12"></line><polyline points="10 18 4 12 10 6"></polyline></svg>
+)
+
 // KANBAN
 export const Kanban = !browser ? nullServerComponent : ({width = 24, height = 24, color1 = '#333', color2 = '#333', color3 = '#333'}) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 30" version="1.1" x="0px" y="0px"><title>kanban</title><g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g><rect fill={color1} x="2" y="2" width="6" height="20" rx="1"/><rect fill={color2} x="9" y="2" width="6" height="12" rx="1"/><rect fill={color3} x="16" y="2" width="6" height="16" rx="1"/></g></g></svg>

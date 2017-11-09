@@ -5,10 +5,12 @@ import ModalMembers from './modalMembers'
 import ModalActivities from './modalActivities'
 import LogEvent from './logEvent'
 
-const CardModal = ({id, allPlanAgents, units, data, modalDescription}) => {
+
+const CardModal = ({id, allPlanAgents, units, data, close, modalDescription}) => {
   return (
     <section className={style.modal_content}>
-      <ModalTitle id={data.id} note={data.note} />
+      <ModalTitle close={close} id={data.id} note={data.note} />
+    
       <div className={style.content_info}>
         <div className={style.content_module}>
           <div className={style.module_header}>

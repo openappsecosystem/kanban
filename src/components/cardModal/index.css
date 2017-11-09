@@ -1,3 +1,16 @@
+.cardModal {
+  width: 600px;
+  box-shadow: 0 2px 8px 3px rgba(0,0,0,.3);
+  z-index : 9999999999;
+  background-color: #EDEFF0;
+  padding:  0;
+  margin: 40px auto;
+  position: relative;
+  border-radius: 3px;
+  padding-bottom: 20px;
+  outline: none;
+}
+
 .modal_content {
     padding: 10px;
   }
@@ -32,7 +45,11 @@
   
   .modal_content .content_header {
     margin-left: 10px;
-    margin-top: 10px
+    margin-top: 10px;
+    background: #343d45;
+    margin: -10px;
+    padding: 20px;
+    margin-bottom: 20px;
   }
 
   .content_header .header_sub {
@@ -574,6 +591,7 @@
     position: relative;
     /* z-index: 1; */
     display: block;
+    color: white;
   }
 
   .members_active {
@@ -612,3 +630,24 @@
       color: #4d4d4d;
     }
   }
+
+  .back svg {
+    vertical-align: middle;
+  }
+  .back {
+    font-size: 14px;
+    background: #333C44;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 600px) {
+    .cardModal {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+ }
