@@ -13,7 +13,7 @@ class AppTemplate extends React.Component {
       <AuthenticatedOnly unauthenticatedComponent={<Login />}>
         {loading ? <strong>Loading...</strong> : (
           error ? <p style={{ color: '#F00' }}>API error</p> : (
-            <div className={this.props.location.pathname.indexOf('canvas') >= 0 ? style.surface : ''}>
+            <div className={this.props.location.pathname.indexOf('canvas') >= 0 ? style.surface : style.blank}>
               <Header info={viewer.myAgent} />
               {this.props.children}
             </div>

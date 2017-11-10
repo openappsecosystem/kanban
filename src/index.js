@@ -6,16 +6,18 @@ import Canvas from './canvas/wrapper'
 import Agent from './agent/wrapper'
 import registerServiceWorker from './registerServiceWorker'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {ApolloProvider, createNetworkInterface, ApolloClient} from 'react-apollo'
-const networkInterface = createNetworkInterface({
-  // uri: 'https://ocp.freedomcoop.eu/api/graph'
-  uri: 'https://testocp.freedomcoop.eu/api/graph'
-})
+import {ApolloProvider} from 'react-apollo'
+import {client, store} from './store'
 
-const client = new ApolloClient({networkInterface})
+// const networkInterface = createNetworkInterface({
+//   uri: 'https://ocp.freedomcoop.eu/api/graph'
+//   // uri: 'https://testocp.freedomcoop.eu/api/graph'
+// })
+
+// const client = new ApolloClient({networkInterface})
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider store={store} client={client}>
     <Router>
       <div>
         <Route exact path='/login' component={Login} />
