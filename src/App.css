@@ -105,11 +105,12 @@ body {
 .wrapper_tagline .subtitle {
     margin: 0 !important; 
     padding: 0 !important; 
-    color: #100F2B;
-    font-weight: 600;
     font-size: 14px;
     position: relative;
     display: inline-block;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: .5px;
 }
 .wrapper_tagline {
   margin: 0;
@@ -118,13 +119,19 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.20);
 }
 
+.wrapper_tagline h5 {
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: .5px;
+}
+
 .wrapper_tagline h5:after {
   position: absolute;
   content: "";
   left: 0;
   bottom: -11px;
   height: 1px;
-  background: #100F2B;
+  background: #fff;
   width: 100%;
   display: block;
 }
