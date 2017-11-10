@@ -35,7 +35,10 @@ export default compose(
       }
     })
     .then(data => console.log(data))
-    .catch(e => addFlag({title: 'error!!'}))
+    .catch(e => addFlag({
+      title: 'Not authorized',
+      message: 'You do not have the permission to edit the commitment note'
+    }))
   })
 )(ModalTitle)
 

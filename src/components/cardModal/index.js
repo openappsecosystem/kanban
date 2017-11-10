@@ -11,7 +11,7 @@ const customStyles = {
     right             : 0,
     bottom            : 0,
     backgroundColor   : 'rgba(0, 0, 0, 0.6)',
-    zIndex            : 9999999999,
+    zIndex            : 9999999,
     height            : '100%',
     justifyContent    : 'center',
     overflow          : 'auto'

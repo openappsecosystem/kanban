@@ -6,10 +6,10 @@ const mapStateToProps = state => ({
   data: state.flags
 })
 
-const mapDispatchToProps = dispatch => ({
-  deleteFlag: () => {
-    dispatch(deleteCurrentFlagAction())
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteFlag: () => dispatch(deleteCurrentFlagAction())
   }
-})
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Flag)
