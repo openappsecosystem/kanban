@@ -1,12 +1,15 @@
-import React from 'react'
-import style from './style.css'
+import {deleteCurrentFlagAction} from '../../store/actions/flags'
+import {connect} from 'react-redux'
+import Flag from './flag'
 
-const Flag = () => {
-    return (
-        <div>
-            <h1>errore!!!!</h1>
-        </div>
-    )
-}
+const mapStateToProps = state => ({
+  data: state.flags
+})
 
-export default Flag
+const mapDispatchToProps = dispatch => ({
+  deleteFlag: () => {
+    dispatch(deleteCurrentFlagAction())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Flag)

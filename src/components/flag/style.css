@@ -1,0 +1,27 @@
+.flag {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+}
+.flag_internal {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-shadow: 0 0 1px rgba(9, 30, 66, 0.31), 0 20px 32px -8px rgba(9, 30, 66, 0.25);
+    color: #42526E;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    padding: 16px;
+    transition: background-color 200ms;
+    -webkit-transition: background-color 200ms;
+    width: 100%;
+    z-index: 600;
+}
+.flag .header {
+
+}

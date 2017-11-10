@@ -4,3 +4,10 @@ export const addFlagAction = (data) => {
     payload: data
   }
 }
+
+export const deleteCurrentFlagAction = () => {
+    return {
+      type: 'DELETE_CURRENT_FLAG'
+    }
+  }
+  
