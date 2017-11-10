@@ -9,6 +9,7 @@ body {
   /* padding: 20px; */
   font-family: 'Fira Sans';
   /* lost-utility: edit;  */
+  background-color: rgb(7, 71, 166);
 }
   
 .canvas_title {
@@ -38,7 +39,7 @@ body {
   text-align: left;
   font-size: 36px;
   font-weight: 700;
-  color: #100F2B;
+  color: #fff;
 }
 
 .lists {
@@ -114,7 +115,7 @@ body {
   margin: 0;
   lost-column: 1/1;
   padding-bottom: 10px;
-  border-bottom: 1px solid #D4D4D4;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
 }
 
 .wrapper_tagline h5:after {
