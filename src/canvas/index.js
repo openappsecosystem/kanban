@@ -6,7 +6,7 @@ import update from 'react/lib/update'
 import CardModal from '../components/cardModal/modalHOC'
 import cardDnDServices from '../services/cardDnDservices'
 import style from './canvas.css'
-
+import { Link } from 'react-router-dom'
 class Canvas extends React.Component {
   constructor (props) {
     super(props)
@@ -76,10 +76,11 @@ class Canvas extends React.Component {
   render () {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
     let customHeight = window.innerHeight
+    console.log(this.props)
     return (
       <section className={style.surface} >
           <header className={style.header}>
-            <h1 className={style.title}>{this.props.title}</h1>
+            <h1 className={style.title}>{this.props.title} <span className={style.header_scope}><Link to={'/agent/' + this.props.project[0].id}>{this.props.project[0].name}</Link></span></h1>
           </header>
 
           <div className={style.canvas_board} style={{height: customHeight + 'px'} }>

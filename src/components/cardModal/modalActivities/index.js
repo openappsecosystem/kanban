@@ -2,6 +2,16 @@ import {compose, withHandlers} from 'recompose'
 import Component from './modalActivities'
 import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
+import {addFlagAction} from '../../../store/actions/flags'
+import {connect} from 'react-redux'
+
+
+const mapDispatchToProps = dispatch => ({
+  addFlag: (data) => {
+    dispatch(addFlagAction(data))
+  }
+})
+
 
 const deleteEvent = gql`
 mutation ($token: String!, $id: Int!) {
@@ -72,8 +82,9 @@ export default compose(
         activities: viewer ? viewer.commitment.fulfilledBy : null
       })
     }),
+    connect(null, mapDispatchToProps),
     withHandlers({
-      deleteEvent: ({mutate}) => (id) => {
+      deleteEvent: ({mutate, addFlag}) => (id) => {
         return (
           mutate({
             variables: {
@@ -81,8 +92,11 @@ export default compose(
               id: id
             }
           })
-          .then((data) => console.log('cancellados'))
-          .catch((e) => console.log(e))
+          .then((data) => console.log(data))
+          .catch(e => addFlag({
+            title: 'Not authorized',
+            message: 'You do not have the permission to delete that event'
+          }))
         )
       }
     })

@@ -9,6 +9,10 @@ query ($token: String, $planId: Int) {
       plan(id: $planId) {
         id
         name
+        scope {
+          id
+          name
+        }
         workingAgents {
           id
           image
@@ -106,6 +110,7 @@ class CanvasWrapper extends React.Component {
         planError ? <p style={{ color: '#F00' }}>API error</p> : (
           <Component
             title={data.name || 'Plan ' + data.id}
+            project={data.scope}
             outputs={data.planProcesses}
             moveCard={this.moveCard}
             allPlanAgents={data.workingAgents}
