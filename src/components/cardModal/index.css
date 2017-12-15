@@ -1,5 +1,5 @@
 .cardModal {
-  width: 600px;
+  width: 500px;
   box-shadow: 0 2px 8px 3px rgba(0,0,0,.3);
   z-index : 9999999999;
   background-color: #EDEFF0;
@@ -46,10 +46,9 @@
   .modal_content .content_header {
     margin-left: 10px;
     margin-top: 10px;
-    background: #343d45;
+    background: #edeff0;
     margin: -10px;
     padding: 20px;
-    margin-bottom: 20px;
   }
 
   .content_header .header_sub {
@@ -570,7 +569,7 @@
   .header_note_input {
     font-size: 18px;
     margin: 0 0 9px;
-    color: #4d4d4d;
+    color: #3C3C3C;
     position: relative;
     font-weight: 500;
     font-family: 'Fira sans';
@@ -592,7 +591,7 @@
     position: relative;
     /* z-index: 1; */
     display: block;
-    color: white;
+    color: #3C3C3C;
   }
 
   .members_active {

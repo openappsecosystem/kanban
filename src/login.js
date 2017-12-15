@@ -39,10 +39,13 @@ class Login extends React.Component {
             <h5 className={style.alert}>☠️ This project is currently in alpha and uses Test OCP data. Be careful or wait for more stable release.</h5>
             <div className={style.login_wrapper}>
             <div className={style.wrapper_container}>
-                <h1 className={style.wrapper_title}>🌔 Welcome to OCW Kanban <span>0.0.6</span></h1>
-                <h5 className={style.wrapper_desc}>Log in with your test ocp credential</h5>
-                <input type='text' value={username} onChange={this.user} className='username' />
-                <input type='password' value={password} onChange={this.password} className='password' />
+                <div className={style.wrapper_title}>
+                    <h1>🌔</h1>
+                    <h2>A Kanban for the web of value <span>0.0.6</span></h2>
+                    <h3>Login with your test credential</h3>
+                </div>
+                <input placeholder='Insert your username' type='text' value={username} onChange={this.user} className='username' />
+                <input placeholder='Insert your password' type='password' value={password} onChange={this.password} className='password' />
                 <button onClick={()=>this.handleLogin()}>login</button>
                 <div className={style.wrapper_features}>
                     <h3>Current Features</h3>
