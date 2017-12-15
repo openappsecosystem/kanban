@@ -149,6 +149,7 @@ body {
   text-align: center;
   font-size: 32px;
   font-weight: 500;
+  color: white;
 }
 
 .wrapper_title span {
@@ -167,9 +168,10 @@ body {
 .wrapper_container .wrapper_desc {
   text-align: center;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 300;
   margin: 0;
   margin-bottom: 20px;
+  color: white;
 }
 
 .wrapper_container input {
