@@ -1,5 +1,5 @@
 .list_wrapper {
-    width: 270px;
+    width: 300px;
     margin-right: 10px;
     height: 100%;
     box-sizing: border-box;
@@ -60,7 +60,7 @@
         font-size: 13px;
         text-decoration: underline;
         font-weight: 500;
-        color: #747474;
+        color: #444444;
       }
 
   .header_members {

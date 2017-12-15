@@ -38,8 +38,8 @@ const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openMod
             name={card.title}
             moveCard={moveCard}
             status={card.status}
-            note={card.note}
-            newNote= {'il pistolero'}
+            note={card.note || card.title}
+            newNote= {''}
           />
           </div>
         )) : ''}

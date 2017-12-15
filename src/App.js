@@ -32,8 +32,8 @@ const Lists = ({data}) => {
               <div className={style.wrapper}>
                 {viewer.myAgent.agentPlans.map((plan, i) => (
                   <div key={i} className={style.lists_item}>
-                    <Link key={i} to={'/canvas/' + plan.id} className={style.link}>
-                      <h4 className={style.item_title}>{plan.name.length === 0 ? 'Plan ' + plan.id : plan.name }</h4>
+                    <Link key={plan.id} to={'/canvas/' + plan.id} className={style.link}>
+                      <h4 className={style.item_title}>{plan.name.length === 0 ? plan.planProcesses[0].name : plan.name }</h4>
                       <h5 className={style.plan_scope}>{plan.scope.map(scope => <span>{scope.name}</span>)}</h5>
                       <p>{plan.note || ''}</p>
                     </Link>

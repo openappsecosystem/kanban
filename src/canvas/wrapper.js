@@ -109,7 +109,7 @@ class CanvasWrapper extends React.Component {
         {planLoading ? <strong>Loading...</strong> : (
         planError ? <p style={{ color: '#F00' }}>API error</p> : (
           <Component
-            title={data.name || 'Plan ' + data.id}
+            title={data.name || data.planProcesses[0].name}
             project={data.scope}
             outputs={data.planProcesses}
             moveCard={this.moveCard}
