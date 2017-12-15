@@ -110,8 +110,18 @@
 }
 .logo {
     display: block;
-    height: 30px;
-    margin-top: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: white;
+    /* margin-top: 5px; */
+    /* background: url('../../icons/1.svg'); */
+    /* width: 30px;
+    background-size: cover;
+    background-repeat: no-repeat; */
+
 }
 
 .logo svg {

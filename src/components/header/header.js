@@ -16,18 +16,20 @@ const Header = (props) => {
                         {props.info.agentPlans.map(plan => (
                         <Link key={plan.id} to={'/canvas/' + plan.id}>
                             <div className={style.list_item}>
-                                <h5 className={style.item_title}>{plan.name || 'Plan ' + plan.id}</h5>
+                                <h5 className={style.item_title}>{plan.name || plan.planProcesses[0].name}</h5>
                             </div>
                         </Link>
                         ))}
                     </div>
                 </div>
             </div>
-            <h1 className={style.header_title}><Link to={'/'}><span className={style.logo}><Kanban color1={'#2C4251'} color2={'#5AAC44'} color3={'#D36135'}/></span></Link></h1>
+            <h1 className={style.header_title}><Link to={'/'}><span className={style.logo}>
+                Kanban{/* <Kanban color1={'#2C4251'} color2={'#5AAC44'} color3={'#D36135'}/> */}
+            </span></Link></h1>
             <div className={style.header_right}>
-            <div className={style.right_info}>
+            {/* <div className={style.right_info}>
                     <span className={style.info_img} />
-                </div>
+                </div> */}
                 <div onClick={props.handleToggleProfilePanel} className={style.right_profile}>
                     <img src={props.info.image} className={style.profile_img} />
                 </div>
