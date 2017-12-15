@@ -3,13 +3,16 @@
 } */
 @import './base.css';
 
+html {
+  background-color: rgb(7, 71, 166);
+}
+
 
 body {
   margin: 0;
   /* padding: 20px; */
   font-family: 'Fira Sans';
   /* lost-utility: edit;  */
-  background-color: rgb(7, 71, 166);
 }
   
 .canvas_title {

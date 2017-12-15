@@ -1,16 +1,18 @@
 .flag {
     position: absolute;
-    z-index: 999999999999999999999999999999999999999999;
+    z-index: 99999999;
     width: 300px;
     right: 20px;
     top: 20px;
     opacity: 0;
     right: 20px;
+    display: none;
 }
 
 .flag.active {
     right: 20px;
     opacity: 1;
+    display: block;
 }
 
 .flag_internal {

@@ -36,7 +36,7 @@ class Login extends React.Component {
         const {username, password} = this.state
         return (
             <div>
-            <h5 className={style.alert}>☠️ This project is currently in alpha and uses Test OCP data. Be careful or wait for more stable release.</h5>
+            <h5 className={style.alert}>☠️ This project is currently in alpha and uses OCP data. Be careful or wait for more stable release.</h5>
             <div className={style.login_wrapper}>
             <div className={style.wrapper_container}>
                 <div className={style.wrapper_title}>

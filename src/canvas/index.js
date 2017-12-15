@@ -76,7 +76,6 @@ class Canvas extends React.Component {
   render () {
     const {modalSelected, date, memberPopup, modalDescription, modalIsOpen, deletePopup, processPopup} = this.state
     let customHeight = window.innerHeight
-    console.log(this.props)
     return (
       <section className={style.surface} >
           <header className={style.header}>

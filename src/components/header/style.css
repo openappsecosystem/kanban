@@ -163,7 +163,7 @@
 
 .right_profile_panel {
     position: absolute;
-    right: -320px;
+    right: 20px;
     top: 45px;
     padding: 10px;
     background: #fff;
@@ -178,6 +178,7 @@
     /* position: absolute; */
     /* right: -9999px;
     top: -9999px; */
+    display: none;
     width: 300px;
 }
 
