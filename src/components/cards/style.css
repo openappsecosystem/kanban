@@ -72,9 +72,7 @@
 
 .item_title {
     font-weight: 700;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin: 10px;
     font-size: 16px;
     font-weight: 500;
     color: #100F2B;

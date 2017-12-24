@@ -16,7 +16,7 @@ class Login extends React.Component {
 
     handleLogin = async () => {
         await this.props.mutate({variables: {username: this.state.username, password: this.state.password}})
-        .then (res => {return sessionStorage.setItem('token', res.data.createToken.token)})
+        .then (res => {return localStorage.setItem('token', res.data.createToken.token)})
         this.props.history.replace('/')
     }
 
@@ -42,7 +42,7 @@ class Login extends React.Component {
                 <div className={style.wrapper_title}>
                     <h1>🌔</h1>
                     <h2>A Kanban for the web of value <span>0.0.6</span></h2>
-                    <h3>Login with your test credential</h3>
+                    <h3>Login with your OCP credential</h3>
                 </div>
                 <input placeholder='Insert your username' type='text' value={username} onChange={this.user} className='username' />
                 <input placeholder='Insert your password' type='password' value={password} onChange={this.password} className='password' />

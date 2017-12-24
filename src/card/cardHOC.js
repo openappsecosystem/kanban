@@ -21,7 +21,7 @@ export default compose(
           return () => {
             return mutate({
                 variables: {
-                    token: sessionStorage.getItem('token'),
+                    token: localStorage.getItem('token'),
                     id: _id,
                     note: _note
                 }

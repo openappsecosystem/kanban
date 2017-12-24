@@ -12,7 +12,7 @@ export default compose(
         props.toggleProfile(!props.profile)
       },
       logout: props => event => {
-        sessionStorage.removeItem('token')
+        localStorage.removeItem('token')
         window.location.reload()
       }
     })

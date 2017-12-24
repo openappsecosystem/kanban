@@ -5,7 +5,7 @@ import GetCommitment from '../../queries/getCommitment'
 
 export default compose(
   graphql(GetCommitment, {
-    options: ({id}) => ({ variables: { token: sessionStorage.getItem('token'), id: id}}),
+    options: ({id}) => ({ variables: { token: localStorage.getItem('token'), id: id}}),
     props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
       loading,
       error,

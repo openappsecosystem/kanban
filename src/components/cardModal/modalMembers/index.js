@@ -32,7 +32,7 @@ export default compose(
       return (
         mutate({
           variables: {
-            token: sessionStorage.getItem('token'),
+            token: localStorage.getItem('token'),
             id: id,
             providerId: event.target.id
           }

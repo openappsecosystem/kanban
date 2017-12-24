@@ -29,7 +29,7 @@ export default compose(
           {
             query: queryEvents,
             variables: {
-              token: sessionStorage.getItem('token'),
+              token: localStorage.getItem('token'),
               id: props.id
             }
           }
@@ -70,7 +70,7 @@ export default compose(
         return (
           mutate({
             variables: {
-              token: sessionStorage.getItem('token'),
+              token: localStorage.getItem('token'),
               id: id,
               action: action,
               scopeId: scopeId,

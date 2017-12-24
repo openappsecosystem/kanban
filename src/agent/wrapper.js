@@ -17,6 +17,9 @@ query ($token: String, $id: Int) {
             name
             id
             note
+            planProcesses {
+              name
+            }
           }
       }
     }
@@ -39,7 +42,7 @@ class AgentWrapper extends React.Component {
 
 export default graphql(plan, {
   options: (props) => ({ variables: {
-    token: sessionStorage.getItem('token'),
+    token: localStorage.getItem('token'),
     id: props.match.params.id
   }}),
   props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({

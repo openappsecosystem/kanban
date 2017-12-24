@@ -92,6 +92,6 @@ query ($token: String) {
 
 export default graphql(agentPlans, {
   options: (props) => ({variables: {
-    token: sessionStorage.getItem('token')
+    token: localStorage.getItem('token')
 }})
 })(Lists)

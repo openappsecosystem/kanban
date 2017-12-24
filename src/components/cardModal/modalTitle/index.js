@@ -29,7 +29,7 @@ export default compose(
     toggleVisibility: ({ toggleVis, isVisible }) => (event) => toggleVis(!isVisible),
     editTitle: ({mutate, id, note, addFlag}) => (event) => mutate({
       variables: {
-        token: sessionStorage.getItem('token'),
+        token: localStorage.getItem('token'),
         id: id,
         note: event.target.value
       }
