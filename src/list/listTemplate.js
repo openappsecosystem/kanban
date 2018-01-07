@@ -10,7 +10,9 @@ const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openMod
     <div className={style.list}>
       <div className={style.list_header}>
         <h1 className={setTitle ? style.hidden + ' ' + style.header_title : style.header_title}>{name}</h1>
-        <p className={style.header_desc}>{info.note}</p>
+        {info.note
+        ? <p className={style.header_desc}>{info.note}</p>
+        : ''}
         <div className={style.header_infos}>
           {agents.map((a, i) => (
             <div key={i} className={style.header_members}>
@@ -19,13 +21,15 @@ const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openMod
               </span>
             </div>
           ))}
-          <div className={style.header_due}>
+          {info.due
+          ? <div className={style.header_due}>
             <span className={style.due_item}>Due {info.due}</span>
           </div>
+          : '' }
         </div>
       </div>
       <div className={style.list_cards}>
-        <h2>Inputs ({cards.length})</h2>
+        <h2>Commitments ({cards.length})</h2>
         {cards ? cards
         .map((card, i) => (
           <div key={i}>
@@ -60,17 +64,16 @@ const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openMod
             </div>
         </div>
       </div>
-      {/* <div className={style.list_outputs}>
-        <h2>Outputs (1)</h2> */}
-        {/* {outputs.map((o, i) => (
-          <div key={i} className={style.outputs_card}>
-            <span>{o.title}</span>
-          </div>
-        ))} */}
-        {/* <div className={style.outputs_card}>
-          <span>1 Project Delivarable</span>
+      {outputs.length !== 0 
+      ? <div className={style.list_outputs}>
+          <h2>Outputs ({outputs.length})</h2>
+          {/* {outputs.map((o, i) => (
+            <div key={i} className={style.outputs_card}>
+              <span>{o.title}</span>
+            </div>
+          ))} */}
         </div>
-      </div> */}
+      : '' }
       <a className={style.open_card_composer} onClick={() => openCardController()} >Create a new commitment...</a>
     </div>
   </div>

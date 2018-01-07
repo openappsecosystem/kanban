@@ -45,6 +45,7 @@
     "react-modal": "^2.2.4",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-tabs": "2.1.1",
     "react-themeable": "1.1.0",
     "recompose": "^0.25.1",
     "redux": "^3.7.2",

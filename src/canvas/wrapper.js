@@ -1,7 +1,7 @@
 import React from 'react'
-import { gql, graphql } from 'react-apollo'
-import Component from './index'
 import AppTemplate from '../templates/AppTemplate'
+import Component from './index'
+import { gql, graphql } from 'react-apollo'
 
 const plan = gql`
 query ($token: String, $planId: Int) {
@@ -40,6 +40,11 @@ query ($token: String, $planId: Int) {
             action
             id
             note
+            fulfilledBy {
+              fulfills {
+                action
+              }
+            }
             inputOf {
               name
             }
@@ -91,50 +96,19 @@ query ($token: String, $planId: Int) {
         }
       }
     }
-  }
-  
+  } 
 `
-class CanvasWrapper extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      lists: []
-    }   
-  }
 
+class CanvasWrapper extends React.Component {
   render () {
-    const {planLoading, planError, data} = this.props
+    const {loading, error, data} = this.props
     return (
       <AppTemplate>
-        {planLoading ? <strong>Loading...</strong> : (
-        planError ? <p style={{ color: '#F00' }}>API error</p> : (
-          <Component
-            title={data.name || data.planProcesses[0].name}
-            project={data.scope}
-            outputs={data.planProcesses}
-            moveCard={this.moveCard}
-            allPlanAgents={data.workingAgents}
-            lists={data.planProcesses.map(list => (
-              {
-                id: Number(list.id),
-                title: list.name,
-                note: list.note,
-                due: list.plannedStart,
-                cards: list.committedInputs.map(task => (
-                  {
-                    id: Number(task.id),
-                    title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                    members: task.involvedAgents,
-                    process: task.inputOf.name,
-                    due: task.due,
-                    note: task.note
-                  }
-                ))
-              }
-            ))}
-          />
-    ))}
-    </AppTemplate>
+        {loading ? <strong>Loading...</strong> : (
+          error ? <p style={{ color: '#F00' }}>API error</p> : (
+            <Component data={data} />
+        ))}
+      </AppTemplate>
     )
   }
 }
@@ -145,8 +119,8 @@ export default graphql(plan, {
     planId: props.match.params.id
   }}),
   props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
-    planLoading: loading,
-    planError: error,
+    loading: loading,
+    error: error,
     refetchAgent: refetch,  // :NOTE: call this in the component to force reload the data
     data: viewer ? viewer.plan : null
   })
