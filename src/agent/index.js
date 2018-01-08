@@ -12,10 +12,10 @@ const Agent = ({data}) => {
                 <h1 className={style.info_title}>{data.name}</h1>
             </div>
             <nav className={style.agent_menu}>
-                <h5 className={style.menu_item}>Recent</h5>
+                {/* <h5 className={style.menu_item}>Recent</h5> */}
                 <h5 className={style.menu_item + ' ' + style.item_active}>Plans</h5>
-                <h5 className={style.menu_item}>Network</h5>
-                <h5 className={style.menu_item}>Inventory</h5>
+                {/* <h5 className={style.menu_item}>Network</h5>
+                <h5 className={style.menu_item}>Inventory</h5> */}
             </nav>
             <div className={style.agent_section}>
                 <Cards

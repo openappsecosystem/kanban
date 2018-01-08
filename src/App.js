@@ -22,6 +22,10 @@ const Lists = ({data}) => {
                     <Link key={i} to={'/agent/' + org.object.id} className='link'>
                       <h4 className={style.item_title}>{org.object.name}</h4>
                         <h5 className={style.plan_scope}>{org.relationship.category}</h5>
+                        {/* <div className={style.item_info}>
+                          <h6>12 Plans</h6>
+                          <h6>36 Members</h6>
+                        </div> */}
                     </Link>
                   </div>
                 ))}

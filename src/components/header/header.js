@@ -1,12 +1,16 @@
 import React from 'react'
 import style from './style.css'
-import { Link } from 'react-router-dom'
-import {Card, Kanban} from '../../icons'
+import {Left, Right, Card} from '../../icons'
+import {withRouter, Link} from 'react-router-dom'
 
 const Header = (props) => {
     return (
         <div className={style.header}>
             <div className={style.header_left}>
+                <div className={style.panel_navigation}>
+                    <span onClick={() => props.history.goBack()}><Left width={18} height={18} color={'#fff'} /></span>
+                    <span onClick={()=> props.history.goForward()}><Right width={18} height={18} color={'#fff'} /></span>
+                </div>
                 <div className={style.header_plans} onClick={props.handleTogglePanel}>
                     <h5><span className={style.plans_icon}><Card color={'#fff'} width={16} height={16} /></span>All Plans</h5>
                 </div>
@@ -42,4 +46,4 @@ const Header = (props) => {
     )
 }
 
-export default Header
+export default withRouter(Header)

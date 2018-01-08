@@ -11,64 +11,63 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import CardModal from '../components/cardModal/modalHOC'
 
 class Canvas extends React.Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-          modalIsOpen: false,
-          lists: this.props.lists,
-          modalSelected: null
+  constructor (props) {
+    super(props)
+    this.state = {
+      modalIsOpen: false,
+      lists: this.props.lists,
+      modalSelected: null
+    }
+  }
+  openModal (cardId, listId) {
+    this.setState({
+      ...this.state,
+      modalIsOpen: true,
+      modalSelected: cardId
+    })
+  }
+    
+  closeModal () { this.setState({modalIsOpen: false})}
+    
+  moveCard (dragIndex, hoverIndex, currentListId) {
+    const { lists } = this.state
+    let newState = cardDnDServices.move(lists, dragIndex, hoverIndex, currentListId)
+    this.setState({lists: newState})
+    return newState
+  }
+
+  removeCardFromList (cardId, currentListId) {
+    const {lists} = this.state
+    let newState = cardDnDServices.remove(lists, cardId, currentListId)
+    this.setState({lists: newState})
+  }
+
+  swipeCard (cardId, currentListId, nextListId) {
+    const {lists} = this.state
+    let newState = cardDnDServices.swipe(lists, cardId, currentListId, nextListId)
+    this.setState({lists: newState})
+  }
+
+  addCardToList (text, listId) {
+    let card = {
+      id: Math.floor(Date.now() / 1000),
+      title: text
+    }
+    const {lists} = this.state
+    const listIndex = lists.map(x => x.id).indexOf(listId)
+    let newState = update(lists, {
+      [listIndex]: {
+        cards: {
+          $push: [card]
         }
       }
-    
-      openModal (cardId, listId) {
-        this.setState({
-          ...this.state,
-          modalIsOpen: true,
-          modalSelected: cardId
-        })
-      }
-    
-      closeModal () { this.setState({modalIsOpen: false})}
-    
-      moveCard (dragIndex, hoverIndex, currentListId) {
-        const { lists } = this.state
-        let newState = cardDnDServices.move(lists, dragIndex, hoverIndex, currentListId)
-        this.setState({lists: newState})
-        return newState
-      }
+    })
+    this.setState({lists: newState})
+  }
 
-      removeCardFromList (cardId, currentListId) {
-        const {lists} = this.state
-        let newState = cardDnDServices.remove(lists, cardId, currentListId)
-        this.setState({lists: newState})
-      }
-
-      swipeCard (cardId, currentListId, nextListId) {
-        const {lists} = this.state
-        let newState = cardDnDServices.swipe(lists, cardId, currentListId, nextListId)
-        this.setState({lists: newState})
-      }
-
-      addCardToList (text, listId) {
-        let card = {
-          id: Math.floor(Date.now() / 1000),
-          title: text
-        }
-        const {lists} = this.state
-        const listIndex = lists.map(x => x.id).indexOf(listId)
-        let newState = update(lists, {
-          [listIndex]: {
-            cards: {
-              $push: [card]
-            }
-          }
-        })
-        this.setState({lists: newState})
-      }
-
-      addNewTask () {
-        console.log('add new task inside this bin')
-      }
+  addNewTask () {
+    console.log('add new task inside this bin')
+  }
 
     render() {
       const {modalSelected, modalIsOpen} = this.state
@@ -108,37 +107,37 @@ class Canvas extends React.Component {
                   outputs={data.planProcesses}
                   allPlanAgents={data.workingAgents}
                   cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs.map(task => (
-                  {
-                    id: Number(task.id),
-                    title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                    members: task.involvedAgents,
-                    process: task.inputOf.name,
-                    due: task.due,
-                    note: task.note,
-                    isFinished: task.isFinished,
-                    wip: task.fulfilledBy.length !== 0
-                  }
+                    {
+                      id: Number(task.id),
+                      title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
+                      members: task.involvedAgents,
+                      process: task.inputOf.name,
+                      due: task.due,
+                      note: task.note,
+                      isFinished: task.isFinished,
+                      wip: task.fulfilledBy.length !== 0
+                    }
                 ))))}
-                lists={data.planProcesses.map(list => (
-                  {
-                    id: Number(list.id),
-                    title: list.name,
-                    note: list.note,
-                    due: list.plannedStart,
-                    outputs: list.committedOutputs,
-                    cards: list.committedInputs.map(task => (
-                      {
-                        id: Number(task.id),
-                        title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                        members: task.involvedAgents,
-                        process: task.inputOf.name,
-                        due: task.due,
-                        note: task.note
-                      }
-                    ))
-                  }
+                  lists={data.planProcesses.map(list => (
+                    {
+                      id: Number(list.id),
+                      title: list.name,
+                      note: list.note,
+                      due: list.plannedStart,
+                      outputs: list.committedOutputs,
+                      cards: list.committedInputs.map(task => (
+                        {
+                          id: Number(task.id),
+                          title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
+                          members: task.involvedAgents,
+                          process: task.inputOf.name,
+                          due: task.due,
+                          note: task.note
+                        }
+                      ))
+                    }
                 ))
-}
+              }
               />
             </TabPanel>
             <TabPanel>
