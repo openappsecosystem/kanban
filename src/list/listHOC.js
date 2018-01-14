@@ -23,61 +23,12 @@ mutation ($token: String!, $action: String! , $due: String!, $note: String, $com
   }
 `
 
-// export const queryEvents = gql`
-// query ($token: String!, $id: Int!) {
-//     viewer(token: $token) {
-//         commitment(id: $id) {
-//           id
-//           fulfilledBy {
-//             fulfilledBy {
-//               action
-//               start
-//               id
-//               note
-//               provider {
-//                 name
-//                 image
-//                 id
-//               }
-//             }
-//             fulfilledQuantity {
-//               numericValue
-//               unit {
-//                 name
-//               }
-//             }
-//           }
-//         }
-//     }
-// }
-// `
-
 export default compose(
     graphql(createCommitment, {
-    //   options: (props) => ({
-    //     refetchQueries: [
-    //       {
-    //         query: queryEvents,
-    //         variables: {
-    //           token: localStorage.getItem('token'),
-    //           id: props.id
-    //         }
-    //       }
-    //     ]
-    //   }),
       props: ({mutate, ownProps: {id}}) => ({
         id, mutate
       })
     }),
-    // graphql(queryEvents, {
-    //   options: ({id}) => ({ variables: { token: localStorage.getItem('token'), id: id}}),
-    //   props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
-    //     loading,
-    //     error,
-    //     refetchData: refetch,  // :NOTE: call this in the component to force reload the data
-    //     activities: viewer ? viewer.commitment.fulfilledBy : null
-    //   })
-    // }),
     withHandlers({
       deleteEvent: ({mutate}) => (id) => {
         return (

@@ -1,7 +1,6 @@
 import React from 'react'
 import List from '../list'
 import style from './canvas.css'
-
 class Canvas extends React.Component {
   render () {
     return (

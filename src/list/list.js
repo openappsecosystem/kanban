@@ -47,7 +47,7 @@ class List extends Component {
     }
   
     render () {
-      const {name, agents, id, moveCard, cards, outputs, openModal, info, connectDropTarget} = this.props
+      const {name, agents, id, moveCard,percentage, cards, outputs, openModal, info, connectDropTarget} = this.props
       const {setTitle, cardController, newCardTitle} = this.state
       return connectDropTarget(
        <span>
@@ -59,6 +59,7 @@ class List extends Component {
           name={name}
           info={info}
           id={id}
+          percentage={percentage}
           cards={cards}
           openModal={openModal}
           moveCard={moveCard}

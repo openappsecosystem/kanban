@@ -115,7 +115,10 @@ class Canvas extends React.Component {
                       due: task.due,
                       note: task.note,
                       isFinished: task.isFinished,
-                      wip: task.fulfilledBy.length !== 0
+                      wip: task.fulfilledBy.length !== 0,
+                      percentage: task.fulfilledBy
+                      .map(i => i.fulfilledQuantity.numericValue)
+                      .reduce((accumulator, currentValue) => accumulator + currentValue, null) * 100 / task.committedQuantity.numericValue
                     }
                 ))))}
                   lists={data.planProcesses.map(list => (
@@ -132,7 +135,10 @@ class Canvas extends React.Component {
                           members: task.involvedAgents,
                           process: task.inputOf.name,
                           due: task.due,
-                          note: task.note
+                          note: task.note,
+                          percentage: task.fulfilledBy
+                          .map(i => i.fulfilledQuantity.numericValue)
+                          .reduce((accumulator, currentValue) => accumulator + currentValue, null) * 100 / task.committedQuantity.numericValue
                         }
                       ))
                     }

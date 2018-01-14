@@ -90,6 +90,48 @@
     text-decoration: none !important;
   }
 
+.lists_item .item_info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  border-top: 1px solid #E6E6E6;
+  padding: 0 10px;
+}
+
+.item_info .info_date {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9B9B9B;
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+
+.item_info .info_status {
+  height: 20px;
+  margin-top: 5px;
+  float: right;
+  border-radius: 20px;
+  padding: 0 15px;
+  font-size: 14px;
+  background: #D8D8D8;
+  color: white;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 20px;
+}
+.completed {
+  background-color: #18BB58 !important;
+}
+.wip {
+  background-color: #FFC930 !important;
+}
+
+.todo {
+  background-color: #EB4610 !important;
+}
+
   @media screen and (max-width: 600px) {
      .lists_item {
          lost-column: 1/1;

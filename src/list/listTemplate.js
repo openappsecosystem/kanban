@@ -4,7 +4,7 @@ import style from './index.css'
 import Button from '../components/button'
 import TextArea from '../components/textarea'
 
-const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openModal, moveCard, openCardController, cardController, addCardToList, updateNewCardTitle, newCardTitle}) => {
+const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs, id, openModal, moveCard, openCardController, cardController, addCardToList, updateNewCardTitle, newCardTitle}) => {
   return (
   <div className={style.list_wrapper}>
     <div className={style.list}>
@@ -44,6 +44,9 @@ const ListTemplate = ({setTitle, name, agents, info, cards, outputs, id, openMod
             status={card.status}
             note={card.note || card.title}
             newNote= {''}
+            members={card.members}
+            due={card.due}
+            percentage={card.percentage}
           />
           </div>
         )) : ''}

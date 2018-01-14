@@ -17,8 +17,16 @@ query ($token: String, $id: Int) {
             name
             id
             note
+            plannedOn
             planProcesses {
+              isStarted
+              isFinished
               name
+              workingAgents {
+                id
+                name
+                image
+              }
             }
           }
       }
