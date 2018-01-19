@@ -3,8 +3,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import {flags} from './reducers/flags'
 
 export const networkInterface = createNetworkInterface({
-  uri: 'https://ocp.freedomcoop.eu/api/graph'
-  // uri: 'https://testocp.freedomcoop.eu/api/graph'
+  // uri: 'https://ocp.freedomcoop.eu/api/graph'
+  uri: 'https://testocp.freedomcoop.eu/api/graph'
 })
 
 export const client = new ApolloClient({

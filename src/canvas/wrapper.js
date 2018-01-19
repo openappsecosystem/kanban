@@ -108,12 +108,10 @@ query ($token: String, $planId: Int) {
 class CanvasWrapper extends React.Component {
   render () {
     const {loading, error, data} = this.props
+    
     return (
       <AppTemplate>
-        {loading ? <strong>Loading...</strong> : (
-          error ? <p style={{ color: '#F00' }}>API error</p> : (
-            <Component data={data} />
-        ))}
+        <Component loading={loading} error={error} data={data} />
       </AppTemplate>
     )
   }

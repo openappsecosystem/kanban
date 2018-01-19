@@ -71,14 +71,19 @@ class Canvas extends React.Component {
 
     render() {
       const {modalSelected, modalIsOpen} = this.state
-      const {data} = this.props
+      const {data, loading, error} = this.props
+      console.log(error)
+      console.log(data)
+      // console.log(data.planProcesses)
       let customHeight = window.innerHeight
       return (
+        loading ? <strong>Loading...</strong> : (
+          error ? <p style={{ color: '#F00' }}>API error</p> : (
           <section className={style.surface} >
             <Tabs selectedTabClassName={style.list_active}>
             <header className={style.header}>
               <h1 className={style.title}>
-                {data.name || data.planProcesses[0].name}
+                {data.name || data.planProcesses[0] ? data.planProcesses[0].name : 'Untitled Process'}
                 <span className={style.header_scope}>
                   <Link to={'/agent/' + data.scope[0].id}>{data.scope[0].name}</Link>
                 </span>
@@ -202,6 +207,7 @@ class Canvas extends React.Component {
             id={modalSelected}
           />
           </section>
+          ))
         )
     }
 }

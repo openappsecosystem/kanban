@@ -4,7 +4,7 @@
     margin: 0;
     line-height: 50px;
     margin-left: 20px;
-    color: white;
+    color: #000;
 }
 
 .canvas_board {
@@ -62,7 +62,7 @@
 
 .header_scope a {
     text-decoration: none;
-    color: white;
+    color: #000;
 }
 
 .header_scope:hover {
