@@ -15,7 +15,12 @@ const Lists = ({data}) => {
       error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.profile_lists}>
       <div className={style.lists}>
-        <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2>
+        <div className={style.profile_photo}><img src={viewer.myAgent.image} /></div>
+        <div className={style.profile_info}>
+          <h2 className={style.profile_title}>{viewer.myAgent.name}</h2>
+          {/* <h5 className={style.profile_social}><span /> <a target='blank' href='https://t.me/Bernin1'>@bernin1</a></h5> */}
+        </div>
+        {/* <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2> */}
         <div className={style.section}>
           <div className={style.section_wrapper}>
           <Tabs selectedTabClassName={style.list_active}>
