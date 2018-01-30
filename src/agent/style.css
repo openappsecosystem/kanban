@@ -1,21 +1,78 @@
 .agent {
     padding: 20px;
     lost-utility: clearfix;
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .agent_info {
-    lost-column: 8/10;
-    lost-offset: 1/10;
+    /* lost-column: 8/10;
+    lost-offset: 1/10; */
 }
 
+
+
+.plan_scope {
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: lowercase;
+    color: #fff;
+  }
+  
+  .scope_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom:1px solid #dadada;
+    lost-utility: clearfix;
+    padding-bottom: 10px;
+  }
+  
+
+  .section {
+    margin-top: 50px;
+    lost-utility: clearfix;
+    padding-bottom: 100px;
+    lost-column: 1/1;
+  }
+
+
+  .scope_list li {
+    color: #161515;
+    font-weight: 400;
+    letter-spacing: .5px;
+    margin-right: 50px;
+    float: left;
+    cursor: pointer;
+  }
+  
+  .scope_list li.list_active {
+    color: #161515;
+    font-weight: 500;
+    position: relative;
+    
+  }
+  .scope_list li.list_active:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -11px;
+    height: 2px;
+    font-weight: 500px;
+    background: #161515;
+    width: 100%;
+    display: block; 
+  }
+  
 .info_image {
     width: 40px;
     height: 40px;
     border-radius: 100%;
     float: left;
     margin-right: 10px;
-    background: #f5f5f5;
+    background: #606060;
 }
 
 .image_photo {
@@ -33,7 +90,7 @@
     height: 40px;
     line-height: 40px;
     margin: 0;
-    color: white;
+    color: #161515;
 }
 
 .agent_menu {
@@ -49,7 +106,7 @@
     margin: 0;
     margin-right: 70px;
     font-weight: 400;
-    color: #FFFFFF;
+    color: #161515;
     font-size: 14px
 }
 
@@ -64,7 +121,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background: #FFFFFF;
+    background: #161515;
     display: block;
     bottom: -11px;
 }

@@ -70,11 +70,11 @@ const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs,
       {outputs.length !== 0 
       ? <div className={style.list_outputs}>
           <h2>Outputs ({outputs.length})</h2>
-          {/* {outputs.map((o, i) => (
+          {outputs.map((o, i) => (
             <div key={i} className={style.outputs_card}>
-              <span>{o.title}</span>
+              <span>{o.resourceClassifiedAs.name}</span>
             </div>
-          ))} */}
+          ))}
         </div>
       : '' }
       <a className={style.open_card_composer} onClick={() => openCardController()} >Create a new commitment...</a>

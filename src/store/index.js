@@ -1,6 +1,7 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import {flags} from './reducers/flags'
+import { reducer as notifReducer } from 'redux-notifications'
 
 export const networkInterface = createNetworkInterface({
   uri: 'https://ocp.freedomcoop.eu/api/graph'
@@ -22,6 +23,7 @@ export const client = new ApolloClient({
 export const store = createStore(
   combineReducers({
     apollo: client.reducer(),
+    notifs: notifReducer,
     flags
   }),
   compose(

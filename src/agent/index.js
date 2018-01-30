@@ -1,6 +1,8 @@
 import React from 'react'
 import style from './style.css'
 import Cards from '../components/cards'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import Feed from '../components/feed/feed'
 
 const Agent = ({data}) => {
     return (
@@ -11,18 +13,40 @@ const Agent = ({data}) => {
                 </span>
                 <h1 className={style.info_title}>{data.name}</h1>
             </div>
-            <nav className={style.agent_menu}>
-                {/* <h5 className={style.menu_item}>Recent</h5> */}
-                <h5 className={style.menu_item + ' ' + style.item_active}>Active Plans</h5>
-                {/* <h5 className={style.menu_item}>Network</h5>
-                <h5 className={style.menu_item}>Inventory</h5> */}
-            </nav>
-            <div className={style.agent_section}>
+            <div className={style.section}>
+          <div className={style.section_wrapper}>
+          <Tabs selectedTabClassName={style.list_active}>
+          <TabList className={style.scope_list}>
+              <Tab>Recent</Tab>
+              <Tab>Plans</Tab>
+              <Tab>Resources</Tab>
+          </TabList>
+          <TabPanel>
+              <Feed feed={data.agentEconomicEvents} />
+            </TabPanel>
+            <TabPanel>
+              <div className={style.wrapper}>
                 <Cards
                   data={data.agentPlans}
                   link='canvas'
                 />
+              </div>
+            </TabPanel>
+            <TabPanel>
+            <div className={style.resources_list}>
+                {data.ownedEconomicResources.map((item, i) => (
+                    <div key={i} className={style.list_item}>
+                      <div className={style.item_desc}>
+                        <span>{item.currentQuantity.numericValue + ' ' + item.currentQuantity.unit.name }</span> of <b>{item.resourceClassifiedAs.name}</b>
+                      </div>
+                      <div className={style.type}>{item.resourceClassifiedAs.category}</div>
+                    </div>
+                  ))}
+              </div>
+            </TabPanel>
+            </Tabs>
             </div>
+        </div>
         </section>
     )
 }

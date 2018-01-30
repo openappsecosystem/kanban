@@ -4,7 +4,7 @@
 @import './base.css';
 
 html {
-  background-color: rgb(7, 71, 166);
+  background-color: #F1F4F5;
 }
 
 
@@ -29,31 +29,78 @@ body {
 
 .profile_lists {
   lost-utility: clearfix;
+  padding: 0px;
 }
 
 
 .wrapper {
   height: auto;
-  margin-top: 40px;
-  lost-column: 1/1;
+  margin: 0 20px;
+  margin-top: 50px;
+
 }
 
 .profile_title {
   text-align: left;
-  font-size: 36px;
-  font-weight: 700;
-  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  color: #3F4657;
+  margin-left: 20px;
 }
 
 .lists {
   /* background: #f0d2d1; */
   height: auto;
   /* lost-align: center; */
-  lost-column: 8/10;
-  lost-offset: 1/10;
+  lost-column: 10/10;
   /* padding: 20px; */
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
+
+
+.scope_list {
+  list-style: none;
+  padding: 0;
+  margin: 0 20px;
+  border-bottom:1px solid #dadada;
+  lost-utility: clearfix;
+  padding-bottom: 10px;
+}
+
+.scope_list li {
+  color: #161515;
+  font-weight: 400;
+  letter-spacing: .5px;
+  margin-right: 50px;
+  float: left;
+  cursor: pointer;
+}
+
+.scope_list li.list_active {
+  color: #161515;
+  font-weight: 500;
+  position: relative;
+  
+}
+.scope_list li.list_active:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: -11px;
+  height: 2px;
+  font-weight: 500px;
+  background: #161515;
+  width: 100%;
+  display: block;
+  
+}
+
+
+.wrapper_feed {
+  margin-top: 0 !important;
+}
 
 .lists_item a {
   position: absolute;
@@ -106,12 +153,12 @@ body {
   padding-bottom: 100px;
 }
 .wrapper_tagline .subtitle {
-    margin: 0 !important; 
+    margin: 0 20px !important; 
     padding: 0 !important; 
     font-size: 14px;
     position: relative;
     display: inline-block;
-    color: #fff;
+    color: #3F4657;
     font-weight: 500;
     letter-spacing: .5px;
 }
@@ -123,7 +170,7 @@ body {
 }
 
 .wrapper_tagline h5 {
-  color: #fff;
+  color: #3F4657;
   font-weight: 500;
   letter-spacing: .5px;
 }
@@ -134,7 +181,7 @@ body {
   left: 0;
   bottom: -11px;
   height: 1px;
-  background: #fff;
+  background: #3F4657;
   width: 100%;
   display: block;
 }

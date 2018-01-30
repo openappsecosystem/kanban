@@ -122,7 +122,7 @@
     margin: 0;
     line-height: 50px;
     margin-left: 20px;
-    color: white;
+    color: #3F4657;
 }
 
 .canvas_board {
@@ -167,6 +167,18 @@
     padding: 0 20px;
 }
 
+.header_scope_kanban {
+    font-size: 14px;
+    padding: 5px 10px;
+    vertical-align: middle;
+    font-weight: 300;
+    border-left: 1px solid rgba(255,255,255, .2);
+    margin-left: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: #35558F;
+    border-radius: 3px;
+}
 .header_scope {
     font-size: 14px;
     padding: 5px 10px;
@@ -176,11 +188,12 @@
     margin-left: 10px;
     letter-spacing: 1px;
     cursor: pointer;
+    background: transparent;
 }
 
 .header_scope a {
     text-decoration: none;
-    color: white;
+    color: #313131;
 }
 
 .header_scope:hover {
@@ -199,7 +212,7 @@
     float: left;
     line-height: 10px;
     margin-right: 20px;
-    color: rgba(255,255,255, .3);
+    color: #FFFFFF;
 }
 
 .scope_list li:last-of-type {
@@ -208,5 +221,5 @@
 
 .scope_list .list_active {
     font-weight: 600;
-    color: white;
+    color: #FFFFFF;
 }

@@ -10,9 +10,40 @@ query ($token: String, $id: Int) {
         id
         name
         image
-        agentEconomicEvents {
-            note
+        ownedEconomicResources {
+          resourceClassifiedAs {
+            name
+            category
           }
+          currentQuantity {
+            numericValue
+            unit {
+              name
+            }
+          }
+        }
+        agentEconomicEvents(latestNumberOfDays: 10) {
+          note
+          action
+          provider {
+            image
+            name
+          }
+          inputOf {
+            name
+          }
+          receiver {
+            name
+          }
+          start
+          note
+          affectedQuantity {
+            numericValue
+            unit {
+              name
+            }
+          }
+        }
           agentPlans {
             name
             id

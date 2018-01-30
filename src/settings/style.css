@@ -1,0 +1,96 @@
+.settings {
+    lost-utility:clearfix;
+}
+.settings_container {
+    lost-column: 3/5;
+    lost-offset: 1/5;
+    background: white;
+    margin-top: 40px;
+    border: 1px solid #DCDCDC;
+    border-radius: 2px;
+}
+
+.container_title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #3F4657;
+    letter-spacing: 1px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px; 
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.container_form {
+    /* padding: 10px; */
+    margin-top: 20px;
+}
+
+.form_item {
+    lost-utility: clearfix;
+    margin-bottom: 15px;
+}
+
+.form_item h5 {
+    float: left;
+    font-size: 16px;
+    color: #3F4657;
+    font-weight: 400;
+    width: 100px;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+}
+
+.item_photo {
+    float: left;
+    margin-left: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
+    background: #DCDCDC;
+}
+
+.item_photo img {
+    width: 60px;
+    height: 60px;
+}
+
+.form_item input {
+    float: left;
+    margin-left: 10px;
+    height: 40px;
+    font-size: 14px;
+    color: #3F4657;
+    font-weight: 400;
+    text-indent: 10px;
+    width: 250px;
+}
+
+.form_item textarea {
+    margin-left: 10px;
+    height: 40px;
+    font-size: 14px;
+    color: #3F4657;
+    background: white;
+    font-weight: 400;
+    text-indent: 10px;
+    display: inline-block;
+    width: 420px;
+    height: 100px;
+}
+
+.form_actions {
+    height: 50px;
+    /* border-top: 1px solid #DCDCDC; */
+    line-break: 50px;
+}
+
+.form_actions button {
+    width: 160px;
+    margin: 0 auto;
+    margin-top: 8px;
+}

@@ -2,6 +2,8 @@ import React from 'react'
 import { gql, graphql } from 'react-apollo'
 import style from './base.css'
 import { withRouter } from 'react-router'
+import {connect} from 'react-redux'
+import { actions as notifActions } from 'redux-notifications'
 
 class Login extends React.Component {
     constructor (props) {
@@ -16,8 +18,13 @@ class Login extends React.Component {
 
     handleLogin = async () => {
         await this.props.mutate({variables: {username: this.state.username, password: this.state.password}})
-        .then (res => {return localStorage.setItem('token', res.data.createToken.token)})
-        this.props.history.replace('/')
+        .then (res => {
+          localStorage.setItem('token', res.data.createToken.token)
+          this.props.history.replace('/')
+        })
+        .catch(err => {
+            this.props.sendNotif('sdasad', err.message, 'danger', '5000')
+        })
     }
 
     user (e) {
@@ -36,27 +43,24 @@ class Login extends React.Component {
         const {username, password} = this.state
         return (
             <div>
-            <h5 className={style.alert}>☠️ This project is currently in alpha and uses OCP data. Be careful or wait for more stable release.</h5>
+            <div className={style.left_section}>
+              <h1>Open <br />Coopeartive<br />Ecosystem</h1>
+              <ul>
+                  <li><a href='https://open-cooperative-ecosystem.gitbooks.io/docs/' target='blank'>Documentation</a></li>
+                  <li><a href='https://t.me/ocewelcome' target='blank'>Telegram</a></li>
+                  <li><a href='https://github.com/opencooperativeecosystem' target='blank'>Github</a></li>
+              </ul>
+            </div>
+            <div className={style.right_section}>
             <div className={style.login_wrapper}>
             <div className={style.wrapper_container}>
-                <div className={style.wrapper_title}>
-                    <h1>🌔</h1>
-                    <h2>A Kanban for the web of value <span>0.0.6</span></h2>
-                    <h3>Login with your OCP credential</h3>
-                </div>
+                <div className={style.wrapper_title}><h3>👋 Welcome</h3></div>
                 <input placeholder='Insert your username' type='text' value={username} onChange={this.user} className='username' />
                 <input placeholder='Insert your password' type='password' value={password} onChange={this.password} className='password' />
                 <button onClick={()=>this.handleLogin()}>login</button>
-                <div className={style.wrapper_features}>
-                    <h3>Current Features</h3>
-                    <ul className={style.feature_list}>
-                        <li>- Check the status of plans you belong to</li>
-                        <li>- Edit the name of commitments</li>
-                        <li>- Log events to commitments</li>
-                        <li>- Delete events to commitments</li>
-                    </ul>
+                <a href='https://ocp.freedomcoop.eu/account/password/reset/' target='blank' className={style.wrapper_lost}>Password lost?</a>
                 </div>
-                </div>
+            </div>
             </div>
             </div>
         )
@@ -65,13 +69,38 @@ class Login extends React.Component {
 
 
 const loginMutation = gql`
-mutation($username: String!, $password: String!) {
+mutation($username: String! $password: String!) {
     createToken(username: $username, password: $password) {
       token
     }
   }
 `
 
-const LoginWithMutation = graphql(loginMutation)(Login)
+const mapStateToProps = (state) => {
+    return {
+        state: state
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    const sendNotif = (id, message, kind, dismissAfter) => {
+        notifActions.notifSend({
+            message,
+            kind,
+            id: id,
+            dismissAfter: 2000
+        })(dispatch)
+    }
+    return {
+        sendNotif
+    }
+}
+
+const LoginConnected = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login);
+
+const LoginWithMutation = graphql(loginMutation)(LoginConnected)
 
 export default withRouter(LoginWithMutation)

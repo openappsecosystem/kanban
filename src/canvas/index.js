@@ -69,20 +69,22 @@ class Canvas extends React.Component {
     console.log('add new task inside this bin')
   }
 
-    render() {
+    render () {
       const {modalSelected, modalIsOpen} = this.state
-      const {data} = this.props
+      const {data, loading, error} = this.props
       let customHeight = window.innerHeight
       return (
+        loading ? <strong>Loading...</strong> : (
+          error ? <p style={{ color: '#F00' }}>API error</p> : (
           <section className={style.surface} >
             <Tabs selectedTabClassName={style.list_active}>
             <header className={style.header}>
               <h1 className={style.title}>
-                {data.name || data.planProcesses[0].name}
+                {data.name || data.planProcesses[0] ? data.planProcesses[0].name : 'Untitled Process'}
                 <span className={style.header_scope}>
                   <Link to={'/agent/' + data.scope[0].id}>{data.scope[0].name}</Link>
                 </span>
-                <span className={style.header_scope}>
+                <span className={style.header_scope_kanban}>
                   <TabList className={style.scope_list}>
                     <Tab>Status Flow</Tab>
                     <Tab>Resources Flow</Tab>
@@ -106,7 +108,9 @@ class Canvas extends React.Component {
                   planId={data.id}
                   outputs={data.planProcesses}
                   allPlanAgents={data.workingAgents}
-                  cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs.map(task => (
+                  cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs
+                  .filter(comm => comm.action === 'work')
+                  .map(task => (
                     {
                       id: Number(task.id),
                       title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
@@ -160,7 +164,9 @@ class Canvas extends React.Component {
                 planId={data.id}
                 outputs={data.planProcesses}
                 allPlanAgents={data.workingAgents}
-                cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs.map(task => (
+                cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs
+                  .filter(comm => comm.action === 'work')
+                  .map(task => (
                   {
                     id: Number(task.id),
                     title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
@@ -179,7 +185,9 @@ class Canvas extends React.Component {
                     note: list.note,
                     due: list.plannedStart,
                     outputs: list.committedOutputs,
-                    cards: list.committedInputs.map(task => (
+                    cards: list.committedInputs
+                    .filter(comm => comm.action === 'work')
+                    .map(task => (
                       {
                         id: Number(task.id),
                         title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
@@ -202,6 +210,7 @@ class Canvas extends React.Component {
             id={modalSelected}
           />
           </section>
+          ))
         )
     }
 }

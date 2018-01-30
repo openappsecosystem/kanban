@@ -2,10 +2,12 @@ import * as React from 'react'
 import { gql, graphql } from 'react-apollo'
 import AuthenticatedOnly from '../../AuthenticatedOnly'
 import Login from '../../login'
-import Header from '../../components/header'
+// import Header from '../../components/header'
 import style from './style.css'
 import { withRouter } from 'react-router'
 import Flag from '../../components/flag'
+import Sidebar from '../../components/sidebar'
+
 class AppTemplate extends React.Component {
   render () {
     const {viewer, loading, error} = this.props.data
@@ -15,8 +17,11 @@ class AppTemplate extends React.Component {
           error ? <p style={{ color: '#F00' }}>API error</p> : (
             <div >
               <Flag />
-              <Header info={viewer.myAgent} />
-              {this.props.children}
+              <Sidebar data={viewer.myAgent} agents={viewer.myAgent.agentRelationships}/>
+              {/* <Header info={viewer.myAgent} /> */}
+              <div className={style.container}>
+                {this.props.children}
+              </div>
             </div>
           ))}
       </AuthenticatedOnly>
@@ -31,6 +36,17 @@ query ($token: String) {
         id
         name
         image
+        agentRelationships {
+          relationship {
+            label
+            category
+          }
+          object {
+            id
+            name
+            note
+          }
+        }
         agentPlans {
           name
           id
