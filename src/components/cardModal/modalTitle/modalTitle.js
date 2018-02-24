@@ -3,7 +3,7 @@ import style from '../index.css'
 import Title from '../../title'
 import {Left} from '../../../icons'
 
-export default function ModalTitle({action, close, isVisible, keyword, note, editTitle, toggleVisibility }) {
+export default function ModalTitle ({action, close, isVisible, keyword, note, editTitle, toggleVisibility }) {
   return (
       <div className={style.content_header}>
         <span onClick={close} className={style.back}><Left color={'#fff'} width={18} height={18}/></span>

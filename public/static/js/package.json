@@ -1,0 +1,156 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "kanban-webcomponent",
+        "scope": null,
+        "escapedName": "kanban-webcomponent",
+        "name": "kanban-webcomponent",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/ivanminutillo/Sites/dashboard"
+    ]
+  ],
+  "_from": "kanban-webcomponent@latest",
+  "_id": "kanban-webcomponent@0.0.24",
+  "_inCache": true,
+  "_location": "/kanban-webcomponent",
+  "_nodeVersion": "7.2.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/kanban-webcomponent_0.0.24_1518083202260_0.28359549371746096"
+  },
+  "_npmUser": {
+    "name": "ivanminutillo",
+    "email": "bernini@inventati.org"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {
+    "ansi-styles": "3.2.0",
+    "autoprefixer": "7.1.4",
+    "caniuse-api": "2.0.0",
+    "escape-string-regexp": "1.0.5",
+    "pixrem": "4.0.1",
+    "pleeease-filters": "4.0.0",
+    "postcss": "6.0.11",
+    "postcss-apply": "0.8.0",
+    "postcss-attribute-case-insensitive": "2.0.0",
+    "postcss-calc": "6.0.0",
+    "postcss-color-function": "4.0.0",
+    "postcss-color-gray": "4.0.0",
+    "postcss-color-hex-alpha": "3.0.0",
+    "postcss-color-hsl": "2.0.0",
+    "postcss-color-hwb": "3.0.0",
+    "postcss-color-rebeccapurple": "3.0.0",
+    "postcss-color-rgb": "2.0.0",
+    "postcss-color-rgba-fallback": "3.0.0",
+    "postcss-custom-media": "6.0.0",
+    "postcss-custom-properties": "6.1.0",
+    "postcss-custom-selectors": "4.0.1",
+    "postcss-font-variant": "3.0.0",
+    "postcss-image-set-polyfill": "0.3.5",
+    "postcss-initial": "2.0.0",
+    "postcss-media-minmax": "3.0.0",
+    "postcss-nesting": "4.1.0",
+    "postcss-pseudo-class-any-link": "4.0.0",
+    "postcss-pseudoelements": "5.0.0",
+    "postcss-replace-overflow-wrap": "2.0.0",
+    "postcss-selector-matches": "3.0.1",
+    "postcss-selector-not": "3.0.1",
+    "postcss-value-parser": "3.3.0",
+    "read-cache": "1.0.0",
+    "resolve": "1.4.0"
+  },
+  "_requested": {
+    "raw": "kanban-webcomponent",
+    "scope": null,
+    "escapedName": "kanban-webcomponent",
+    "name": "kanban-webcomponent",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/kanban-webcomponent/-/kanban-webcomponent-0.0.24.tgz",
+  "_shasum": "8815001ece97f4a9cab859abe816977997226745",
+  "_shrinkwrap": null,
+  "_spec": "kanban-webcomponent",
+  "_where": "/Users/ivanminutillo/Sites/dashboard",
+  "author": {
+    "name": "Ivan Minutillo"
+  },
+  "browser": "dist/resources-flow.js",
+  "bugs": {
+    "url": "https://github.com/ivanminutillo/resources-flow-stenciljs.git"
+  },
+  "collection": "dist/collection/collection-manifest.json",
+  "dependencies": {
+    "@stencil/core": "0.2.3",
+    "postcss-cssnext": "3.1.0",
+    "postcss-import": "11.0.0",
+    "postcss-reporter": "5.0.0",
+    "postcss-url": "7.3.0"
+  },
+  "description": "A Resources Flow kanban web component build with stenciljs",
+  "devDependencies": {
+    "@stencil/dev-server": "latest",
+    "@stencil/utils": "latest",
+    "@types/jest": "^21.1.1",
+    "jest": "^21.2.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "8815001ece97f4a9cab859abe816977997226745",
+    "tarball": "https://registry.npmjs.org/kanban-webcomponent/-/kanban-webcomponent-0.0.24.tgz",
+    "fileCount": 36,
+    "unpackedSize": 300424
+  },
+  "files": [
+    "dist/"
+  ],
+  "gitHead": "b126852b16d6a0d1fcbbbd7c5c05096a8cb207ae",
+  "homepage": "https://github.com/ivanminutillo/resources-flow-stenciljs.git",
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
+  },
+  "license": "MIT",
+  "main": "dist/resources-flow.js",
+  "maintainers": [
+    {
+      "name": "ivanminutillo",
+      "email": "bernini@inventati.org"
+    }
+  ],
+  "name": "kanban-webcomponent",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanminutillo/resources-flow-stenciljs.git"
+  },
+  "scripts": {
+    "build": "sd concurrent \"postcss src/styles/main.css -o dist/styles/main.css css/*.css\" \"stencil build\" ",
+    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
+    "serve": "stencil-dev-server",
+    "start": "npm run dev",
+    "test": "jest --no-cache",
+    "test.watch": "jest --watch --no-cache"
+  },
+  "types": "dist/types/index.d.ts",
+  "version": "0.0.24"
+}

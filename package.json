@@ -26,6 +26,7 @@
     "html-webpack-plugin": "2.29.0",
     "imgur": "0.2.1",
     "jest": "20.0.4",
+    "kanban-webcomponent": "0.0.24",
     "lodash": "^4.17.4",
     "lost": "^8.2.0",
     "moment": "2.20.1",
@@ -84,7 +85,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "deploy": "npm run build&&gh-pages -d build"
+    "deploy": "npm run build&&gh-pages -d build",
+    "postinstall": "cp -R node_modules/kanban-webcomponent/ public/static/js"
+
   },
   "jest": {
     "collectCoverageFrom": [

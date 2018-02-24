@@ -27,7 +27,10 @@ class Canvas extends React.Component {
     })
   }
     
-  closeModal () { this.setState({modalIsOpen: false})}
+  closeModal () { 
+    console.log('ciao')
+    this.setState({modalIsOpen: false})
+  }
     
   moveCard (dragIndex, hoverIndex, currentListId) {
     const { lists } = this.state
@@ -73,12 +76,35 @@ class Canvas extends React.Component {
       const {modalSelected, modalIsOpen} = this.state
       const {data, loading, error} = this.props
       let customHeight = window.innerHeight
+      const bins = [
+        {
+          due: '29 feb 2018',
+          note: 'process example description',
+          title: 'process example',
+          outputs: [{resourceClassifiedAs: {name: 'ciccio'}}, {resourceClassifiedAs: {name: 'ciccio'}}],
+          cards: [
+            {
+              title: 'commitment1',
+              note: 'commitment test',
+              members: [{image: 'https://picsum.photos/100'},{image: 'https://picsum.photos/200'}],
+              due: '20 feb 2019'
+            },
+            {
+              title: 'commitment1',
+              note: 'commitment test',
+              members: [],
+              due: '20 feb 2019'
+            }
+          ]
+        }
+      ]
       return (
         loading ? <strong>Loading...</strong> : (
           error ? <p style={{ color: '#F00' }}>API error</p> : (
           <section className={style.surface} >
             <Tabs selectedTabClassName={style.list_active}>
-            <header className={style.header}>
+            {data
+            ? <header className={style.header}>
               <h1 className={style.title}>
                 {data.name || data.planProcesses[0] ? data.planProcesses[0].name : 'Untitled Process'}
                 <span className={style.header_scope}>
@@ -93,6 +119,7 @@ class Canvas extends React.Component {
                 </span>
               </h1>
             </header>
+            : ''}
             <div className={style.canvas_board} style={{height: customHeight + 'px'} }>
               <TabPanel>
                 <StatusFlow
@@ -151,7 +178,29 @@ class Canvas extends React.Component {
               />
             </TabPanel>
             <TabPanel>
-              <ResourcesFlow
+              {/* <oce-kanban bins={[
+                {
+                  due: '29 feb 2018',
+                  note: 'process example description',
+                  title: 'process example',
+                  outputs: [{resourceClassifiedAs: {name: 'ciccio'}}, {resourceClassifiedAs: {name: 'ciccio'}}],
+                  cards: [
+                    {
+                      title: 'commitment1',
+                      note: 'commitment test',
+                      members: [{image: 'https://picsum.photos/100'},{image: 'https://picsum.photos/200'}],
+                      due: '20 feb 2019'
+                    },
+                    {
+                      title: 'commitment1',
+                      note: 'commitment test',
+                      members: [],
+                      due: '20 feb 2019'
+                    }
+                  ]
+                }
+              ]} /> */}
+              {/* <ResourcesFlow
                 openModal={this.openModal.bind(this)}
                 closeModal={this.closeModal.bind(this)}
                 moveCard={this.moveCard.bind(this)}
@@ -199,7 +248,7 @@ class Canvas extends React.Component {
                     ))
                   }
                 ))}
-              />
+              /> */}
             </TabPanel>
           </div>
           </Tabs>

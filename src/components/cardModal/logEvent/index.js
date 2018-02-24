@@ -81,7 +81,7 @@ export default compose(
               start: date
             }
           })
-          .then((data) => console.log('hole'))
+          .then((data) => console.log(data))
           .catch((e) => console.log(e))
         )
       }

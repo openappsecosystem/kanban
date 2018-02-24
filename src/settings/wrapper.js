@@ -6,6 +6,19 @@ import {compose, withHandlers, withState} from 'recompose'
 import {connect} from 'react-redux'
 import { actions as notifActions } from 'redux-notifications'
 
+
+const allNotificationTypes = gql`
+query ($token: String) {
+  viewer(token: $token) {
+    allNotificationTypes {
+      id
+      label
+      display
+      description
+    }
+  }
+}
+`
 const agent = gql`
 query ($token: String) {
     viewer(token: $token) {
@@ -17,6 +30,16 @@ query ($token: String) {
         note
         primaryLocation {
             name
+        }
+        agentNotificationSettings {
+          id
+          send
+          notificationType {
+            id
+            label
+            display
+            description
+          }
         }
       }
     }
@@ -44,12 +67,15 @@ mutation ($token: String!, $note: String, $id: Int!, $name: String,  $email: Str
 
 class SettingsWrapper extends React.Component {
   render () {
-    const {loading, error, data, updateImage, updateBio, saveSettings, updateLocation, updateName} = this.props
+    const {notificationLoading, notificationError, allNotification, loading, error, data, updateImage, updateBio, saveSettings, updateLocation, updateName} = this.props
+    console.log(notificationError)
+    console.log(error)
     return (
       <AppTemplate>
-        {loading ? <strong>Loading...</strong> : (
-          error ? <p style={{ color: '#F00' }}>API error</p> : (
+        {loading || notificationLoading ? <strong>Loading...</strong> : (
+          error || notificationError ? <p style={{ color: '#F00' }}>API error</p> : (
             <Component
+              allNotification={allNotification}
               data={data}
               updateImage={updateImage}
               updateLocation={updateLocation}
@@ -85,6 +111,17 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const WrapperConnected = compose(
+    graphql(allNotificationTypes, {
+      options: (props) => ({ variables: {
+        token: localStorage.getItem('token')
+      }}),
+      props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
+        notificationLoading: loading,
+        notificationError: error,
+        refetchNotification: refetch,  // :NOTE: call this in the component to force reload the data
+        allNotification: viewer ? viewer.allNotificationTypes : null
+      })
+    }),
     graphql(agent, {
       options: (props) => ({ variables: {
         token: localStorage.getItem('token')

@@ -1,0 +1,122 @@
+{
+  "components": [
+    {
+      "tag": "oce-bin",
+      "componentClass": "Bin",
+      "componentPath": "components/bin/index.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/bin/style.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "cards"
+        },
+        {
+          "name": "due",
+          "type": "String"
+        },
+        {
+          "name": "note",
+          "type": "String"
+        },
+        {
+          "name": "outputs"
+        },
+        {
+          "name": "title",
+          "type": "String"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "oce-card",
+      "componentClass": "Card",
+      "componentPath": "components/card/index.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/card/style.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "action",
+          "type": "Any"
+        },
+        {
+          "name": "due",
+          "type": "String"
+        },
+        {
+          "name": "members"
+        },
+        {
+          "name": "note",
+          "type": "String"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "oce-kanban",
+      "componentClass": "Kanban",
+      "componentPath": "components/kanban/index.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/kanban/style.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "bins"
+        },
+        {
+          "name": "due",
+          "type": "String"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "oce-output",
+      "componentClass": "Output",
+      "componentPath": "components/output/index.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/output/style.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "outputs"
+        }
+      ],
+      "shadow": true
+    }
+  ],
+  "bundles": [
+    {
+      "components": [
+        "oce-bin",
+        "oce-card",
+        "oce-kanban",
+        "oce-output"
+      ]
+    }
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.2.3",
+    "typescriptVersion": "2.7.1"
+  }
+}

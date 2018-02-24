@@ -248,11 +248,11 @@
   }
   
   h5 {
-    font-size: 1pc;
+    font-size: 12px;
+    font-weight: 300;
     line-height: 1.25em;
-    padding: 8px 0;
     position: relative;
-    margin: 0 0 4px 40px;
+    margin: 0 0 0 10px;
     color: #4d4d4d;
   }
   

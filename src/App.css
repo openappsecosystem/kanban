@@ -52,6 +52,25 @@ body {
   height: 60px;
   border-radius: 3px;
 }
+.profile_address span {
+  padding-left: 5px;
+  border-left: 1px solid #dadada;
+  margin-left: 5px;
+  font-weight: 300;
+}
+
+.profile_address {
+  height: 25px;
+  letter-spacing: 1px;
+  border-radius: 25px;
+  background: white;
+  padding: 0 20px;
+  border: 1px solid #dadada;
+  line-height: 25px;
+  font-weight:600;
+  font-size:12px;
+  display: inline-block;
+}
 
 .profile_info {
   float: left;
@@ -133,13 +152,12 @@ body {
 }
 
 .item_title {
-  font-weight: 700;
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  color: #FFFFFF !important;
+  color: rgb(17, 16, 16);
 }
 
 .lists_item p {
@@ -156,20 +174,25 @@ body {
 .lists_item {
   lost-column: 1/3;
   height: 100px;
-  background: #171616;
+  background: #ffffff;
   /* box-shadow: 0 1px 20px rgba(0,0,0,.2); */
   border-radius: 2px;
   margin-bottom: 20px;
   position: relative;
-  color: white;
+  color: rgb(15, 15, 15);
 }
 
 .section_wrapper {
-    /* lost-column: 8/10;
-    lost-offset: 1/10; */
+    lost-column: 8/10;
+    lost-offset: 1/10;
 }
+
+.section_wrapper_box {
+  margin-top: 20px;
+}
+
 .section {
-  margin-top: 100px;
+  margin-top: 25px;
   lost-utility: clearfix;
   padding-bottom: 100px;
 }
@@ -188,7 +211,7 @@ body {
   margin: 0;
   lost-column: 1/1;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgb(224, 224, 224);
+  /* border-bottom: 1px solid rgb(224, 224, 224); */
   color: #141212;
 }
 /* 

@@ -11,6 +11,7 @@ import {ApolloProvider} from 'react-apollo'
 import {client, store} from './store'
 import { Notifs } from 'redux-notifications'
 import style from './base.css'
+// import 'kanban-webcomponent'
 
 function CustomNotif (props) {
   let type

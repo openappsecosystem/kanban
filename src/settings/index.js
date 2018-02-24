@@ -1,11 +1,29 @@
 import React from 'react'
 import style from './style.css'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import ToggleButton from 'react-toggle-button'
 
-const Settings = ({data, saveSettings, updateImage, updateBio, updateEmail, updateLocation, updateName}) => {
+const Settings = ({allNotification, data, saveSettings, updateImage, updateBio, updateEmail, updateLocation, updateName}) => {
+  const notifications = allNotification.map(notification => {
+    let value
+    let updatedValue = data.agentNotificationSettings.filter(notif => notif.notificationType.id === notification.id)
+    if (updatedValue.length > 0) { value = updatedValue[0].send }
+    return {
+      display: notification.display,
+      description: notification.description,
+      value: value
+    }
+  })
   return (
       <div className={style.settings}>
+        <Tabs selectedTabClassName={style.list_active}>
+          <TabList className={style.scope_list}>
+              <Tab>Account</Tab>
+              <Tab>Notification</Tab>
+          </TabList>
+          <TabPanel>
         <section className={style.settings_container}>
-          <h3 className={style.container_title}>Account</h3>
+          <h3 className={style.container_title}>General Settings</h3>
           <div className={style.container_form}>
             <div className={style.form_item}>
               <h5>Name</h5>
@@ -22,10 +40,6 @@ const Settings = ({data, saveSettings, updateImage, updateBio, updateEmail, upda
                 <img src={data.image} />
               </div>
             </div>
-            {/* <div className={style.form_item}>
-              <h5>Location</h5>
-              <input onChange={updateLocation} placeholder={data.primaryLocation ? data.primaryLocation.name : ''} />
-            </div> */}
             <div className={style.form_item}>
               <h5>Bio</h5>
               <textarea onChange={updateBio} placeholder={data.note} />
@@ -34,7 +48,31 @@ const Settings = ({data, saveSettings, updateImage, updateBio, updateEmail, upda
               <button onClick={saveSettings} >Save</button>
             </div>
           </div>
-        </section>
+          </section>
+          </TabPanel>
+          <TabPanel>
+          <section className={style.settings_container + ' ' + style.container_notification }>
+            <h3 className={style.container_title}>Notification Settings</h3>
+            <div className={style.container_form}>
+              {notifications.map((notification, i) => (
+                <div key={i} className={style.form_item}>
+                  <div className={style.item_info}>
+                    <h5>{notification.display}</h5>
+                    <p>{notification.description}</p>
+                  </div>
+                  <div className={style.item_status}>
+                  <ToggleButton
+                    value={ notification.value || false }
+                    onToggle={(value) => {
+                      return console.log('log')
+                    }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+          </TabPanel>
+        </Tabs>
       </div>
   )
 }

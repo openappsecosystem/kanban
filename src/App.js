@@ -7,49 +7,41 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Feed from './components/feed/feed'
 import Card from './components/card'
 
-const Lists = ({data}) => {
-  const {viewer, loading, error} = data
-  return (
+class Lists extends React.Component {
+  componentDidMount () {
+  }
+  render () {
+    const {viewer, loading, error} = this.props.data
+    return (
     <AppTemplate>
       {loading ? <strong>Loading...</strong> : (
       error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.profile_lists}>
       <div className={style.lists}>
-        <div className={style.profile_photo}><img src={viewer.myAgent.image} /></div>
-        <div className={style.profile_info}>
-          <h2 className={style.profile_title}>{viewer.myAgent.name}</h2>
-          {/* <h5 className={style.profile_social}><span /> <a target='blank' href='https://t.me/Bernin1'>@bernin1</a></h5> */}
-        </div>
-        {/* <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2> */}
+        <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2>
+        <h5 className={style.profile_address}>ƒ <span>{viewer.myAgent.faircoinAddress}</span></h5>
         <div className={style.section}>
           <div className={style.section_wrapper}>
           <Tabs selectedTabClassName={style.list_active}>
           <TabList className={style.scope_list}>
               <Tab>Overview</Tab>
-              <Tab>Economic Feed</Tab>
+              <Tab>Feed</Tab>
           </TabList>
           <TabPanel>
-              <div className={style.section_wrapper}>
+            <div className={style.section_wrapper + ' ' + style.section_wrapper_box}>
+                <div className={style.wrapper_tagline}><h5 className={style.subtitle}>Plans</h5></div>
                   <div className={style.wrapper}>
-                      <Card />
-                      <Card />
-                      <Card />
-                  </div>
-                  <div className={style.section_wrapper}>
-                  <div className={style.wrapper_tagline}><h5 className={style.subtitle}>Plans</h5></div>
-                    <div className={style.wrapper}>
-                      {viewer.myAgent.agentPlans.map((plan, i) => (
-                        <div key={i} className={style.lists_item}>
-                          <Link key={plan.id} to={'/canvas/' + plan.id} className={style.link}>
-                            <h4 className={style.item_title}>{plan.name.length === 0 ? plan.planProcesses[0].name : plan.name }</h4>
-                            <h5 className={style.plan_scope}>{plan.scope.map(scope => <span>{scope.name}</span>)}</h5>
-                            <p>{plan.note || ''}</p>
-                          </Link>
-                        </div>
-                      ))}
-                  </div>
+                    {viewer.myAgent.agentPlans.map((plan, i) => (
+                      <div key={i} className={style.lists_item}>
+                        <Link key={plan.id} to={'/canvas/' + plan.id} className={style.link}>
+                          <h4 className={style.item_title}>{plan.name.length === 0 ? plan.planProcesses[0].name : plan.name }</h4>
+                          <h5 className={style.plan_scope}>{plan.scope.map(scope => <span>{scope.name}</span>)}</h5>
+                          <p>{plan.note || ''}</p>
+                        </Link>
+                      </div>
+                    ))}
                 </div>
-              </div>
+            </div>
             </TabPanel>
             <TabPanel>
               <div className={style.section_wrapper}>
@@ -66,7 +58,7 @@ const Lists = ({data}) => {
       ))}
     </AppTemplate>
   )
-}
+}}
 
 const agentPlans = gql`
 query ($token: String) {
@@ -74,6 +66,7 @@ query ($token: String) {
       myAgent {
         id
         name
+        faircoinAddress
         image
         agentEconomicEvents {
           note
