@@ -1,4 +1,5 @@
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 const createCommitment = gql`
 mutation ($token: String!, $committedUnitId:Int!, $due:String!, $action: String!, $scopeId: Int, $note: String, $committedNumericValue: String!, $committedResourceClassificationId: Int!, $providerId: Int) {
