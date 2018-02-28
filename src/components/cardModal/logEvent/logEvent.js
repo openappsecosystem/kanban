@@ -11,7 +11,7 @@ export default function LogEvent ({units, startDate, addDate, commitmentId, scop
     return (
     <div className={style.content_module}>
         <div className={style.content_log}>
-            <h5><span className={style.content_icon}><Message width={20} height={20} color={'#999'}/></span>Log</h5>
+            {/* <h5><span className={style.content_icon}><Message width={20} height={20} color={'#999'}/></span>Log</h5> */}
             <div className={style.log_item}>
                 <select onChange={addAction}>
                     <option value='work'>Work</option>

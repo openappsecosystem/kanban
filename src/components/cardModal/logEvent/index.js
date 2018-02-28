@@ -4,6 +4,8 @@ import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import {queryEvents} from '../modalActivities'
 import moment from 'moment'
+import {withRouter} from 'react-router-dom'
+
 const createEvent = gql`
 mutation ($token: String!, $action: String!, $start: String, $scopeId: Int!, $commitmentId: Int!, $note: String, $affectedNumericValue: String!, $affectedUnitId: Int!  ) {
   createEconomicEvent(
@@ -22,19 +24,40 @@ mutation ($token: String!, $action: String!, $start: String, $scopeId: Int!, $co
   }
 }
 `
+
+const routerComponent = withRouter(Component)
+
+
+
+// update: (proxy, { data: { createTodo } }) => {
+//   const data = proxy.readQuery({ query: TodoAppQuery });
+//   data.todos.push(createTodo);
+//   proxy.writeQuery({ query: TodoAppQuery, data });
+// },
+
 export default compose(
     graphql(createEvent, {
-      options: (props) => ({
-        refetchQueries: [
-          {
-            query: queryEvents,
-            variables: {
-              token: localStorage.getItem('token'),
-              id: props.id
-            }
-          }
-        ]
-      }),
+      // options: {
+      //   update: (proxy, { data: { createEconomicEvent } }) => {
+      //     console.log(proxy)
+      //     const data = proxy.readQuery({ query: queryEvents })
+      //     console.log(data)
+      //     data.commitment.push(createEvent)
+      //     proxy.writeQuery({ queryEvents, data })
+      //   }
+      // },
+      // options: (props) => {
+      //   return {
+      //     refetchQueries: [
+      //       {
+      //         query: queryEvents,
+      //         variables: {
+      //           token: localStorage.getItem('token'),
+      //           id: props.id
+      //         }
+      //       }
+      //     ]
+      // }},
       props: ({mutate, ownProps: {id, members}}) => ({
         members, id, mutate
       })
@@ -86,4 +109,4 @@ export default compose(
         )
       }
     })
-  )(Component)
+  )(routerComponent)
