@@ -5,7 +5,6 @@ import ModalMembers from './modalMembers'
 import ModalActivities from './modalActivities'
 import LogEvent from './logEvent'
 
-
 const CardModal = ({id, allPlanAgents, units, data, close, modalDescription}) => {
   return (
     <section className={style.modal_content}>

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import AuthenticatedOnly from '../../AuthenticatedOnly'
 import Login from '../../login'
-// import Header from '../../components/header'
 import style from './style.css'
 import { withRouter } from 'react-router'
 import Flag from '../../components/flag'
@@ -17,8 +17,7 @@ class AppTemplate extends React.Component {
           error ? <p style={{ color: '#F00' }}>API error</p> : (
             <div >
               <Flag />
-              <Sidebar data={viewer.myAgent} agents={viewer.myAgent.agentRelationships}/>
-              {/* <Header info={viewer.myAgent} /> */}
+              <Sidebar data={viewer.myAgent} agents={viewer.myAgent.agentRelationships} />
               <div className={style.container}>
                 {this.props.children}
               </div>
