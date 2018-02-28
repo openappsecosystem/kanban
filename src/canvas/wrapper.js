@@ -1,7 +1,8 @@
 import React from 'react'
 import AppTemplate from '../templates/AppTemplate'
 import Component from './index'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 const plan = gql`
 query ($token: String, $planId: Int) {
@@ -108,10 +109,13 @@ query ($token: String, $planId: Int) {
 class CanvasWrapper extends React.Component {
   render () {
     const {loading, error, data} = this.props
-    
+    console.log(data)
     return (
       <AppTemplate>
-        <Component loading={loading} error={error} data={data} />
+        {loading ? <strong>Loading...</strong> : (
+          error ? <p style={{ color: '#F00' }}>API error</p> : (
+          <Component loading={loading} error={error} data={data} />
+        ))}
       </AppTemplate>
     )
   }

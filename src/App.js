@@ -1,5 +1,6 @@
 import React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import style from './App.css'
 import { Link } from 'react-router-dom'
 import AppTemplate from './templates/AppTemplate'

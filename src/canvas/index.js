@@ -27,8 +27,7 @@ class Canvas extends React.Component {
     })
   }
     
-  closeModal () { 
-    console.log('ciao')
+  closeModal () {
     this.setState({modalIsOpen: false})
   }
     
@@ -74,133 +73,22 @@ class Canvas extends React.Component {
 
     render () {
       const {modalSelected, modalIsOpen} = this.state
-      const {data, loading, error} = this.props
+      const {data} = this.props
+      console.log(data)
       let customHeight = window.innerHeight
-      const bins = [
-        {
-          due: '29 feb 2018',
-          note: 'process example description',
-          title: 'process example',
-          outputs: [{resourceClassifiedAs: {name: 'ciccio'}}, {resourceClassifiedAs: {name: 'ciccio'}}],
-          cards: [
-            {
-              title: 'commitment1',
-              note: 'commitment test',
-              members: [{image: 'https://picsum.photos/100'},{image: 'https://picsum.photos/200'}],
-              due: '20 feb 2019'
-            },
-            {
-              title: 'commitment1',
-              note: 'commitment test',
-              members: [],
-              due: '20 feb 2019'
-            }
-          ]
-        }
-      ]
       return (
-        loading ? <strong>Loading...</strong> : (
-          error ? <p style={{ color: '#F00' }}>API error</p> : (
           <section className={style.surface} >
-            <Tabs selectedTabClassName={style.list_active}>
-            {data
-            ? <header className={style.header}>
+            <header className={style.header}>
               <h1 className={style.title}>
-                {data.name || data.planProcesses[0] ? data.planProcesses[0].name : 'Untitled Process'}
+                {data.name || 'non ora'}
                 <span className={style.header_scope}>
                   <Link to={'/agent/' + data.scope[0].id}>{data.scope[0].name}</Link>
                 </span>
-                <span className={style.header_scope_kanban}>
-                  <TabList className={style.scope_list}>
-                    <Tab>Status Flow</Tab>
-                    <Tab>Resources Flow</Tab>
-                  </TabList>
-                  {/* <Link to={'/canvas/' + this.props.planId + '/resources-flow'}>Switch to Resources Flow</Link> */}
-                </span>
               </h1>
             </header>
-            : ''}
+           
             <div className={style.canvas_board} style={{height: customHeight + 'px'} }>
-              <TabPanel>
-                <StatusFlow
-                  openModal={this.openModal.bind(this)}
-                  closeModal={this.closeModal.bind(this)}
-                  moveCard={this.moveCard.bind(this)}
-                  removeCardFromList={this.removeCardFromList.bind(this)}
-                  swipeCard={this.swipeCard.bind(this)}
-                  addCardToList={this.addCardToList.bind(this)}
-                  addNewTask={this.addNewTask.bind(this)}
-                  title={data.name || data.planProcesses[0].name}
-                  project={data.scope}
-                  planId={data.id}
-                  outputs={data.planProcesses}
-                  allPlanAgents={data.workingAgents}
-                  cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs
-                  .filter(comm => comm.action === 'work')
-                  .map(task => (
-                    {
-                      id: Number(task.id),
-                      title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                      members: task.involvedAgents,
-                      process: task.inputOf.name,
-                      due: task.due,
-                      note: task.note,
-                      isFinished: task.isFinished,
-                      wip: task.fulfilledBy.length !== 0,
-                      percentage: task.fulfilledBy
-                      .map(i => i.fulfilledQuantity.numericValue)
-                      .reduce((accumulator, currentValue) => accumulator + currentValue, null) * 100 / task.committedQuantity.numericValue
-                    }
-                ))))}
-                  lists={data.planProcesses.map(list => (
-                    {
-                      id: Number(list.id),
-                      title: list.name,
-                      note: list.note,
-                      due: list.plannedStart,
-                      outputs: list.committedOutputs,
-                      cards: list.committedInputs.map(task => (
-                        {
-                          id: Number(task.id),
-                          title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                          members: task.involvedAgents,
-                          process: task.inputOf.name,
-                          due: task.due,
-                          note: task.note,
-                          percentage: task.fulfilledBy
-                          .map(i => i.fulfilledQuantity.numericValue)
-                          .reduce((accumulator, currentValue) => accumulator + currentValue, null) * 100 / task.committedQuantity.numericValue
-                        }
-                      ))
-                    }
-                ))
-              }
-              />
-            </TabPanel>
-            <TabPanel>
-              {/* <oce-kanban bins={[
-                {
-                  due: '29 feb 2018',
-                  note: 'process example description',
-                  title: 'process example',
-                  outputs: [{resourceClassifiedAs: {name: 'ciccio'}}, {resourceClassifiedAs: {name: 'ciccio'}}],
-                  cards: [
-                    {
-                      title: 'commitment1',
-                      note: 'commitment test',
-                      members: [{image: 'https://picsum.photos/100'},{image: 'https://picsum.photos/200'}],
-                      due: '20 feb 2019'
-                    },
-                    {
-                      title: 'commitment1',
-                      note: 'commitment test',
-                      members: [],
-                      due: '20 feb 2019'
-                    }
-                  ]
-                }
-              ]} /> */}
-              {/* <ResourcesFlow
+              <ResourcesFlow
                 openModal={this.openModal.bind(this)}
                 closeModal={this.closeModal.bind(this)}
                 moveCard={this.moveCard.bind(this)}
@@ -216,16 +104,16 @@ class Canvas extends React.Component {
                 cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs
                   .filter(comm => comm.action === 'work')
                   .map(task => (
-                  {
-                    id: Number(task.id),
-                    title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                    members: task.involvedAgents,
-                    process: task.inputOf.name,
-                    due: task.due,
-                    note: task.note,
-                    isFinished: task.isFinished,
-                    wip: task.fulfilledBy.length !== 0
-                  }
+                    {
+                      id: Number(task.id),
+                      title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
+                      members: task.involvedAgents,
+                      process: task.inputOf.name,
+                      due: task.due,
+                      note: task.note,
+                      isFinished: task.isFinished,
+                      wip: task.fulfilledBy.length !== 0
+                    }
                 ))))}
                 lists={data.planProcesses.map(list => (
                   {
@@ -248,18 +136,16 @@ class Canvas extends React.Component {
                     ))
                   }
                 ))}
-              /> */}
-            </TabPanel>
+              />
           </div>
-          </Tabs>
-          <CardModal
-            allPlanAgents={this.props.allPlanAgents}
-            modalIsOpen={modalIsOpen}
-            closeModal={this.closeModal.bind(this)}
-            id={modalSelected}
-          />
+                   
+            <CardModal
+              allPlanAgents={this.props.allPlanAgents}
+              modalIsOpen={modalIsOpen}
+              closeModal={this.closeModal.bind(this)}
+              id={modalSelected}
+            />
           </section>
-          ))
         )
     }
 }

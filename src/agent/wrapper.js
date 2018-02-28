@@ -1,5 +1,6 @@
 import React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Component from './index'
 import AppTemplate from '../templates/AppTemplate'
 
@@ -22,7 +23,7 @@ query ($token: String, $id: Int) {
             }
           }
         }
-        agentEconomicEvents(latestNumberOfDays: 10) {
+        agentEconomicEvents(latestNumberOfDays: 30) {
           note
           action
           provider {
