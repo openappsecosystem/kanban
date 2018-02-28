@@ -1,12 +1,11 @@
 import React from 'react'
 import AppTemplate from '../templates/AppTemplate'
 import Component from './index'
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import {compose, withHandlers, withState} from 'recompose'
 import {connect} from 'react-redux'
 import { actions as notifActions } from 'redux-notifications'
-
 
 const allNotificationTypes = gql`
 query ($token: String) {
@@ -67,11 +66,12 @@ mutation ($token: String!, $note: String, $id: Int!, $name: String,  $email: Str
 }`
 
 const updateNotification = gql`
-mutation ($token: String!) {
-  updateNotificationSetting (token: $token, id: 137, send: true) {
+mutation ($token: String!, $id: Int!, $send: Boolean!) {
+  updateNotificationSetting (token: $token, id: $id, send: $send) {
     notificationSetting {
       id
       notificationType {
+        id
         display
       }
       send
@@ -81,7 +81,6 @@ mutation ($token: String!) {
     }
   }
 }`
-
 
 const createNotification = gql`
 mutation ($token: String!, $agentId: Int!, $notificationTypeId: Int!, $send: Boolean! ) {
@@ -220,18 +219,20 @@ const WrapperConnected = compose(
               data: agentNotificationsCache })
           }}),
         props: ({ mutate, ownProps: {agentId, send, notificationTypeId} }) => ({
-          mutateNotification: mutate, agentId, send, notificationTypeId
+          createNotification: mutate, agentId, send, notificationTypeId
         })
       }),
-      // graphql(updateNotification, {
-      //   options: (props) => ({
-      //     variables: {
-      //       token: localStorage.getItem('token')
-      //     }
-      //   }),
-      //   props: ({ mutate, ownProps: {agentId, send, notificationTypeId} }) => ({
-      //     mutate, agentId, send, notificationTypeId
-      //   })}),
+      // UPDATE NOTFICATION MUTATION
+      graphql(updateNotification, {
+        options: (props) => ({
+          variables: {
+            token: localStorage.getItem('token')
+          }
+        }),
+        props: ({ mutate, ownProps: {send, id} }) => ({
+          mutateNotification: mutate, send, id
+        })
+      }),
       withState('image', 'updateImage', ''),
       withState('name', 'updateName', ''),
       withState('email', 'updateEmail', ''),
@@ -259,22 +260,18 @@ const WrapperConnected = compose(
           props.updateLocation(event.target.value)
         },
         toggleNotification: (props) => (id, value, notificationId) => {
-          console.log(value)
-          console.log(notificationId)
-          console.log(!value)
           if (id !== undefined) {
             return props.mutateNotification({
               variables: {
-                agentId: props.data.id,
                 send: !value,
-                notificationTypeId: notificationId,
+                id: id,
                 token: localStorage.getItem('token')
               }
             })
             .then((data) => props.sendNotif(Math.random(), '✌️✌️✌️ Settings updated correctly', 'success', '5000'))
             .catch((e) => props.sendNotif(Math.random(), e.message, 'danger', '5000'))
           } else {
-            return props.mutateNotification({
+            return props.createNotification({
               variables: {
                 agentId: props.data.id,
                 send: !value,
@@ -287,7 +284,6 @@ const WrapperConnected = compose(
           }
         },
         saveSettings: (props) => () => {
-          console.log(props)
           return (
               props.mutateSettings({
                 variables: {
@@ -300,7 +296,10 @@ const WrapperConnected = compose(
                 }
               })
               .then((data) => props.sendNotif(Math.random(), '✌️✌️✌️ Settings updated correctly', 'success', '5000'))
-              .catch((e) => props.sendNotif(Math.random(), e.message, 'danger', '5000'))
+              .catch((e) => {
+                console.log(e)
+                props.sendNotif(Math.random(), e.message, 'danger', '5000')
+              })
           )
         }
     })
