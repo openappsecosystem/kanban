@@ -66,21 +66,21 @@ mutation ($token: String!, $note: String, $id: Int!, $name: String,  $email: Str
   }
 }`
 
-// const updateNotification = gql`
-// mutation ($token: String!, $agentId: Int!, $notificationTypeId: Int!, $send: Boolean! ) {
-//   updateNotificationSetting(token: $token, notificationTypeId: $notificationTypeId, agentId: $agentId, send: $send) {
-//     notificationSetting {
-//       id
-//       notificationType {
-//         display
-//       }
-//       send
-//       agent {
-//         name
-//       }
-//     }
-//   }
-// }`
+const updateNotification = gql`
+mutation ($token: String!) {
+  updateNotificationSetting (token: $token, id: 137, send: true) {
+    notificationSetting {
+      id
+      notificationType {
+        display
+      }
+      send
+      agent {
+        name
+      }
+    }
+  }
+}`
 
 
 const createNotification = gql`
@@ -145,6 +145,27 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+const agentNotificationSettings =gql` 
+  query ($token: String) {
+    viewer(token: $token) {
+      myAgent {
+        id
+        name
+        agentNotificationSettings {
+          id
+          send
+          notificationType {
+            id
+            label
+            display
+            description
+          }
+        }
+      }
+    }
+  } 
+  `
+
 const WrapperConnected = compose(
     graphql(allNotificationTypes, {
       options: (props) => ({ variables: {
@@ -182,94 +203,21 @@ const WrapperConnected = compose(
             token: localStorage.getItem('token')
           },
           update: (store, { data }) => {
-            // Read the data from our cache for this query.
-            console.log(store)
-            console.log(agent)
-            console.log(data)
-            const dataumpa = store.readQuery({ query: gql` 
-            query ($token: String) {
-              viewer(token: $token) {
-                myAgent {
-                  id
-                  name
-                  image
-                  email
-                  note
-                  primaryLocation {
-                      name
-                  }
-                  agentNotificationSettings {
-                    id
-                    send
-                    notificationType {
-                      id
-                      label
-                      display
-                      description
-                    }
-                  }
-                }
-              }
-            } 
-            `,
+            let agentNotificationsCache = store.readQuery({ query: agentNotificationSettings,
               variables: {
                 token: localStorage.getItem('token')
               }})
-            console.log(dataumpa)
-            // Add our comment from the mutation to the end.
-            // dataumpa.viewer.myAgent.agentNotificationSettings.push(data.createNotificationSetting.notificationSetting)
-            // console.log(dataumpa)
-            // Write our data back to the cache.
-            // store.writeQuery({ query: CommentAppQuery, data });
-            const dataumpa2 = store.readFragment({
-              id: 'NotificationSetting84',
-              fragment: gql`
-                fragment myNotification on myAgent {
-                  agentNotificationSettings {
-                    id
-                    send
-                    notificationType {
-                      id
-                      label
-                      display
-                      description
-                    }
-                  }
-                }
-              `
-              // data: data.createNotificationSetting.notificationSetting
+
+            agentNotificationsCache.viewer.myAgent.agentNotificationSettings.push({
+              ...data.createNotificationSetting.notificationSetting,
+              __typename: "NotificationSetting"
             })
-            // store.writeQuery({ query: gql` 
-            // query ($token: String) {
-            //   viewer(token: $token) {
-            //     myAgent {
-            //       id
-            //       name
-            //       image
-            //       email
-            //       note
-            //       primaryLocation {
-            //           name
-            //       }
-            //       agentNotificationSettings {
-            //         id
-            //         send
-            //         notificationType {
-            //           id
-            //           label
-            //           display
-            //           description
-            //         }
-            //       }
-            //     }
-            //   }
-            // } 
-            // `,
-            //   variables: {
-            //     token: localStorage.getItem('token')
-            //   },
-            //   data})
-            console.log(dataumpa2)
+
+            store.writeQuery({ query: agentNotificationSettings,
+              variables: {
+                token: localStorage.getItem('token')
+              },
+              data: agentNotificationsCache })
           }}),
         props: ({ mutate, ownProps: {agentId, send, notificationTypeId} }) => ({
           mutateNotification: mutate, agentId, send, notificationTypeId
@@ -312,6 +260,7 @@ const WrapperConnected = compose(
         },
         toggleNotification: (props) => (id, value, notificationId) => {
           console.log(value)
+          console.log(notificationId)
           console.log(!value)
           if (id !== undefined) {
             return props.mutateNotification({
@@ -329,6 +278,7 @@ const WrapperConnected = compose(
               variables: {
                 agentId: props.data.id,
                 send: !value,
+                notificationTypeId: notificationId,
                 token: localStorage.getItem('token')
               }
             })

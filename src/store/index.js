@@ -5,7 +5,12 @@ import { reducer as notifReducer } from 'redux-notifications'
 
 import {ApolloClient} from 'apollo-client'
 import {createHttpLink} from 'apollo-link-http'
-import {InMemoryCache} from 'apollo-cache-inmemory'
+import {InMemoryCache, IntrospectionFragmentMatcher} from 'apollo-cache-inmemory'
+import introspectionQueryResultData from '../fragmentTypes.json'
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData
+})
 
 const link = createHttpLink({
   // uri: 'https://ocp.freedomcoop.eu/api/graph'
@@ -20,7 +25,8 @@ const cache = new InMemoryCache({
     return null
   },
   addTypename: true,
-  cacheResolvers: {}
+  cacheResolvers: {},
+  fragmentMatcher
 })
 
 export const client = new ApolloClient({
