@@ -3,15 +3,21 @@ import style from './style.css'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import ToggleButton from 'react-toggle-button'
 
-const Settings = ({allNotification, data, saveSettings, updateImage, updateBio, updateEmail, updateLocation, updateName}) => {
+const Settings = ({allNotification, toggleNotification, data, saveSettings, updateImage, updateBio, updateEmail, updateLocation, updateName}) => {
   const notifications = allNotification.map(notification => {
     let value
+    let id
     let updatedValue = data.agentNotificationSettings.filter(notif => notif.notificationType.id === notification.id)
-    if (updatedValue.length > 0) { value = updatedValue[0].send }
+    if (updatedValue.length > 0) { 
+      value = updatedValue[0].send
+      id = updatedValue[0].id
+    }
     return {
       display: notification.display,
       description: notification.description,
-      value: value
+      value: value,
+      id: id,
+      originalId: notification.id
     }
   })
   return (
@@ -63,9 +69,7 @@ const Settings = ({allNotification, data, saveSettings, updateImage, updateBio, 
                   <div className={style.item_status}>
                   <ToggleButton
                     value={ notification.value || false }
-                    onToggle={(value) => {
-                      return console.log('log')
-                    }} />
+                    onToggle={(value) => toggleNotification(notification.id, value, notification.originalId)} />
                   </div>
                 </div>
               ))}
