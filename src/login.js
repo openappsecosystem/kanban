@@ -1,5 +1,6 @@
 import React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import style from './base.css'
 import { withRouter } from 'react-router'
 import {connect} from 'react-redux'

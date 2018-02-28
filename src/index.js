@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {ApolloProvider} from 'react-apollo'
 import {client, store} from './store'
+import { Provider } from 'react-redux'
 import { Notifs } from 'redux-notifications'
 import style from './base.css'
 // import 'kanban-webcomponent'
@@ -27,7 +28,8 @@ function CustomNotif (props) {
 }
 
 ReactDOM.render(
-  <ApolloProvider store={store} client={client}>
+  <ApolloProvider client={client}>
+    <Provider store={store}>
     <Router>
       <div>
         <Notifs
@@ -42,6 +44,7 @@ ReactDOM.render(
         <Route exact path='/settings' component={Settings} />
       </div>
     </Router>
+    </Provider>
   </ApolloProvider>,
 document.getElementById('root')
 )
