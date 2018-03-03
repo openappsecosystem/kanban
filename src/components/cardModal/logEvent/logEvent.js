@@ -15,9 +15,9 @@ export default function LogEvent ({units, startDate, addDate, commitmentId, scop
             <div className={style.log_item}>
                 <select onChange={addAction}>
                     <option value='work'>Work</option>
-                    {/* <option value='cite'>Cite</option>
+                    <option value='cite'>Cite</option>
                     <option value='consume'>Consume</option>
-                    <option value='use'>Use</option> */}
+                    <option value='use'>Use</option>
                 </select>
                 <input onChange={addNumericValue} type='number' name='Unit' min='00.00' max='100.00' step='0.1' placeholder='00.00' />
                 <select onChange={addUnitId} className={style.type}>
