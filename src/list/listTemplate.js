@@ -14,13 +14,13 @@ const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs,
         ? <p className={style.header_desc}>{info.note}</p>
         : ''}
         <div className={style.header_infos}>
-          {agents.map((a, i) => (
+          {agents ? agents.map((a, i) => (
             <div key={i} className={style.header_members}>
               <span className={style.members_item}>
                 <img className={style.item_photo} src={a.image} />
               </span>
             </div>
-          ))}
+          )) : ''}
           {info.due
           ? <div className={style.header_due}>
             <span className={style.due_item}>Due {info.due}</span>

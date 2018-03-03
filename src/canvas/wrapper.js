@@ -1,8 +1,8 @@
 import React from 'react'
 import AppTemplate from '../templates/AppTemplate'
 import Component from './index'
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 const plan = gql`
 query ($token: String, $planId: Int) {
@@ -14,11 +14,6 @@ query ($token: String, $planId: Int) {
           id
           name
         }
-        workingAgents {
-          id
-          image
-          name
-         }
         planProcesses {
           note
           id
@@ -42,12 +37,6 @@ query ($token: String, $planId: Int) {
             id
             note
             fulfilledBy {
-              fulfilledQuantity {
-                unit{
-                  name
-                }
-                numericValue
-              }
               fulfills {
                 action
               }
@@ -75,6 +64,8 @@ query ($token: String, $planId: Int) {
           }
           workingAgents {
             name
+            id
+            image
           }
           inputs {
             action
@@ -108,13 +99,12 @@ query ($token: String, $planId: Int) {
 
 class CanvasWrapper extends React.Component {
   render () {
-    const {loading, error, data} = this.props
-    console.log(data)
+    const {loading, error, viewer} = this.props
     return (
       <AppTemplate>
         {loading ? <strong>Loading...</strong> : (
           error ? <p style={{ color: '#F00' }}>API error</p> : (
-          <Component loading={loading} error={error} data={data} />
+          <Component data={viewer} param={this.props.match.params.id} />
         ))}
       </AppTemplate>
     )
@@ -122,14 +112,16 @@ class CanvasWrapper extends React.Component {
 }
 
 export default graphql(plan, {
-  options: (props) => ({ variables: {
-    token: localStorage.getItem('token'),
-    planId: props.match.params.id
-  }}),
-  props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
-    loading: loading,
-    error: error,
-    refetchAgent: refetch,  // :NOTE: call this in the component to force reload the data
-    data: viewer ? viewer.plan : null
-  })
+  options: (props) => ({ 
+    variables: {
+      token: localStorage.getItem('token'),
+      planId: Number(props.match.params.id)
+    }
+  }),
+  props: ({ ownProps, data: { viewer, loading, error, refetch } }) => {
+    return ({
+      loading: loading,
+      error: error,
+      viewer: viewer ? viewer.plan : null
+  })}
 })(CanvasWrapper)

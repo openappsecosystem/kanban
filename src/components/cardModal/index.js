@@ -27,7 +27,7 @@ const customStyles = {
   // }
 }
 
-const UModal = ({loading, modalIsOpen, error, commitment, units, modalDescription, allPlanAgents, closeModal, id}) => (
+const UModal = ({param, loading, modalIsOpen, error, commitment, units, modalDescription, allPlanAgents, closeModal, id}) => (
   <Modal
     isOpen={modalIsOpen}
     onRequestClose={closeModal}
@@ -37,11 +37,7 @@ const UModal = ({loading, modalIsOpen, error, commitment, units, modalDescriptio
       base: style.cardModal
     }}
     >
-    {loading ? <h1>loading...</h1> : (
-      error ? <p style={{ color: '#ddd' }}>API error</p> : (
-        <CardModal id={id} allPlanAgents={allPlanAgents} units={units} data={commitment} close={closeModal} modalDescription={modalDescription} />
-      ))
-    }
+      <CardModal param={param} id={id} allPlanAgents={allPlanAgents} units={units} data={commitment} close={closeModal} modalDescription={modalDescription} />
   </Modal>
 )
 

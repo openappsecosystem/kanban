@@ -5,10 +5,10 @@ import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'react/lib/update'
 import cardDnDServices from '../services/cardDnDservices'
-import StatusFlow from '../statusFlow'
+// import StatusFlow from '../statusFlow'
 import ResourcesFlow from '../resourcesFlow'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import CardModal from '../components/cardModal/modalHOC'
+// import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import CardModal from '../components/cardModal'
 
 class Canvas extends React.Component {
   constructor (props) {
@@ -74,13 +74,15 @@ class Canvas extends React.Component {
     render () {
       const {modalSelected, modalIsOpen} = this.state
       const {data} = this.props
-      console.log(data)
+      console.log('qui')
+      console.log('qui')
       let customHeight = window.innerHeight
       return (
+        data ?
           <section className={style.surface} >
             <header className={style.header}>
               <h1 className={style.title}>
-                {data.name || 'non ora'}
+                {data.name}
                 <span className={style.header_scope}>
                   <Link to={'/agent/' + data.scope[0].id}>{data.scope[0].name}</Link>
                 </span>
@@ -100,7 +102,6 @@ class Canvas extends React.Component {
                 project={data.scope}
                 planId={data.id}
                 outputs={data.planProcesses}
-                allPlanAgents={data.workingAgents}
                 cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs
                   .filter(comm => comm.action === 'work')
                   .map(task => (
@@ -121,6 +122,7 @@ class Canvas extends React.Component {
                     title: list.name,
                     note: list.note,
                     due: list.plannedStart,
+                    agents: list.workingAgents,
                     outputs: list.committedOutputs,
                     cards: list.committedInputs
                     .filter(comm => comm.action === 'work')
@@ -144,8 +146,10 @@ class Canvas extends React.Component {
               modalIsOpen={modalIsOpen}
               closeModal={this.closeModal.bind(this)}
               id={modalSelected}
+              param={this.props.param}
             />
           </section>
+          : <h1>loading</h1>
         )
     }
 }

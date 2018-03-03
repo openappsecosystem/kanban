@@ -12,7 +12,6 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-
 const deleteEvent = gql`
 mutation ($token: String!, $id: Int!) {
     deleteEconomicEvent(

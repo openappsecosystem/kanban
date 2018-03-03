@@ -4,12 +4,18 @@ import ModalTitle from './modalTitle'
 import ModalMembers from './modalMembers'
 import ModalActivities from './modalActivities'
 import LogEvent from './logEvent'
+import { compose, withState } from 'recompose'
+import {graphql} from 'react-apollo'
+import GetCommitment from '../../queries/getCommitment'
 
-const CardModal = ({id, allPlanAgents, units, data, close, modalDescription}) => {
+const CardModal = ({param, id, allPlanAgents, units, loading, data, error, close, modalDescription}) => {
+  console.log('param')
+  console.log(param)
   return (
+    loading ? <h1>loading...</h1> : (
+      error ? <p style={{ color: '#ddd' }}>API error</p> : (
     <section className={style.modal_content}>
       <ModalTitle close={close} id={data.id} note={data.note} />
-    
       <div className={style.content_info}>
         <div className={style.content_module}>
           <div className={style.module_header}>
@@ -28,7 +34,7 @@ const CardModal = ({id, allPlanAgents, units, data, close, modalDescription}) =>
           </div>
         </div>
         <ModalActivities id={id} />
-        <LogEvent id={id} units={units} scopeId={data.scope.id} commitmentId={data.id} />
+        <LogEvent param={param} id={id} units={units} scopeId={data.scope.id} commitmentId={data.id} />
       </div>
       {/* <div className={style.content_actions}>
         <div className={style.content_module}>
@@ -52,7 +58,20 @@ const CardModal = ({id, allPlanAgents, units, data, close, modalDescription}) =>
         </div>
       </div> */}
     </section>
+    ))
   )
 }
 
-export default CardModal
+export default compose(
+  graphql(GetCommitment, {
+    options: ({id}) => ({ variables: { token: localStorage.getItem('token'), id: id}}),
+    props: ({ ownProps, data: { viewer, loading, error, refetch } }) => ({
+      loading,
+      error,
+      refetchData: refetch,  // :NOTE: call this in the component to force reload the data
+      data: viewer ? viewer.commitment : null,
+      units: viewer ? viewer.allUnits : null
+    })
+  }),
+  withState('modalDescription', 'handleModalDescription', null)
+)(CardModal)

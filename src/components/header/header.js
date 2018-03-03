@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './style.css'
 import {Left, Right, Card} from '../../icons'
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router'
 
 const Header = (props) => {
     return (

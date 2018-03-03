@@ -12,7 +12,7 @@ export default compose(
       refetchData: refetch,  // :NOTE: call this in the component to force reload the data
       commitment: viewer ? viewer.commitment : null,
       units: viewer ? viewer.allUnits : null
-    }),
+    })
   }),
   withState('modalDescription', 'handleModalDescription', null)
 )(Modal)
