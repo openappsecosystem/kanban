@@ -25,7 +25,6 @@ const cache = new InMemoryCache({
     return null
   },
   addTypename: true,
-  cacheResolvers: {},
   fragmentMatcher
 })
 
