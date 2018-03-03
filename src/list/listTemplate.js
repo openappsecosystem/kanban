@@ -51,7 +51,7 @@ const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs,
           </div>
         )) : ''}
 
-        <div className={cardController ? style.card_composer : style.card_composer + ' ' + style.hidden}>
+        {/* <div className={cardController ? style.card_composer : style.card_composer + ' ' + style.hidden}>
           <div className={style.composer_card}>
             <div className={style.card_controller}>
               <div className={style.card_details}>
@@ -65,7 +65,7 @@ const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs,
                 <a onClick={() => openCardController()} className={style.icon_delete} />
               </div>
             </div>
-        </div>
+        </div> */}
       </div>
       {outputs.length !== 0 
       ? <div className={style.list_outputs}>
@@ -77,7 +77,7 @@ const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs,
           ))}
         </div>
       : '' }
-      <a className={style.open_card_composer} onClick={() => openCardController()} >Create a new commitment...</a>
+      {/* <a className={style.open_card_composer} onClick={() => openCardController()} >Create a new commitment...</a> */}
     </div>
   </div>
 )}
