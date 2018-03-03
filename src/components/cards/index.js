@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 const Cards = ({data, link}) => {
   let newData = data.map(x => ({...x, date: moment(x.plannedOn).unix()}))
-  console.log(newData)
   return (
     <div className={style.section_wrapper}>
         <div className={style.wrapper}>

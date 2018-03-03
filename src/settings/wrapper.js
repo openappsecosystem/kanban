@@ -296,10 +296,7 @@ const WrapperConnected = compose(
                 }
               })
               .then((data) => props.sendNotif(Math.random(), '✌️✌️✌️ Settings updated correctly', 'success', '5000'))
-              .catch((e) => {
-                console.log(e)
-                props.sendNotif(Math.random(), e.message, 'danger', '5000')
-              })
+              .catch((e) => {props.sendNotif(Math.random(), e.message, 'danger', '5000')})
           )
         }
     })

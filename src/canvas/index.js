@@ -74,8 +74,6 @@ class Canvas extends React.Component {
     render () {
       const {modalSelected, modalIsOpen} = this.state
       const {data} = this.props
-      console.log('qui')
-      console.log('qui')
       let customHeight = window.innerHeight
       return (
         data ?

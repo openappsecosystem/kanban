@@ -9,8 +9,6 @@ import {graphql} from 'react-apollo'
 import GetCommitment from '../../queries/getCommitment'
 
 const CardModal = ({param, id, allPlanAgents, units, loading, data, error, close, modalDescription}) => {
-  console.log('param')
-  console.log(param)
   return (
     loading ? <h1>loading...</h1> : (
       error ? <p style={{ color: '#ddd' }}>API error</p> : (
