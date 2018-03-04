@@ -3,6 +3,8 @@
     margin: 0 0 9px;
     color: #444444;
     position: relative;
+    margin-left: 10px;
+    display: inline-block;
 }
 
 .header_title .content_icon {

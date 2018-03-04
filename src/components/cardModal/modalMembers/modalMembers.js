@@ -47,7 +47,10 @@ export default function ModalMembers ({provider, editProvider, allPlanAgents, me
         }
       </div> */}
       <div className={style.labels_members}>
-        <span ><Users width={20} height={20} /></span>
+        <div className={style.members_title}>
+          <span ><Users width={20} height={20} /></span>
+          <h4>Agents Involved</h4>
+        </div>
         {members.map((member, i) => (
           <div key={i} className={style.members}>
             <span className={style.members_item}>
