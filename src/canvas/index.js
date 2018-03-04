@@ -100,20 +100,6 @@ class Canvas extends React.Component {
                 project={data.scope}
                 planId={data.id}
                 outputs={data.planProcesses}
-                cards={[].concat.apply([], data.planProcesses.map(process => process.committedInputs
-                  .filter(comm => comm.action === 'work')
-                  .map(task => (
-                    {
-                      id: Number(task.id),
-                      title: task.action + ' ' + task.committedQuantity.numericValue + ' ' + task.committedQuantity.unit.name + ' of ' + task.resourceClassifiedAs.name,
-                      members: task.involvedAgents,
-                      process: task.inputOf.name,
-                      due: task.due,
-                      note: task.note,
-                      isFinished: task.isFinished,
-                      wip: task.fulfilledBy.length !== 0
-                    }
-                ))))}
                 lists={data.planProcesses.map(list => (
                   {
                     id: Number(list.id),
@@ -131,7 +117,11 @@ class Canvas extends React.Component {
                         members: task.involvedAgents,
                         process: task.inputOf.name,
                         due: task.due,
-                        note: task.note
+                        note: task.note,
+                        isFinished: task.isFinished,
+                        percentage: task.fulfilledBy
+                        .map(i => i.fulfilledQuantity.numericValue)
+                        .reduce((accumulator, currentValue) => accumulator + currentValue, null) * 100 / task.committedQuantity.numericValue
                       }
                     ))
                   }

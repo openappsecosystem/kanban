@@ -37,6 +37,9 @@ query ($token: String, $planId: Int) {
             id
             note
             fulfilledBy {
+              fulfilledQuantity {
+                numericValue
+              }
               fulfills {
                 action
                 fulfilledBy{

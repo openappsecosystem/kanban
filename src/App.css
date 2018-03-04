@@ -37,7 +37,7 @@ body {
   height: auto;
   margin: 0 20px;
   margin-top: 50px;
-
+  lost-utility: clearfix;
 }
 
 .profile_photo {
@@ -182,10 +182,10 @@ body {
   color: rgb(15, 15, 15);
 }
 
-.section_wrapper {
+/* .section_wrapper {
     lost-column: 8/10;
     lost-offset: 1/10;
-}
+} */
 
 .section_wrapper_box {
   margin-top: 20px;

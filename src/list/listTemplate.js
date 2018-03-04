@@ -41,6 +41,7 @@ const ListTemplate = ({setTitle, name, agents, percentage, info, cards, outputs,
             openModal={openModal}
             name={card.title}
             moveCard={moveCard}
+            wip={card.wip}
             status={card.status}
             note={card.note || card.title}
             newNote= {''}

@@ -704,15 +704,17 @@
     lost-utility: clearfix;
   }
 
+
+  .item_date input {
+    font-size: 13px !important;
+    width: 100%;
+  }
+  
   .item_date {
     lost-column: 1/4 0;
     lost-column-cycle: 0;
     margin-right: 0 !important;
     margin-right: 0 !important;
-    & input {
-      font-size: 13px !important;
-      width: 100%;
-    }
     & .full {
       border-radius: 3px;
       font-size: 14px;
