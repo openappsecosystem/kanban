@@ -39,6 +39,11 @@ query ($token: String, $planId: Int) {
             fulfilledBy {
               fulfills {
                 action
+                fulfilledBy{
+                  fulfilledBy {
+                    requestDistribution
+                  }
+                }
               }
             }
             inputOf {
@@ -72,6 +77,7 @@ query ($token: String, $planId: Int) {
             id
             fulfills {
               fulfilledBy {
+                requestDistribution
                 provider {
                   name
                   image

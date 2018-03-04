@@ -562,6 +562,25 @@
     margin-top: 3px;
   }
 
+  .desc_payment {
+    background: rgb(175, 175, 175);
+    padding: 2px 10px;
+    border-radius: 100px;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    vertical-align: unset;
+  }
+
+  .desc_payed {
+    background: #BBDBB4;
+  }
+
+  .desc_voluntary {
+    background: #2E86AB;
+  }
+
   .content_log {
     margin-top: 10px;
   }

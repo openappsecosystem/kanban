@@ -41,6 +41,11 @@ query ($token: String, $planId: Int) {
             fulfilledBy {
               fulfills {
                 action
+                fulfilledBy{
+                  fulfilledBy {
+                    requestDistribution
+                  }
+                }
               }
             }
             inputOf {
@@ -74,6 +79,7 @@ query ($token: String, $planId: Int) {
             id
             fulfills {
               fulfilledBy {
+                requestDistribution
                 provider {
                   name
                   image
@@ -109,6 +115,7 @@ query ($token: String!, $id: Int!) {
               action
               start
               id
+              requestDistribution
               note
               provider {
                 id
@@ -129,12 +136,13 @@ query ($token: String!, $id: Int!) {
 `
 
 const createEvent = gql`
-mutation ($token: String!, $action: String!, $start: String, $scopeId: Int!, $commitmentId: Int!, $note: String, $affectedNumericValue: String!, $affectedUnitId: Int!  ) {
+mutation ($token: String!, $action: String!, $requestDistribution: Boolean, $start: String, $scopeId: Int!, $commitmentId: Int!, $note: String, $affectedNumericValue: String!, $affectedUnitId: Int!  ) {
   createEconomicEvent(
     token: $token,
     action: $action,
     start: $start,
     scopeId: $scopeId, 
+    requestDistribution: $requestDistribution, 
     fulfillsCommitmentId: $commitmentId,
     note: $note,
     affectedNumericValue: $affectedNumericValue, 
@@ -145,6 +153,7 @@ mutation ($token: String!, $action: String!, $start: String, $scopeId: Int!, $co
       note
       start
       id
+      requestDistribution
       scope {
         id
       }
@@ -163,7 +172,6 @@ mutation ($token: String!, $action: String!, $start: String, $scopeId: Int!, $co
   }
 }
 `
-
 
 const mapStateToProps = (state) => {
   return {
@@ -185,13 +193,13 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
 const wrapperComponent = compose(
   graphql(createEvent, {}),
   withState('action', 'updateAction', 'work'),
   withState('note', 'updateNote', ''),
   withState('numericValue', 'updateNumericValue', '0'),
-  withState('unitId', 'updateUnitId', 2),
+  withState('unitId', 'updateUnitId', 4),
+  withState('requestPayment', 'updatePayment', false),
   withState('startDate', 'updateDate', moment()),
   withHandlers({
     addNote: props => event => {
@@ -201,6 +209,10 @@ const wrapperComponent = compose(
     addAction: props => event => {
       event.preventDefault()
       props.updateAction(event.target.value)
+    },
+    addPayment: props => (val) => {
+      console.log(val)
+      props.updatePayment(!val)
     },
     addNumericValue: props => event => {
       event.preventDefault()
@@ -214,7 +226,9 @@ const wrapperComponent = compose(
       props.updateUnitId(event.target.value)
     },
     log: props => event => {
+      event.preventDefault()
       let date = moment(props.startDate).format("YYYY-MM-DD")
+      console.log(props)
       return (
         props.mutate({
           variables: {
@@ -222,6 +236,7 @@ const wrapperComponent = compose(
             id: props.id,
             action: props.action,
             scopeId: props.scopeId,
+            requestDistribution: props.requestPayment,
             commitmentId: props.commitmentId,
             note: props.note,
             affectedNumericValue: props.numericValue,
@@ -236,13 +251,15 @@ const wrapperComponent = compose(
                 planId: Number(props.param)
               }}
             )
-    
+            console.log(agentPlanCache)
             let agentEventsCache = store.readQuery({ query: queryEvents,
               variables: {
                 token: localStorage.getItem('token'),
                 id: Number(props.id)
               }}
             )
+            console.log(agentEventsCache)
+            console.log(store)
             
             let processIndex = agentPlanCache.viewer.plan.planProcesses.findIndex(process => process.committedInputs.some(item => Number(item.id) === Number(props.id)))
             
@@ -267,6 +284,7 @@ const wrapperComponent = compose(
               fulfilledBy: {
                 action: data.createEconomicEvent.economicEvent.action,
                 note: data.createEconomicEvent.economicEvent.note,
+                requestDistribution: data.createEconomicEvent.economicEvent.requestDistribution,
                 provider: data.createEconomicEvent.economicEvent.provider,
                 start: data.createEconomicEvent.economicEvent.start,
                 id: data.createEconomicEvent.economicEvent.id,

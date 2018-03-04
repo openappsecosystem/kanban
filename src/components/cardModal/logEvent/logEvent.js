@@ -2,12 +2,12 @@ import React from 'react'
 import style from '../index.css'
 import Button from '../../button'
 import TextArea from '../../textarea'
-import { Message } from '../../../icons'
 import DatePicker from 'react-datepicker'
+import ToggleButton from 'react-toggle-button'
 // import moment from 'moment'
 require("react-datepicker/dist/react-datepicker-cssmodules.css")
 
-export default function LogEvent ({units, startDate, addDate, commitmentId, scopeId, log, note, addNote, addAction, addNumericValue, addUnitId}) {
+export default function LogEvent ({units, requestPayment, startDate, addPayment, addDate, commitmentId, scopeId, log, note, addNote, addAction, addNumericValue, addUnitId}) {
     return (
     <div className={style.content_module}>
         <div className={style.content_log}>
@@ -23,6 +23,12 @@ export default function LogEvent ({units, startDate, addDate, commitmentId, scop
                 <select onChange={addUnitId} className={style.type}>
                     {units.map(unit => <option key={unit.id} value={unit.id}>{unit.name}</option>)}
                 </select>
+                <div className={style.item_distribution}>
+                    <ToggleButton
+                      value={requestPayment}
+                      onToggle={(value) => addPayment(value)} />
+                    <label>Request payment</label>
+                </div>
                 <div className={style.item_date}>
                     <DatePicker
                       selected={startDate}

@@ -34,6 +34,7 @@ query ($token: String!, $id: Int!) {
           fulfilledBy {
             fulfilledBy {
               action
+              requestDistribution
               start
               id
               note

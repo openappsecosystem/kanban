@@ -2,6 +2,7 @@ import React from 'react'
 import style from '../index.css'
 
 export default function ({activities, id, date, deleteEvent, loading, error, refetchData}) {
+  console.log(activities)
   return (
     <div className={style.activities_list}>
       {loading ? '' : (
@@ -13,7 +14,7 @@ export default function ({activities, id, date, deleteEvent, loading, error, ref
               </span>
             </div>
             <div className={style.item_desc}>
-              <span>{item.fulfilledBy.provider.name}</span> {item.fulfilledBy.action + ' ' + item.fulfilledQuantity.numericValue + ' ' + item.fulfilledQuantity.unit.name }
+              <span>{item.fulfilledBy.provider.name}</span> {item.fulfilledBy.action + ' ' + item.fulfilledQuantity.numericValue + ' ' + item.fulfilledQuantity.unit.name } {item.fulfilledBy.requestDistribution ? <span className={style.desc_payment + ' ' + style.desc_payed}>Payed</span> : <span className={style.desc_payment + ' ' + style.desc_voluntary}>Voluntary</span>}
               <div className={style.desc}>{item.fulfilledBy.note} </div>
             </div>
             <div className={style.item_meta}>
