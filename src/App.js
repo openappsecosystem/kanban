@@ -97,7 +97,6 @@ query ($token: String) {
           plannedStart
           committedOn
           due
-          requestDistribution
           committedQuantity {
             numericValue
             unit {

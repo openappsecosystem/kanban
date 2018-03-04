@@ -1,6 +1,6 @@
 import React from 'react'
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import Component from './index'
 import AppTemplate from '../templates/AppTemplate'
 

@@ -13,6 +13,7 @@ export default function LogEvent ({units, requestPayment, startDate, addPayment,
         <div className={style.content_log}>
             {/* <h5><span className={style.content_icon}><Message width={20} height={20} color={'#999'}/></span>Log</h5> */}
             <div className={style.log_item}>
+            <div className={style.item_sencence}>
                 <select onChange={addAction}>
                     <option value='work'>Work</option>
                     <option value='cite'>Cite</option>
@@ -23,19 +24,19 @@ export default function LogEvent ({units, requestPayment, startDate, addPayment,
                 <select onChange={addUnitId} className={style.type}>
                     {units.map(unit => <option key={unit.id} value={unit.id}>{unit.name}</option>)}
                 </select>
+                <div className={style.item_date}>
+                    <DatePicker
+                      selected={startDate}
+                      onChange={addDate}
+
+                    />
+                </div>
+            </div>
                 <div className={style.item_distribution}>
                     <ToggleButton
                       value={requestPayment}
                       onToggle={(value) => addPayment(value)} />
                     <label>Request payment</label>
-                </div>
-                <div className={style.item_date}>
-                    <DatePicker
-                      selected={startDate}
-                      onChange={addDate}
-                      inline
-                      className={style.full}
-                    />
                 </div>
                 <TextArea action={addNote} placeholder={'Add a more detailed description...'} />
                 <Button action={log} type={'good'} title='Log Event' />

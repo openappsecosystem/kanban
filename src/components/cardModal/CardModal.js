@@ -28,11 +28,13 @@ const CardModal = ({param, id, allPlanAgents, units, loading, data, error, close
           </div>
 
           <div className={modalDescription ? style.content_description + ' ' + style.hidden : style.content_description}>
+            <h5 className={style.modalDescription_title}>Commitment</h5>
             <h4>{data.action + ' ' + data.committedQuantity.numericValue + ' ' + data.committedQuantity.unit.name + ' of ' + data.resourceClassifiedAs.name}</h4>
           </div>
         </div>
-        <ModalActivities id={id} />
         <LogEvent param={param} id={id} units={units} scopeId={data.scope.id} commitmentId={data.id} />
+        <h5 className={style.modalDescription_title}>Commitment</h5>
+        <ModalActivities id={id} />
       </div>
       {/* <div className={style.content_actions}>
         <div className={style.content_module}>
