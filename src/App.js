@@ -1,12 +1,11 @@
 import React from 'react'
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import style from './App.css'
 import { Link } from 'react-router-dom'
 import AppTemplate from './templates/AppTemplate'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Feed from './components/feed/feed'
-import Card from './components/card'
 
 class Lists extends React.Component {
   componentDidMount () {
@@ -19,7 +18,7 @@ class Lists extends React.Component {
       error ? <p style={{ color: '#F00' }}>API error</p> : (
       <div className={style.profile_lists}>
       <div className={style.lists}>
-        <h2 className={style.profile_title}>👋 Hello {viewer.myAgent.name}</h2>
+        <h2 className={style.profile_title}><span role='img'>👋</span> Hello {viewer.myAgent.name}</h2>
         <h5 className={style.profile_address}>ƒ <span>{viewer.myAgent.faircoinAddress}</span></h5>
         <div className={style.section}>
           <div className={style.section_wrapper}>

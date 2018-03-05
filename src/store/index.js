@@ -1,5 +1,5 @@
 // import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, compose } from 'redux'
 import {flags} from './reducers/flags'
 import { reducer as notifReducer } from 'redux-notifications'
 
@@ -13,8 +13,8 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 })
 
 const link = createHttpLink({
-  uri: 'https://ocp.freedomcoop.eu/api/graph'
-  // uri: 'https://testocp.freedomcoop.eu/api/graph'
+  // uri: 'https://ocp.freedomcoop.eu/api/graph'
+  uri: 'https://testocp.freedomcoop.eu/api/graph'
 })
 
 const cache = new InMemoryCache({

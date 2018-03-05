@@ -1,9 +1,9 @@
 import React from 'react'
 import style from '../index.css'
-import {Cross, Users, Check, Plus, Shield} from '../../../icons'
+import {Users} from '../../../icons'
 
 export default function ModalMembers ({provider, editProvider, allPlanAgents, members, toggleVisibility, isVisible, onMember}) {
-  const membersName = members.map(m => m.name)
+  // const membersName = members.map(m => m.name)
   return (
     <div>
       {/* <div className={style.labels_members + ' ' + style.member_provider}>

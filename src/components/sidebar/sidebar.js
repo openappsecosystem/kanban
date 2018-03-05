@@ -1,10 +1,39 @@
 import React from 'react'
 import style from './style.css'
-import {Left, Right, Bell, More} from '../../icons'
+import {Left, Right, User, Preferites, Settings, Power, More} from '../../icons'
 import {NavLink, withRouter} from 'react-router-dom'
 
 const Sidebar = (props) => {
   return (
+    <div>
+      <div className={style.sidebar_mobile + ' ' + style.sidebar_mobile_active}>
+        <ul className={style.mobile_links}>
+          <li className={style.links_item}>
+            <NavLink to={'/'}>
+              <span><User width={20} height={20} color={'#fff'}/></span>
+              <h5>Profile</h5>
+            </NavLink>
+          </li>
+          <li className={style.links_item}>
+            <NavLink to={'/projects'}>
+              <span><Preferites width={20} height={20} color={'#fff'}/></span>
+              <h5>Projects</h5>
+            </NavLink>
+          </li>
+          <li className={style.links_item}>
+            <NavLink to={'/settings'}>
+              <span><Settings width={20} height={20} color={'#fff'}/></span>
+              <h5>Settings</h5>
+            </NavLink>
+          </li>
+          <li className={style.links_item}>
+            <a onClick={props.logout}>
+              <span><Power width={20} height={20} color={'#fff'}/></span>
+              <h5>Logout</h5>
+            </a>
+          </li>
+        </ul>
+      </div>
     <div className={style.sidebar}>
       <header className={style.sidebar_header}>
       <div className={style.header_menu}>
@@ -38,7 +67,6 @@ const Sidebar = (props) => {
         <h3 className={style.section_title}>Apps</h3>
         <ul className={style.section_list}>
           <li className={style.list_active}><NavLink to={'/'}>Dashboard</NavLink></li>
-          <li><a target='blank' href="#">Work</a></li>
           <li><a href="https://board.net/p/Fair_Health_Care" target='blank'>Health</a></li>
           <li><a target='blank' href="https://wallet.bankofthecommons.coop">Wallet</a></li>
         </ul>
@@ -59,6 +87,7 @@ const Sidebar = (props) => {
           ))}
         </ul>
       </section>
+    </div>
     </div>
   )
 }

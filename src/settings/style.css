@@ -1,3 +1,5 @@
+@import "../mixins.css";
+
 .settings {
     lost-utility:clearfix;
 }
@@ -9,6 +11,14 @@
     border: 1px solid #DCDCDC;
     border-radius: 2px;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
+    padding-bottom: 70px;
+}
+
+.settings_container {
+    @mixin for-phone-only {
+        width: 100%;
+        margin-left: 0 !important;
+      }
 }
 
 .container_notification .container_form {
@@ -81,6 +91,14 @@
     border-bottom: 0;
     border-radius: 2px 2px 0 0;
     margin-bottom: 0;
+  }
+
+  .scope_list {
+    @mixin for-phone-only {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0 !important;
+      }
   }
 
   

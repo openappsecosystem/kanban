@@ -55,7 +55,7 @@ class Login extends React.Component {
             <div className={style.right_section}>
             <div className={style.login_wrapper}>
             <div className={style.wrapper_container}>
-                <div className={style.wrapper_title}><h3>👋 Welcome</h3></div>
+                <div className={style.wrapper_title}><h3><span role='img'>👋</span> Welcome</h3></div>
                 <input placeholder='Insert your username' type='text' value={username} onChange={this.user} className='username' />
                 <input placeholder='Insert your password' type='password' value={password} onChange={this.password} className='password' />
                 <button onClick={()=>this.handleLogin()}>login</button>

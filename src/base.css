@@ -1,3 +1,5 @@
+@import "./mixins.css";
+@import "./variables.css";
 
 body {
     margin: 0;
@@ -5,6 +7,7 @@ body {
     font-family: 'Fira Sans';
     /* lost-utility: edit;  */
   }
+  
     
   .canvas_title {
     margin-top: 0;
@@ -327,6 +330,9 @@ body {
   background: url('./images/bg.png');
   background-size: cover;
   min-height: 100vh;
+  @mixin for-phone-only {
+    display: none;
+  }
 }
 
 .left_section h1 {
@@ -359,7 +365,22 @@ body {
 }
 
 .right_section {
-  lost-column: 1/2
+  lost-column: 1/2;
+  @mixin for-phone-only {
+    width: 100%;
+  }
+}
+
+.login_wrapper {
+  h3 {
+    span {
+      background: none;
+      font-size: 30px;
+    }
+  }
+  @mixin for-phone-only {
+    padding: 20px;
+  }
 }
 
 @media screen and (max-width: 600px) {

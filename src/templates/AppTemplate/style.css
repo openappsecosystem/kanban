@@ -1,3 +1,5 @@
+@import "../../mixins.css";
+
 .surface {
     lost-utility: clearfix;
     background: url('./back1.jpeg');
@@ -12,4 +14,8 @@
 
 .container {
     margin-left: 260px;
+    @mixin for-phone-only {
+        margin-left: 0;
+    }
 }
+
