@@ -25,7 +25,7 @@ class Lists extends React.Component {
           <Tabs selectedTabClassName={style.list_active}>
           <TabList className={style.scope_list}>
               <Tab>Overview</Tab>
-              <Tab>Feed</Tab>
+              <Tab>Diary</Tab>
           </TabList>
           <TabPanel>
             <div className={style.section_wrapper + ' ' + style.section_wrapper_box}>

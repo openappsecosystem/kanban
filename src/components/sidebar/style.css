@@ -1,4 +1,5 @@
 @import "../../mixins.css";
+@import "../../variables.css";
 
 .sidebar {
     position: fixed;

@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './index.css'
+import moment from 'moment'
 
 export default function ({feed}) {
   return (
@@ -14,7 +15,7 @@ export default function ({feed}) {
             <div className={style.item_desc}>
               <span>{item.provider.name}</span> {item.action + ' ' + item.affectedQuantity.numericValue + ' ' + item.affectedQuantity.unit.name} <b>{item.receiver ? 'for ' + item.receiver.name : '' }</b>
               <div className={style.desc}>{item.note}</div>
-              <div className={style.item_meta}>{item.start}</div>
+              <div className={style.item_meta}>{moment([item.start]).fromNow()}</div>
             </div>
           </div>
         ))}

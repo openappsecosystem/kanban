@@ -17,7 +17,7 @@ const Agent = ({data}) => {
           <div className={style.section_wrapper}>
           <Tabs selectedTabClassName={style.list_active}>
           <TabList className={style.scope_list}>
-              <Tab>Recent</Tab>
+              <Tab>Diary</Tab>
               <Tab>Plans</Tab>
               <Tab>Resources</Tab>
           </TabList>

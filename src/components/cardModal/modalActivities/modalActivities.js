@@ -1,8 +1,8 @@
 import React from 'react'
 import style from '../index.css'
+import moment from 'moment'
 
 export default function ({activities, id, date, deleteEvent, loading, error, refetchData}) {
-  console.log(activities)
   return (
     <div className={style.activities_list}>
       {loading ? '' : (
@@ -18,7 +18,7 @@ export default function ({activities, id, date, deleteEvent, loading, error, ref
               <div className={style.desc}>{item.fulfilledBy.note} </div>
             </div>
             <div className={style.item_meta}>
-              {item.fulfilledBy.start} - <span id={item.id} onClick={() => deleteEvent(item.fulfilledBy.id)}>Delete</span>
+              {moment([item.fulfilledBy.start]).fromNow()} - <span id={item.id} onClick={() => deleteEvent(item.fulfilledBy.id)}>Delete</span>
             </div>
           </div>
         ))

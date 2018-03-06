@@ -49,7 +49,6 @@ class List extends Component {
     render () {
       const {name, agents, id, moveCard, cards, outputs, openModal, info, connectDropTarget} = this.props
       const {setTitle, cardController, newCardTitle} = this.state
-      console.log(cards)
       return connectDropTarget(
        <span>
         <ListTemplate

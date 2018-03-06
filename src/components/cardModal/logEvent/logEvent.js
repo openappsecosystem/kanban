@@ -21,14 +21,14 @@ export default function LogEvent ({units, requestPayment, startDate, addPayment,
                     <option value='use'>Use</option>
                 </select>
                 <input onChange={addNumericValue} type='number' name='Unit' min='00.00' max='100.00' step='0.1' placeholder='00.00' />
-                <select onChange={addUnitId} className={style.type}>
-                    {units.map(unit => <option key={unit.id} value={unit.id}>{unit.name}</option>)}
+                <select onChange={addUnitId} className={style.type} defaultValue='2'>
+                  {units.map(unit => <option key={unit.id} value={unit.id}>{unit.name}</option>)}
                 </select>
                 <div className={style.item_date}>
                     <DatePicker
                       selected={startDate}
                       onChange={addDate}
-
+                      dateFormatCalendar={'DDDD MM YYYY'}
                     />
                 </div>
             </div>

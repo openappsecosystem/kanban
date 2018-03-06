@@ -3,7 +3,6 @@ import style from './index.css'
 import {Line} from 'rc-progress'
 
 const CardTemplate = (props) => {
-  console.log(props)
   return (
     <div onClick={props.action} className={props.isDragging ? style.card + ' ' + style.dragged : style.card}>
       <Line percent={props.percentage > 100 ? 100 : props.percentage} strokeWidth="1" strokeColor="#4DC65E" />
