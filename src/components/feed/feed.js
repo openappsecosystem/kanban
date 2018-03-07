@@ -15,7 +15,7 @@ export default function ({feed}) {
             <div className={style.item_desc}>
               <span>{item.provider.name}</span> {item.action + ' ' + item.affectedQuantity.numericValue + ' ' + item.affectedQuantity.unit.name} <b>{item.receiver ? 'for ' + item.receiver.name : '' }</b>
               <div className={style.desc}>{item.note}</div>
-              <div className={style.item_meta}>{moment([item.start]).fromNow()}</div>
+              <div className={style.item_meta}>{moment(item.start.replace(/-/g , ", ")).fromNow()}</div>
             </div>
           </div>
         ))}

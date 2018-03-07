@@ -31,7 +31,7 @@ export default function ({idEventToDelete, deleteEventModal, toggleDeleteEvent, 
               <div className={style.desc}>{item.fulfilledBy.note} </div>
             </div>
             <div className={style.item_meta}>
-              {moment([item.fulfilledBy.start]).fromNow()} - <span id={item.id} onClick={() => toggleDeleteEvent(deleteEventModal, item.fulfilledBy.id)}>Delete</span>
+              {moment(item.fulfilledBy.start.replace(/-/g , ", ")).fromNow()} - <span id={item.id} onClick={() => toggleDeleteEvent(deleteEventModal, item.fulfilledBy.id)}>Delete</span>
             </div>
           </div>
         ))}
