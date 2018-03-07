@@ -4,6 +4,13 @@ import {Left, Right, User, Preferites, Settings, Power, More} from '../../icons'
 import {NavLink, withRouter} from 'react-router-dom'
 
 const Sidebar = (props) => {
+  let result = props.agents.reduce(function (r, a) {
+    let type = a.relationship.label.split(' ', 3)[1]
+    r[type] = r[type] || []
+    r[type].push(a)
+    return r
+  }, Object.create(null))
+  console.log(result[1])
   return (
     <div>
       <div className={style.sidebar_mobile + ' ' + style.sidebar_mobile_active}>
@@ -72,20 +79,23 @@ const Sidebar = (props) => {
         </ul>
       </section>
       <section className={style.aside_section}>
-        <h3 className={style.section_title}>Networks</h3>
-        <ul className={style.section_list}>
-          <NavLink exact activeClassName={style.activeLink} to={'/agent/' + props.data.id}><li className={style.list_me + ' ' + style.list_active}>Me</li></NavLink>
-          {props.agents.map((agent, i) => (
-            <NavLink key={i} activeClassName={style.activeLink} to={'/agent/' + agent.object.id}>
-              <li>
-                <div className={style.list_agent}>
-                  <img className={style.agent_photo} src="https://picsum.photos/200/300" />
-                  <h4>{agent.object.name}</h4>
-                </div>
-              </li>
-            </NavLink>
-          ))}
-        </ul>
+      {Object.keys(result).map((item, i) => (
+        <div key={i}>
+          <h3 className={style.section_title}>{Object.keys(result)[i]}</h3>
+          <ul className={style.section_list}>
+            {result[Object.keys(result)[i]].map((agent, i) => (
+              <NavLink key={i} activeClassName={style.activeLink} to={'/agent/' + agent.object.id}>
+                <li>
+                  <div className={style.list_agent}>
+                    <img className={style.agent_photo} src="https://picsum.photos/200/300" />
+                    <h4>{agent.object.name}</h4>
+                  </div>
+                </li>
+              </NavLink>
+            ))}
+          </ul>
+        </div>
+      ))}
       </section>
     </div>
     </div>
