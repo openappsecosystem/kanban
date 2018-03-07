@@ -41,17 +41,7 @@ const CardModal = ({param, id, allPlanAgents, units, loading, data, error, close
           <div className={style.content_action}>
             <div className={style.action_list}>
               <div className={style.list_archive}>
-                <Button title={'Archivia'} action={() =>)} />
-                <div className=? style.delete + ' ' + style.popup : style.delete + ' ' + style.popup + ' ' + style.hidden }>
-                  <div className={style.popup_header}>
-                    <h5>Archivia</h5>
-                    <span className={style.icon_delete} onClick={() =>)}><Cross width={20} height={20} color={'#999'}/></span>
-                  </div>
-                  <div className={style.popup_content}>
-                    <h5 className={style.content_description}>Sicuro di volerla eliminare?</h5>
-                    <Button title={'Delete'} type={'negate'} />
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

@@ -445,13 +445,17 @@
     border-bottom-color: #C4C9CC;
     box-shadow: 0 1px 6px rgba(0,0,0,.15);
     /* display: none; */
-    position: absolute;
+    position: fixed;
     right: 0;
     /* top: -9999px; */
     width: 300px;
     z-index: 70;
     -webkit-transform: translate3d(0,0,0);
     padding: 10px;
+    left: 50%;
+    margin-left: -180px;
+    /* top: -50px; */
+    top: 50%;
   }
 
   .popup.members {

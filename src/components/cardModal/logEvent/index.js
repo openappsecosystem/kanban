@@ -211,7 +211,6 @@ const wrapperComponent = compose(
       props.updateAction(event.target.value)
     },
     addPayment: props => (val) => {
-      console.log(val)
       props.updatePayment(!val)
     },
     addNumericValue: props => event => {
@@ -228,7 +227,6 @@ const wrapperComponent = compose(
     log: props => event => {
       event.preventDefault()
       let date = moment(props.startDate).format("YYYY-MM-DD")
-      console.log(props)
       return (
         props.mutate({
           variables: {

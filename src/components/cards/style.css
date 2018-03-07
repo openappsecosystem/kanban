@@ -97,13 +97,15 @@
   right: 0;
   height: 30px;
   padding: 0 10px;
+  background: white;
+  box-shadow: 0 -2px -2px rgba(0, 0, 0, .2)
 }
 
 .item_info .info_date {
   font-size: 13px;
-  font-weight: 500;
-  color: #9B9B9B;
-  letter-spacing: 1px;
+  font-weight: 400;
+  color: rgb(109, 109, 109);
+  letter-spacing: .5px;
   line-height: 30px;
 }
 
