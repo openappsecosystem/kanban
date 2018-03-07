@@ -49,6 +49,7 @@ query ($token: String, $id: Int) {
             name
             id
             note
+            due
             plannedOn
             planProcesses {
               isStarted

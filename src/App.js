@@ -12,6 +12,7 @@ class Lists extends React.Component {
   }
   render () {
     const {viewer, loading, error} = this.props.data
+    console.log(viewer)
     return (
     <AppTemplate>
       {loading ? <strong>Loading...</strong> : (
