@@ -11,6 +11,14 @@ query ($token: String, $id: Int) {
         id
         name
         image
+        agentRelationships{
+          id
+          subject {
+            name
+            image
+            id
+          }
+        }
         ownedEconomicResources {
           resourceClassifiedAs {
             name

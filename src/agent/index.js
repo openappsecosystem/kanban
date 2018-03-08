@@ -3,6 +3,7 @@ import style from './style.css'
 import Cards from '../components/cards'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Feed from '../components/feed/feed'
+import { NavLink } from 'react-router-dom'
 
 const Agent = ({data}) => {
     return (
@@ -19,6 +20,7 @@ const Agent = ({data}) => {
           <TabList className={style.scope_list}>
               <Tab>Diary</Tab>
               <Tab>Plans</Tab>
+              <Tab>Agents</Tab>
               <Tab>Resources</Tab>
           </TabList>
           <TabPanel>
@@ -30,6 +32,18 @@ const Agent = ({data}) => {
                   data={data.agentPlans}
                   link='canvas'
                 />
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div className={style.agent_list}>
+                {data.agentRelationships.map((item, i) => (
+                  <div key={i} className={style.list_item + ' ' + style.item_member}>
+                    <NavLink key={i} activeClassName={style.activeLink} to={'/agent/' + item.subject.id}>
+                        <div className={style.item_photo}><img src={item.subject.image} /></div>
+                        <h5>{item.subject.name}</h5>
+                    </NavLink>
+                  </div>
+                ))}
               </div>
             </TabPanel>
             <TabPanel>
