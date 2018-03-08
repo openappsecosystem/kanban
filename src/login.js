@@ -45,7 +45,7 @@ class Login extends React.Component {
         return (
             <div>
             <div className={style.left_section}>
-              <h1>Open <br />Coopeartive<br />Ecosystem</h1>
+              <h1>Open <br />Cooperative<br />Ecosystem</h1>
               <ul>
                   <li><a href='https://open-cooperative-ecosystem.gitbooks.io/docs/' target='blank'>Documentation</a></li>
                   <li><a href='https://t.me/ocewelcome' target='blank'>Telegram</a></li>
