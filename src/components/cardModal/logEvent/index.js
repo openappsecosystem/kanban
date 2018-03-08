@@ -198,7 +198,7 @@ const wrapperComponent = compose(
   withState('action', 'updateAction', 'work'),
   withState('note', 'updateNote', ''),
   withState('numericValue', 'updateNumericValue', '0'),
-  withState('unitId', 'updateUnitId', 4),
+  withState('unitId', 'updateUnitId', 2),
   withState('requestPayment', 'updatePayment', false),
   withState('startDate', 'updateDate', moment()),
   withHandlers({
