@@ -10,14 +10,16 @@ import Sidebar from '../../components/sidebar'
 
 class AppTemplate extends React.Component {
   render () {
-    const {viewer, loading, error} = this.props.data
+    const {data, loading, error} = this.props
+    console.log(data)
+    console.log(error)
     return (
       <AuthenticatedOnly unauthenticatedComponent={<Login />}>
         {loading ? <strong>Loading...</strong> : (
           error ? <p style={{ color: '#F00' }}>API error</p> : (
             <div >
               <Flag />
-              <Sidebar data={viewer.myAgent} agents={viewer.myAgent.agentRelationships} />
+              <Sidebar data={this.props.data} agents={this.props.data.agentRelationships} />
               <div className={style.container}>
                 {this.props.children}
               </div>
@@ -44,6 +46,7 @@ query ($token: String) {
             id
             name
             note
+            image
           }
         }
         agentPlans {
@@ -69,5 +72,11 @@ const App = withRouter(AppTemplate)
 export default graphql(agentPlans, {
   options: (props) => ({variables: {
     token: localStorage.getItem('token')
-}})
+  }}),
+  props: ({ownProps, data: {viewer, loading, error, refetch}}) => ({
+    loading,
+    error,
+    refetch,
+    data: viewer ? viewer.myAgent : null
+  })
 })(App)

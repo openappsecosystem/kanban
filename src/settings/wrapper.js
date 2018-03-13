@@ -28,6 +28,18 @@ query ($token: String) {
         image
         email
         note
+        agentRelationships {
+          relationship {
+            label
+            category
+          }
+          object {
+            id
+            name
+            note
+            image
+          }
+        }
         primaryLocation {
             name
         }

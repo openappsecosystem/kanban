@@ -18,12 +18,7 @@ const link = createHttpLink({
 })
 
 const cache = new InMemoryCache({
-  dataIdFromObject: (result) => {
-    if (result.id && result.__typename) { // eslint-disable-line no-underscore-dangle
-      return result.__typename + result.id // eslint-disable-line no-underscore-dangle
-    }
-    return null
-  },
+  dataIdFromObject: object => object.key || null,
   addTypename: true,
   fragmentMatcher
 })

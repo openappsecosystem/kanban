@@ -10,7 +10,6 @@ const Sidebar = (props) => {
     r[type].push(a)
     return r
   }, Object.create(null))
-  console.log(result[1])
   return (
     <div>
       <div className={style.sidebar_mobile + ' ' + style.sidebar_mobile_active}>
