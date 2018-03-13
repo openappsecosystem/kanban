@@ -748,3 +748,47 @@
       border-radius: 0;
     }
  }
+
+
+ .hidden {
+   display: none;
+ }
+
+ .activity_header {
+  background: #dfe1e5;
+  margin: -20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 0;
+ }
+
+ .event_actions button {
+  margin-left: 10px;
+ }
+
+ .activity_header h5 {
+  -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #8c8c8c;
+    display: block;
+    line-height: 36px;
+    overflow: hidden;
+    margin-top: 10px;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    z-index: 1;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: .5px;
+    margin-bottom: 10px;
+ }
+
+ .activity_header span {
+    float: right;
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+ }

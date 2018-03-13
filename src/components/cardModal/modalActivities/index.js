@@ -105,11 +105,17 @@ export default compose(
     }),
     connect(mapStateToProps, mapDispatchToProps),
     withState('deleteEventModal', 'toggleDeleteEvent', false),
-    withState('idEventToDelete', 'setId', ''),
+    withState('idEventToDelete', 'setIdToDelete', ''),
+    withState('editEventModal', 'toggleEditEvent', false),
+    withState('idEventToEdit', 'setIdToUpdate', ''),
     withHandlers({
       toggleDeleteEvent: (props) => (status, id) => {
-        props.setId(id)
+        props.setIdToDelete(id)
         props.toggleDeleteEvent(!status)
+      },
+      toggleEditEvent: (props) => (status, id) => {
+        props.setIdToUpdate(id)
+        props.toggleEditEvent(!status)
       },
       deleteEvent: ({sendNotif, toggleDeleteEvent, deleteEventModal, mutate, addFlag}) => (id) => {
         return (

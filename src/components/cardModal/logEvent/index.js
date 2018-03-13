@@ -173,6 +173,42 @@ mutation ($token: String!, $action: String!, $requestDistribution: Boolean, $sta
 }
 `
 
+const updateEvent = gql`
+mutation ($token: String!, $id: Int!, $start: String!, $requestDistribution: Boolean, $scopeId: Int!, $note: String, $affectedNumericValue: String!, $affectedUnitId: Int! ) {
+  updateEconomicEvent(
+    token: $token,
+    id: $id,
+    start: $start,
+    scopeId: $scopeId, 
+    requestDistribution: $requestDistribution, 
+    note: $note,
+    affectedNumericValue: $affectedNumericValue,
+    affectedUnitId: $affectedUnitId,
+    ) {
+      economicEvent {
+        action
+        note
+        start
+        id
+        requestDistribution
+        scope {
+          id
+        }
+        provider {
+          name
+          id
+          image
+        }
+        affectedQuantity {
+          unit {
+            name
+          }
+          numericValue
+        }
+      }
+  }
+}`
+
 const mapStateToProps = (state) => {
   return {
     state: state
@@ -194,12 +230,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const wrapperComponent = compose(
-  graphql(createEvent, {}),
+  graphql(createEvent, { name: 'createEventMutation' }),
+  graphql(updateEvent, { name: 'updateEventMutation' }),
   withState('action', 'updateAction', 'work'),
   withState('note', 'updateNote', ''),
   withState('numericValue', 'updateNumericValue', '0'),
   withState('unitId', 'updateUnitId', 2),
-  withState('requestPayment', 'updatePayment', false),
+  withState('requestPayment', 'updatePayment', true),
   withState('startDate', 'updateDate', moment()),
   withHandlers({
     addNote: props => event => {
@@ -228,7 +265,7 @@ const wrapperComponent = compose(
       event.preventDefault()
       let date = moment(props.startDate).format("YYYY-MM-DD")
       return (
-        props.mutate({
+        props.createEventMutation({
           variables: {
             token: localStorage.getItem('token'),
             id: props.id,
@@ -306,6 +343,108 @@ const wrapperComponent = compose(
         })
         // })
         .then((data) => props.sendNotif(Math.random(), '✌️✌️✌️ Work logged correctly', 'success', '5000'))
+        .catch((e) => props.sendNotif(Math.random(), e.message, 'danger', '5000'))
+      )
+    },
+    update: props => (event) => {
+      event.preventDefault()
+      let date = moment(props.startDate).format("YYYY-MM-DD")
+      return (
+        props.updateEventMutation({
+          variables: {
+            token: localStorage.getItem('token'),
+            id: props.eventId,
+            action: props.action,
+            scopeId: props.scopeId,
+            requestDistribution: props.requestPayment,
+            commitmentId: props.commitmentId,
+            note: props.note,
+            affectedNumericValue: props.numericValue,
+            affectedUnitId: props.unitId,
+            start: date
+          },
+          // options: (props) => ({
+          update: (store, { data }) => {
+            let agentPlanCache = store.readQuery({ query: plan,
+              variables: {
+                token: localStorage.getItem('token'),
+                planId: Number(props.param)
+              }}
+            )
+            console.log(agentPlanCache)
+            let agentEventsCache = store.readQuery({ query: queryEvents,
+              variables: {
+                token: localStorage.getItem('token'),
+                id: Number(props.id)
+              }}
+            )
+            console.log(agentEventsCache)
+            let eventToUpdateId = agentEventsCache.viewer.commitment.fulfilledBy.findIndex(event => Number(event.fulfilledBy.id) === Number(props.eventId))
+            console.log(eventToUpdateId)
+            console.log(data)
+            let processIndex = agentPlanCache.viewer.plan.planProcesses.findIndex(process => process.committedInputs.some(item => Number(item.id) === Number(props.id)))
+            
+            let commitmentUpdatedIndex = agentPlanCache.viewer.plan
+              .planProcesses[processIndex]
+              .committedInputs
+              .findIndex(input => {
+                return Number(input.id) === Number(props.id)
+              })
+    
+            // let eventUpdatedIndex = agentPlanCache.viewer.plan
+            // .planProcesses[processIndex]
+            // .committedInputs[commitmentUpdatedIndex]
+            // .fulfilledBy
+            // .findIndex(input => {
+            //   return Number(input.id) === Number(props.id)
+            // })
+
+              // console.log(eventUpdatedIndex)
+              // console.log(agentPlanCache.viewer.plan
+              //   .planProcesses[processIndex]
+              //   .committedInputs[commitmentUpdatedIndex])
+
+            agentPlanCache.viewer.plan.planProcesses[processIndex].committedInputs[commitmentUpdatedIndex]
+            .fulfilledBy.splice(eventToUpdateId, 1, {
+              fulfills: {
+                action: data.updateEconomicEvent.economicEvent.action,
+                __typename: 'Commitment'
+              },
+              __typename: 'Fulfillment'
+            })
+    
+            agentEventsCache.viewer.commitment
+            .fulfilledBy.splice(eventToUpdateId, 1, {
+              fulfilledBy: {
+                action: data.updateEconomicEvent.economicEvent.action,
+                note: data.updateEconomicEvent.economicEvent.note,
+                requestDistribution: data.updateEconomicEvent.economicEvent.requestDistribution,
+                provider: data.updateEconomicEvent.economicEvent.provider,
+                start: data.updateEconomicEvent.economicEvent.start,
+                id: data.updateEconomicEvent.economicEvent.id,
+                __typename: 'EconomicEvent'
+              },
+              fulfilledQuantity: data.updateEconomicEvent.economicEvent.affectedQuantity,
+              __typename: 'Fulfillment'
+            })
+    
+            store.writeQuery({ query: plan,
+              variables: {
+                token: localStorage.getItem('token'),
+                id: props.param
+              },
+              data: agentPlanCache })
+    
+            store.writeQuery({ query: queryEvents,
+              variables: {
+                token: localStorage.getItem('token'),
+                id: props.id
+              },
+              data: agentEventsCache })
+          }
+        })
+        //  })
+        .then((data) => props.sendNotif(Math.random(), '✌️✌️✌️ Event updated correctly', 'success', '5000'))
         .catch((e) => props.sendNotif(Math.random(), e.message, 'danger', '5000'))
       )
     }
