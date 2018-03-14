@@ -84,6 +84,7 @@ body {
   font-weight: 500;
   color: #3F4657;
   margin-left: 20px;
+  margin-top: 20px;
   @mixin for-phone-only {
     font-size: 30px;
   }

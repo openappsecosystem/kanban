@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom'
 import AppTemplate from './templates/AppTemplate'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Feed from './components/feed/feed'
+import Cards from './components/cards'
 
 class Lists extends React.Component {
   componentDidMount () {
   }
   render () {
     const {viewer, loading, error} = this.props.data
-    console.log(viewer)
     return (
     <AppTemplate>
       {loading ? <strong>Loading...</strong> : (
@@ -29,20 +29,12 @@ class Lists extends React.Component {
               <Tab>Diary</Tab>
           </TabList>
           <TabPanel>
-            <div className={style.section_wrapper + ' ' + style.section_wrapper_box}>
-                <div className={style.wrapper_tagline}><h5 className={style.subtitle}>Plans</h5></div>
-                  <div className={style.wrapper}>
-                    {viewer.myAgent.agentPlans.map((plan, i) => (
-                      <div key={i} className={style.lists_item}>
-                        <Link key={plan.id} to={'/canvas/' + plan.id} className={style.link}>
-                          <h4 className={style.item_title}>{plan.name.length === 0 ? plan.planProcesses[0].name : plan.name }</h4>
-                          <h5 className={style.plan_scope}>{plan.scope.map((scope, j) => <span key={j}>{scope.name}</span>)}</h5>
-                          <p>{plan.note || ''}</p>
-                        </Link>
-                      </div>
-                    ))}
-                </div>
-            </div>
+            <div className={style.wrapper}>
+                <Cards
+                  data={viewer.myAgent.agentPlans}
+                  link='canvas'
+                />
+              </div>
             </TabPanel>
             <TabPanel>
               <div className={style.section_wrapper}>
@@ -72,6 +64,7 @@ query ($token: String) {
         agentEconomicEvents {
           note
           action
+          requestDistribution
           provider {
             image
             name
@@ -133,18 +126,17 @@ query ($token: String) {
           name
           id
           note
-          scope {
-            id
-            name
-          }
+          due
+          plannedOn
           planProcesses {
+            isStarted
+            isFinished
             name
-            committedInputs {
+            workingAgents {
               id
-              note
-              action
+              name
+              image
             }
-            note
           }
         }
       }
