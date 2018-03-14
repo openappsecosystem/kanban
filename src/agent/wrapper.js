@@ -11,6 +11,7 @@ query ($token: String, $id: Int) {
         id
         name
         image
+        type
         agentRelationships{
           id
           subject {
@@ -45,6 +46,7 @@ query ($token: String, $id: Int) {
             name
           }
           start
+          requestDistribution
           note
           affectedQuantity {
             numericValue
@@ -53,23 +55,23 @@ query ($token: String, $id: Int) {
             }
           }
         }
-          agentPlans {
+        agentPlans {
+          name
+          id
+          note
+          due
+          plannedOn
+          planProcesses {
+            isStarted
+            isFinished
             name
-            id
-            note
-            due
-            plannedOn
-            planProcesses {
-              isStarted
-              isFinished
+            workingAgents {
+              id
               name
-              workingAgents {
-                id
-                name
-                image
-              }
+              image
             }
           }
+        }
       }
     }
   }

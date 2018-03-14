@@ -20,7 +20,7 @@ const Agent = ({data}) => {
           <TabList className={style.scope_list}>
               <Tab>Diary</Tab>
               <Tab>Plans</Tab>
-              <Tab>Agents</Tab>
+              {data.type !== 'Person' ? <Tab>Agents</Tab> : ''}
               <Tab>Resources</Tab>
           </TabList>
           <TabPanel>
@@ -34,7 +34,8 @@ const Agent = ({data}) => {
                 />
               </div>
             </TabPanel>
-            <TabPanel>
+            {data.type !== 'Person'
+            ? <TabPanel>
               <div className={style.agent_list}>
                 {data.agentRelationships.map((item, i) => (
                   <div key={i} className={style.list_item + ' ' + style.item_member}>
@@ -46,6 +47,7 @@ const Agent = ({data}) => {
                 ))}
               </div>
             </TabPanel>
+            : '' }
             <TabPanel>
             <div className={style.resources_list}>
                 {data.ownedEconomicResources.map((item, i) => (
