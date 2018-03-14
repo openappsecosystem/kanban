@@ -371,17 +371,13 @@ const wrapperComponent = compose(
                 planId: Number(props.param)
               }}
             )
-            console.log(agentPlanCache)
             let agentEventsCache = store.readQuery({ query: queryEvents,
               variables: {
                 token: localStorage.getItem('token'),
                 id: Number(props.id)
               }}
             )
-            console.log(agentEventsCache)
             let eventToUpdateId = agentEventsCache.viewer.commitment.fulfilledBy.findIndex(event => Number(event.fulfilledBy.id) === Number(props.eventId))
-            console.log(eventToUpdateId)
-            console.log(data)
             let processIndex = agentPlanCache.viewer.plan.planProcesses.findIndex(process => process.committedInputs.some(item => Number(item.id) === Number(props.id)))
             
             let commitmentUpdatedIndex = agentPlanCache.viewer.plan
