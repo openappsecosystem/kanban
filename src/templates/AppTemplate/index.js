@@ -10,18 +10,16 @@ import Sidebar from '../../components/sidebar'
 
 class AppTemplate extends React.Component {
   render () {
-    const {data, loading, error} = this.props
-    console.log(data)
-    console.log(error)
+    const {data, loading, error, children} = this.props
     return (
       <AuthenticatedOnly unauthenticatedComponent={<Login />}>
         {loading ? <strong>Loading...</strong> : (
           error ? <p style={{ color: '#F00' }}>API error</p> : (
             <div >
               <Flag />
-              <Sidebar data={this.props.data} agents={this.props.data.agentRelationships} />
+              <Sidebar data={data} agents={data.agentRelationships} />
               <div className={style.container}>
-                {this.props.children}
+                {children}
               </div>
             </div>
           ))}
