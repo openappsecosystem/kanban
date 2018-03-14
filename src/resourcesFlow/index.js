@@ -2,6 +2,7 @@ import React from 'react'
 import List from '../list'
 import style from './canvas.css'
 const Canvas = (props) => {
+  console.log(props)
   return (
     <div className={style.board}>
       <div className={style.board_panels}>
@@ -10,6 +11,7 @@ const Canvas = (props) => {
             cards={list.cards}
             outputs={list.outputs}
             id={list.id}
+            status={list.status}
             key={i}
             info={list}
             agents={list.agents}

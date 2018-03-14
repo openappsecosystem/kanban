@@ -108,6 +108,7 @@ class Canvas extends React.Component {
                     due: list.plannedStart,
                     agents: list.workingAgents,
                     outputs: list.committedOutputs,
+                    status: list.isFinished,
                     cards: list.committedInputs
                     .filter(comm => comm.action === 'work')
                     .map(task => (

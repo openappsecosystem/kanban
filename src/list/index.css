@@ -6,6 +6,7 @@
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
+    position: relative;
 }
 
 
@@ -46,22 +47,100 @@
     @util clearfix;
   }
 
-  .header_due {
+  .header_processStatus.incomplete h5 {
+    background: #FFAB00;
+  }
+
+  .header_processStatus h5 {
     float: left;
     height: 24px;
     line-height: 24px;
-    margin-left: 5px;
+    background: #36B37E;
+    border-radius: 3px;
+    padding: 0 10px;
+    line-height: 24px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #172b4d;
+    margin:0;
+  }
+
+  .list_actions {
+    position: absolute;
+    right: -140px;
+    top: 0px;
+    z-index: 999999;
+  }
+
+  .list_actions .actions_item {
+    background: rgba(0,0,0,.6);
+    border-radius: 3px;
+    clear: both;
+    color: #e6e6e6;
+    display: block;
+    float: left;
+    margin: 0 0 4px 8px;
+    padding: 6px 12px 6px 8px;
+    text-decoration: none;
+    -webkit-transition: -webkit-transform 85ms ease-in;
+    transition: -webkit-transform 85ms ease-in;
+    transition: transform 85ms ease-in;
+    transition: transform 85ms ease-in,-webkit-transform 85ms ease-in;
+    cursor: pointer;
+  }
+
+  .list_actions .actions_item:hover {
+    background: rgba(0,0,0,.8);
+    color: #fff;
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+
+  .list_actions .actions_item h5 {
+    color: #e6e6e6;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .list_actions .actions_item h5:hover {
+    color: #fff;
+  }
+
+  .header_menu {
+    float: right;
+    padding: 4px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .header_first {
+    lost-utility: clearfix;
+  }
+
+  .header_menu:hover {
+    border-radius: 3px;
+    background: #cdd2d4;
+  }
+
+  .header_due {
+    float: right;
+    height: 24px;
+    line-height: 24px;
     background: #c7c7c7;
     border-radius: 3px;
     padding: 0 10px;
   }
-    .header_due .due_item {
-        line-height: 24px;
-        font-size: 13px;
-        text-decoration: underline;
-        font-weight: 500;
-        color: #444444;
-      }
+
+  .header_due .due_item {
+    line-height: 24px;
+    font-size: 13px;
+    text-decoration: underline;
+    font-weight: 500;
+    color: #444444;
+  }
 
   .header_members {
     float: left;
@@ -160,6 +239,11 @@ h2 {
   font-weight: 500;
   font-size: 14px;
   letter-spacing: .5;
+  margin-top: 0;
+}
+
+.header_infos {
+  margin-top: 10px;
 }
 
 .header_title {
@@ -172,6 +256,8 @@ h2 {
   margin-top: 5px;
   text-transform: capitalize;
   letter-spacing: .5px;
+  float: left;
+  width: 250px;
 }
 .header_title.hidden {
   display: none;

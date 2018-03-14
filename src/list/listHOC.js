@@ -1,4 +1,4 @@
-import {compose, withHandlers} from 'recompose'
+import {compose, withState, withHandlers} from 'recompose'
 import Component from './listTemplate'
 import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
@@ -29,7 +29,13 @@ export default compose(
         id, mutate
       })
     }),
+    withState('actionPopup', 'toggleActionPopup', false),
+    withState('actionPopupId', 'toggleActionPopupId', null),
     withHandlers({
+      toggleActions: (props) => (id) => {
+        props.toggleActionPopupId(id)
+        props.toggleActionPopup()
+      },
       deleteEvent: ({mutate}) => (id) => {
         return (
           mutate({
