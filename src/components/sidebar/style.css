@@ -7,19 +7,29 @@
     top: 0;
     width: 260px;
     bottom: 0;
-    background: $blue_500;
+    /* background: $blue_500; */
     overflow: auto;
-    @mixin for-phone-only {
+    /* @mixin for-phone-only {
         display: none;
-    }
+    } */
 }
 
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    bottom: 0;
+    overflow: auto;
+    background-color: $b500;
+}
 .sidebar_mobile {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0px;
-    background: $blue_500;
+    background: $b500;
     left: -260px;
     padding: 10px;
     border-radius: 2px;
@@ -48,11 +58,7 @@
         padding: 0;
         margin: 0;
         list-style: none;
-        // margin-top: 20px;
         li {
-            // float: left;
-            // margin-bottom: 0px;
-            // margin-right: 30px;
             cursor: pointer;
             lost-column: 1/4;
             span {
@@ -82,7 +88,7 @@
         float: left;
         margin-left: 10px;
         a {
-            color: #fff;
+            color: $n10;
             h3 {
                 font-size: 16px;
                 font-weight: 400;
@@ -101,41 +107,40 @@
    
 }
 .sidebar_header {
-    height: 100px;
+    /* height: 100px; */
     padding: 20px;
     lost-utility: clearfix;
-    background: $blue_600;
-    border-bottom: 1px solid rgba(255,255,255, .2);
 }
 
 .sidebar_header .header_profile {
     lost-utility: clearfix;
-    margin-top: 20px;
-    height: 50px;
-    line-height: 50px;
+    margin-top: 0px;
+    height: 23px;
+    line-height: 23px;
+    display: inline-block
 }
 
 .sidebar_header .header_profile h3 {
-    color: white;
+    color: $n10;
     font-size: 14px;
     letter-spacing: 1px;
     float: left;
     font-weight: 500;
-    line-height: 50px;
+    line-height: 23px;
     margin: 0;
     margin-left: 10px;
 }
 
 .sidebar_header .header_profile .data_image {
-    height: 50px;
-    width: 50px;
+    height: 23px;
+    width: 23px;
     border-radius: 2px;
     float: left;
 }
 
 .sidebar_header .header_profile .data_image img {
-    height: 50px;
-    width: 50px;
+    height: 23px;
+    width: 23px;
     border-radius: 2px;
 }
 
@@ -143,7 +148,7 @@
     float: left;
     margin: 0;
     margin-left: 10px;
-    color: white;
+    color: $n10;
     line-height: 25px;
     padding: 0;
     font-weight: 500;
@@ -187,7 +192,7 @@
 .sidebar_section .section_title {
     margin: 0;
     padding: 0;
-    color: white;
+    color: $n10;
     font-weight: 600;
     font-size: 12px;
     letter-spacing: .5px;
@@ -195,13 +200,14 @@
     padding-bottom: 5px;
     border-bottom: 2px solid;
     display: inline-block;
+    margin-bottom: 20px;
 }
 
 .sidebar_section .section_list {
     padding: 0;
     list-style: none;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .section_list li {
@@ -212,7 +218,7 @@
 
 .section_list .list_active a {
     font-weight: 600;
-    color: #fff;
+    color: $n10;
 }
 
 .section_list li a {
@@ -251,7 +257,7 @@
 .aside_section .section_title {
     margin: 0;
     padding: 0;
-    color: #fff;
+    color: $n10;
     font-weight: 600;
     font-size: 12px;
     letter-spacing: .5px;
@@ -259,14 +265,15 @@
     padding-bottom: 5px;
     border-bottom: 2px solid;
     display: inline-block;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .list_me {
     background: none !important;
     height: auto !important;
     margin-bottom: 20px !important;
-    color: white;
+    color: $n10;
     font-weight: 500;
     letter-spacing: 1px;
     font-size: 14px;
@@ -277,7 +284,7 @@
     padding: 0;
     list-style: none;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 
@@ -293,7 +300,7 @@
 }
 
 .aside_section .section_list a {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     display: block;
     position: relative;
     text-decoration: none;
@@ -302,14 +309,13 @@
 .aside_section .section_list li {
     padding: 0;
     margin: 0;
-    background: rgba(218, 225, 229, .2);
-    height: 50px;
-    border-radius: 2px;
+    /* background: rgba(218, 225, 229, .2); */
+    /* height: 50px; */
+    /* border-radius: 2px; */
 }
 .list_agent {
   lost-utility: clearfix;
 }
-
 
 .right_profile {
     position: relative;
@@ -327,7 +333,7 @@
     right: 20px;
     top: 45px;
     padding: 10px;
-    background: #fff;
+    background: $n10;
     opacity: 0;
     display: none;
     border-radius: 3px;
@@ -350,27 +356,42 @@
     font-weight: 500;
     margin: 0;
     margin-bottom: 10px;
-    border-bottom: 1px solid #dadada;
 }
 
 .list_agent img {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     float: left;
-    margin-left: 3px;
-    margin-top: 3px;
     border-radius: 2px;
 }
 
-.list_agent h4 {
+.list_agent .agent_label {
     float: left;
+    margin: 0;
     margin-left: 10px;
+}
+
+.list_agent h4 {
     text-decoration: none;
-    color: #fff;
-    font-size: 13px;
+    color: $n10;
+    font-size: 14px;
     font-weight: 500;
     width: 130px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
+}
+
+.list_agent h6 {
+    margin: 0;
+    margin-top: 5px;
+    color: $n50;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 1px solid;
+    padding: 0 5px;
+    border-radius: 1px;
 }
